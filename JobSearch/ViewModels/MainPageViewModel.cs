@@ -8,6 +8,7 @@ using JobSearch.Views;
 using Template10.Services.NavigationService;
 using Template10.Common;
 using Template10.Mvvm;
+using JobSearch.Models;
 
 namespace JobSearch.ViewModels
 {
@@ -37,6 +38,13 @@ namespace JobSearch.ViewModels
 
             Messages = _messageService.GetMessages();
             Selected = Messages?.FirstOrDefault();
+
+            //Jobs = new ObservableCollection<Job>();
+            //var dbService = Services.DatabaseService.DatabaseService.getDB();
+            //List<Job> listOfJobs = dbService.Jobs;
+            //foreach (Job job in listOfJobs)
+            //    Jobs.Add(job);
+
             return Task.CompletedTask;
         }
 
@@ -52,22 +60,39 @@ namespace JobSearch.ViewModels
         ObservableCollection<Models.Message> _messages = default(ObservableCollection<Models.Message>);
         public ObservableCollection<Models.Message> Messages { get { return _messages; } private set { Set(ref _messages, value); } }
 
+        //List<Job> _jobs;
+        public List<Job> Jobs
+        {
+            get
+            {
+                //_jobs = Services.DatabaseService.DatabaseService.getDB().Jobs;
+                //return _jobs;
+                return Services.DatabaseService.DatabaseService.getDB().Jobs;
+            }
+            private set { /*Set(ref _jobs, value);*/ }
+            //get
+            //{
+            //    return Services.DatabaseService.DatabaseService.getDB().Jobs;
+            //}
+            //private set { }
+        }
+
         string _searchText = default(string);
         public string SearchText { get { return _searchText; } set { Set(ref _searchText, value); } }
 
         public DelegateCommand SwitchToControlCommand =
             new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(MainPage))); // was originally MasterDetailsPage
 
-        Models.Message _selected = default(Models.Message);
+        Models.Job _selected = default(Models.Job);
         public object Selected
         {
             get { return _selected; }
             set
             {
-                var message = value as Models.Message;
-                Set(ref _selected, message);
-                if (message != null)
-                    message.IsRead = true;
+                var job = value as Models.Job;
+                Set(ref _selected, job);
+                //if (job != null)
+                //    job.IsRead = true;
             }
         }
 

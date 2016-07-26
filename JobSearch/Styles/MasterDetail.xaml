@@ -57,31 +57,31 @@
     <DataTemplate x:Name="MessageListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4" />
+                <!--<ColumnDefinition Width="4" />-->
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Rectangle Fill="SteelBlue" Visibility="{Binding IsRead, Converter={StaticResource VisibleWhenFalseConverter}}" />
-            <StackPanel Grid.Column="1">
+            <!--<Rectangle Fill="SteelBlue" Visibility="{Binding IsRead, Converter={StaticResource VisibleWhenFalseConverter}}" />-->
+            <StackPanel Grid.Column="0">
                 <TextBlock x:Name="From" Margin="8,0,0,0"
                                FontSize="16" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
-                               Text="{Binding From, FallbackValue=From}" />
+                               Text="{Binding Position, FallbackValue=Position}" />
                 <TextBlock x:Name="Subject" Margin="8,0,0,0"
                                FontSize="12" FontWeight="Normal"
                                Foreground="{StaticResource CustomColorBrush}" MaxLines="1"
-                               Text="{Binding Subject}" />
+                               Text="{Binding Company.Name}" />
                 <TextBlock x:Name="Body" Margin="8,0,0,8"
                                FontSize="12" FontWeight="Normal"
                                Foreground="DimGray" MaxLines="1"
                                Style="{StaticResource TitleTextBlockStyle}"
-                               Text="{Binding Body, FallbackValue=Body}" />
+                               Text="{Binding Notes, FallbackValue=Notes}" />
             </StackPanel>
-            <TextBlock x:Name="Date" Grid.Column="2"
+            <TextBlock x:Name="Date" Grid.Column="1"
                            Margin="8,0,16,8" HorizontalAlignment="Right"
                            VerticalAlignment="Bottom" FontSize="12"
                            FontWeight="Light" Foreground="DimGray"
-                           Text="{Binding Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}"
+                           Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}"
                            TextAlignment="Right" />
         </Grid>
     </DataTemplate>
@@ -96,27 +96,27 @@
                                FontWeight="Normal" Foreground="Black"
                                MaxLines="1" RelativePanel.AlignTopWith="Ellipse"
                                RelativePanel.RightOf="Ellipse"
-                               Text="{Binding From, FallbackValue=From}" />
+                               Text="{Binding Position, FallbackValue=Position}" />
                 <TextBlock x:Name="To" FontSize="12"
                                FontWeight="Normal" Foreground="Black"
                                MaxLines="1" RelativePanel.AlignLeftWith="Ellipse"
                                RelativePanel.Below="Subject">
-                        <Run Text="To: " />
-                        <Run Foreground="DimGray" Text="{Binding To, FallbackValue=To}" />
+                        <Run Text="Employment Service: " />
+                        <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
                 </TextBlock>
                 <TextBlock x:Name="Subject" Margin="0,8,0,0"
                                FontSize="16" FontWeight="Bold"
                                Foreground="Black" MaxLines="1"
                                RelativePanel.AlignLeftWith="Ellipse"
                                RelativePanel.Below="Ellipse"
-                               Text="{Binding Subject, FallbackValue=Subject}"
+                               Text="{Binding Company.Name, FallbackValue=Company.Name}"
                                TextWrapping="WrapWholeWords" />
                 <TextBlock x:Name="Body" Margin="0,16,16,16"
                                FontSize="12" FontWeight="Normal"
                                Foreground="DimGray" RelativePanel.AlignLeftWith="Ellipse"
                                RelativePanel.Below="To"
                                Style="{StaticResource TitleTextBlockStyle}"
-                               Text="{Binding Body, FallbackValue=Body}">
+                               Text="{Binding Notes, FallbackValue=Notes}">
                     <TextBlock.Transitions>
                         <TransitionCollection>
                             <ContentThemeTransition />
@@ -128,7 +128,7 @@
                                FontSize="12" FontWeight="Light"
                                Foreground="DimGray" RelativePanel.Below="From"
                                RelativePanel.RightOf="Ellipse"
-                               Text="{Binding Date, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
+                               Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
                                TextAlignment="Right" />
             </RelativePanel>
         </ScrollViewer>

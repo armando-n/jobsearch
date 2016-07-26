@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace JobSearch.Models
 {
     //[Table("Recruiters")]
-    class Recruiter
+    public class Recruiter : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
         public int RecruiterId { get; set; }

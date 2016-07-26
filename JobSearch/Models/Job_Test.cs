@@ -5,7 +5,7 @@ using System;
 namespace JobSearch.Models
 {
     //[Table("Job_Tests")]
-    class Job_Test
+    public class Job_Test : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
         public int TestId { get; set; }

@@ -4,7 +4,7 @@ using SQLiteNetExtensions.Attributes;
 namespace JobSearch.Models
 {
     //[Table("Job_Responsibilities")]
-    class Job_Responsibility
+    public class Job_Responsibility : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
         public int ResponsibilityId { get; set; }

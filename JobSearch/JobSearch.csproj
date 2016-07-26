@@ -100,7 +100,7 @@
     <Compile Include="DebugTraceListener.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Job.cs" />
-    <Compile Include="Models\JobSearchDB.cs" />
+    <Compile Include="Services\DatabaseService\DatabaseService.cs" />
     <Compile Include="Models\Job_Communication.cs" />
     <Compile Include="Models\Job_Interview.cs" />
     <Compile Include="Models\Job_Requirement.cs" />

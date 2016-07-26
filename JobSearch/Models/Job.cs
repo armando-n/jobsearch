@@ -6,7 +6,7 @@ using SQLiteNetExtensions.Attributes;
 namespace JobSearch.Models
 {
     //[Table("Jobs")]
-    class Job
+    public class Job : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
         public int JobId { get; set; }
@@ -28,6 +28,8 @@ namespace JobSearch.Models
         public string State { get; set; }
         //[RegularExpression(@"^\d{5}$")]
         public int? ZipCode { get; set; }
+        [MaxLength(1000)]
+        public string Notes { get; set; }
 
         [ForeignKey(typeof(Company))][NotNull]
         public int CompanyId { get; set; }

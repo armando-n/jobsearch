@@ -115,7 +115,7 @@
             IsItemClickEnabled="False"
             ItemContainerStyle="{StaticResource MailListItemContainerStyle}"
             ItemTemplate="{StaticResource MessageListItemTemplate}"
-            ItemsSource="{x:Bind ViewModel.Messages}"
+            ItemsSource="{x:Bind ViewModel.Jobs}"
             SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="ItemClick">

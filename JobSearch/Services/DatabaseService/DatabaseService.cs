@@ -6,57 +6,93 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using JobSearch.Models;
 
-namespace JobSearch.Models
+namespace JobSearch.Services.DatabaseService
 {
-    class JobSearchDB
+    public class DatabaseService
     {
-        private static JobSearchDB instance;
-        public static JobSearchDB getDB()
-        {
-            if (instance == null)
-                instance = new JobSearchDB();
-            return instance;
-        }
+        private static DatabaseService instance;
         private SQLite.Net.SQLiteConnection db;
 
         public List<Company> Companies { get; set; }
         public List<Recruiter> Recruiters { get; set; }
-        public List<Job> Jobs { get; set; }
+        List<Job> _jobs;
+        public List<Job> Jobs
+        {
+            get
+            {
+                if (_jobs == null)
+                {
+                    _jobs = getConnection().GetAllWithChildren<Job>();
+                }
+
+                return _jobs;
+            }
+            set
+            {
+                _jobs = value;
+            }
+        }
         public List<Job_Communication> Communications { get; set; }
         public List<Job_Interview> Interviews { get; set; }
         public List<Job_Requirement> Requirements { get; set; }
         public List<Job_Responsibility> Responsibilities { get; set; }
         public List<Job_Test> Tests { get; set; }
 
-        private JobSearchDB()
+        private DatabaseService()
         {
-            var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
-            db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            db.TraceListener = new DebugTraceListener();
+            //var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
+            //db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+            //db.TraceListener = new DebugTraceListener();
+            //getConnection();
             InitializeTables();
             PopulateDatabase();
-            this.Close();
+            _jobs = getConnection().GetAllWithChildren<Job>();
+            //this.Close();
+        }
+
+        public static DatabaseService getDB()
+        {
+            if (instance == null)
+                instance = new DatabaseService();
+            return instance;
+        }
+
+        public List<Job> getJobs()
+        {
+            return Jobs;
         }
 
         public void Close()
         {
-            db.Close();
+            getConnection().Close();
         }
 
-        public void InitializeTables()
+        private SQLite.Net.SQLiteConnection getConnection()
         {
-            db.CreateTable<Company>();
-            db.CreateTable<Recruiter>();
-            db.CreateTable<Job>();
-            db.CreateTable<Job_Communication>();
-            db.CreateTable<Job_Interview>();
-            db.CreateTable<Job_Requirement>();
-            db.CreateTable<Job_Responsibility>();
-            db.CreateTable<Job_Test>();
+            if (db == null)
+            {
+                var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
+                db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+                db.TraceListener = new DebugTraceListener();
+            }
+            return db;
         }
 
-        public void PopulateDatabase()
+        private void InitializeTables()
+        {
+            getConnection().CreateTable<Company>();
+            getConnection().CreateTable<Recruiter>();
+            getConnection().CreateTable<Job>();
+            getConnection().CreateTable<Job_Communication>();
+            getConnection().CreateTable<Job_Interview>();
+            getConnection().CreateTable<Job_Requirement>();
+            getConnection().CreateTable<Job_Responsibility>();
+            getConnection().CreateTable<Job_Test>();
+        }
+
+        private void PopulateDatabase()
         {
             Company weston = new Company()
             {
@@ -122,11 +158,11 @@ namespace JobSearch.Models
                 ZipCode = 77057
             };
 
-            db.Insert(weston);
-            db.Insert(ghgCorporation);
-            db.Insert(cyberCoders);
-            db.Insert(quadriviumSystems);
-            db.Insert(poeticSystems);
+            getConnection().Insert(weston);
+            getConnection().Insert(ghgCorporation);
+            getConnection().Insert(cyberCoders);
+            getConnection().Insert(quadriviumSystems);
+            getConnection().Insert(poeticSystems);
 
             Recruiter bryanKuna = new Recruiter()
             {
@@ -139,8 +175,8 @@ namespace JobSearch.Models
                 Email = "ira@revature.com"
             };
 
-            db.Insert(bryanKuna);
-            db.Insert(iraDSilva);
+            getConnection().Insert(bryanKuna);
+            getConnection().Insert(iraDSilva);
 
             Job westonSoftwareDeveloper_001 = new Job()
             {
@@ -154,11 +190,12 @@ namespace JobSearch.Models
                 City = "Houston",
                 State = "TX",
                 ZipCode = 77074,
+                Notes = "still waiting to hear about IQ test results",
                 Tests = new List<Job_Test>()
             };
-            db.Insert(westonSoftwareDeveloper_001);
+            getConnection().Insert(westonSoftwareDeveloper_001);
             weston.Jobs.Add(westonSoftwareDeveloper_001);
-            db.UpdateWithChildren(weston);
+            getConnection().UpdateWithChildren(weston);
 
             Job_Test westonIQTest = new Job_Test()
             {
@@ -166,11 +203,11 @@ namespace JobSearch.Models
                 Type = "online",
                 Notes = "45 min IQ test. I scored 115."
             };
-            db.Insert(westonIQTest);
+            getConnection().Insert(westonIQTest);
             westonSoftwareDeveloper_001.Tests.Add(westonIQTest);
-            db.UpdateWithChildren(westonSoftwareDeveloper_001);
+            getConnection().UpdateWithChildren(westonSoftwareDeveloper_001);
 
-            var storedCompany = db.GetWithChildren<Company>(weston.CompanyId, recursive: true);
+            var storedCompany = getConnection().GetWithChildren<Company>(weston.CompanyId, recursive: true);
             if (weston.Jobs.First<Job>().Position.Equals(storedCompany.Jobs.First<Job>().Position))
             {
                 Debug.WriteLine("Object and relationships loaded correctly!");

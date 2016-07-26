@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
+using System.Collections.Generic;
 
 namespace JobSearch.Models
 {
-    [Table("Companies")]
+    //[Table("Companies")]
     class Company
     {
+        [PrimaryKey, AutoIncrement]
         public int CompanyId { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100)][Unique]
         public string Name { get; set; }
         [MaxLength(100)]
         public string Domain { get; set; }
@@ -26,11 +27,12 @@ namespace JobSearch.Models
         public string StreetAddress { get; set; }
         [MaxLength(100)]
         public string City { get; set; }
-        [MaxLength(2)]
+        [MaxLength(2)][NotNull]
         public string State { get; set; }
-        [RegularExpression(@"^\d{5}$")]
+        //[RegularExpression(@"^\d{5}$")]
         public int? ZipCode { get; set; }
 
+        [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
         public List<Job> Jobs { get; set; }
 
         /*public Company()

@@ -1,27 +1,30 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using SQLite.Net.Attributes;
 using System;
+using SQLiteNetExtensions.Attributes;
 
 namespace JobSearch.Models
 {
-    [Table("Job_Communications")]
+    //[Table("Job_Communications")]
     class Job_Communication
     {
+        [PrimaryKey, AutoIncrement]
         public int CommunicationId { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100)][NotNull]
         public string Via { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100)][NotNull]
         public string To { get; set; }
-        [MaxLength(100)]
+        [MaxLength(100)][NotNull]
         public string From { get; set; }
         [MaxLength(100)]
         public string Subject { get; set; }
-        [MaxLength(5000)]
+        [MaxLength(5000)][NotNull]
         public string Description { get; set; }
+        [NotNull]
         public DateTime DateAndTime { get; set; }
 
+        [ForeignKey(typeof(Job))][NotNull]
         public int JobId { get; set; }
+        [ManyToOne]
         public Job Job { get; set; }
     }
 }

@@ -8,6 +8,8 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml.Data;
 using JobSearch.Views;
+using System.IO;
+using JobSearch.Models;
 
 namespace JobSearch
 {
@@ -21,6 +23,7 @@ namespace JobSearch
         {
             InitializeComponent();
             //SplashFactory = (e) => new Views.Splash(e);
+            JobSearchDB.getDB();
 
             #region App settings
 

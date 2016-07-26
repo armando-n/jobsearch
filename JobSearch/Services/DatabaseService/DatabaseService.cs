@@ -47,7 +47,7 @@ namespace JobSearch.Services.DatabaseService
             //db.TraceListener = new DebugTraceListener();
             //getConnection();
             InitializeTables();
-            PopulateDatabase();
+            //PopulateDatabase();
             _jobs = getConnection().GetAllWithChildren<Job>();
             //this.Close();
         }

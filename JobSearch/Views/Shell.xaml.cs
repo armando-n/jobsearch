@@ -43,6 +43,12 @@ namespace JobSearch.Views
             b1.Visibility = b2.Visibility = b3.Visibility = b4.Visibility = b5.Visibility = b6.Visibility = b7.Visibility =
                 (b1.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
         }
+
+        private void Add_Tapped(object sender, RoutedEventArgs e)
+        {
+            AddJobSymbol.Symbol = (AddJobSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
+            MainPage.Instance.ToggleAddJobForm();
+        }
     }
 }
 

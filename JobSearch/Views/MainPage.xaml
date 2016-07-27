@@ -113,7 +113,7 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <Grid Grid.ColumnSpan="2" Grid.Row="1" Background="LightGray">
+        <Grid Name="AddJobForm" Grid.ColumnSpan="2" Grid.Row="1" Background="LightGray" Visibility="Collapsed">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />

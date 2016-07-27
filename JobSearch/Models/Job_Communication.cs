@@ -11,9 +11,9 @@ namespace JobSearch.Models
         public int CommunicationId { get; set; }
         [MaxLength(100)][NotNull]
         public string Via { get; set; }
-        [MaxLength(100)][NotNull]
+        [MaxLength(100)]
         public string To { get; set; }
-        [MaxLength(100)][NotNull]
+        [MaxLength(100)]
         public string From { get; set; }
         [MaxLength(100)]
         public string Subject { get; set; }

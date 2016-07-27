@@ -18,6 +18,10 @@
         <viewModels:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
+    <!--<Page.Resources>
+        
+    </Page.Resources>-->
+
     <Grid x:Name="RootGrid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="NarrowVisualStateGroup">
@@ -77,7 +81,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="LeftColumn" Width="320" />
-            <ColumnDefinition x:Name="RightColumn" />
+            <ColumnDefinition x:Name="RightColumn" Width="*" />
         </Grid.ColumnDefinitions>
 
         <CommandBar Grid.ColumnSpan="2" Background="LightGray">
@@ -127,18 +131,18 @@
             <x:String>Sample</x:String>
         </ListView>
 
-        <Grid
+        <RelativePanel
             x:Name="JobDetail"
             Grid.Row="1"
             Grid.Column="1"
-            MaxWidth="600"
-            HorizontalAlignment="Left"
-            Background="White">
+            MinWidth="300"
+            HorizontalAlignment="Stretch"
+            Background="White"> 
             <ContentControl
                 x:Name="contentControl"
                 Content="{Binding Selected}"
                 ContentTemplate="{StaticResource JobDetailTemplate}" />
-        </Grid>
+        </RelativePanel>
 
     </Grid>
 

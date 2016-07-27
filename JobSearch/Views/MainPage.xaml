@@ -135,13 +135,11 @@
             x:Name="JobDetail"
             Grid.Row="1"
             Grid.Column="1"
-            MinWidth="300"
-            HorizontalAlignment="Stretch"
-            Background="White"> 
+            MinWidth="300"> 
             <ContentControl
-                x:Name="contentControl"
+                x:Name="contentControl" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                 Content="{Binding Selected}"
-                ContentTemplate="{StaticResource JobDetailTemplate}" />
+                ContentTemplate="{StaticResource JobDetailTemplate}" HorizontalContentAlignment="Stretch" />
         </RelativePanel>
 
     </Grid>

@@ -216,7 +216,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition MaxWidth="400" />
+                    <ColumnDefinition MinWidth="150" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 
@@ -273,42 +273,51 @@
                                    TextAlignment="Right" />
                 </RelativePanel>
 
-                <StackPanel Grid.Row="1" HorizontalAlignment="Stretch">
-                    <TextBlock x:Name="EmploymentService"
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock x:Name="EmploymentService" Grid.Row="0"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">
                             <Run Text="Using " />
                             <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
                     </TextBlock>
-                    <TextBlock x:Name="DatePosted"
+                    <TextBlock x:Name="DatePosted" Grid.Row="1"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">
                             <Run Text="Date Posted: " />
                             <Run Foreground="DimGray" Text="{Binding DatePosted, FallbackValue=DatePosted}" />
                     </TextBlock>
-                    <TextBlock x:Name="Recruiter"
+                    <TextBlock x:Name="Recruiter" Grid.Row="2"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">
                             <Run Text="Recruiter: " />
                             <Run Foreground="DimGray" Text="{Binding Recruiter.Name}" />
                     </TextBlock>
-                    <TextBlock x:Name="AppliedViaWebsite"
+                    <TextBlock x:Name="AppliedViaWebsite" Grid.Row="3"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">
                             <Run Text="Applied via website: " />
                             <Run Foreground="DimGray" Text="{Binding AppliedViaWebsite}" />
                     </TextBlock>
-                    <TextBlock x:Name="AppliedViaEmail"
+                    <TextBlock x:Name="AppliedViaEmail" Grid.Row="4"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">
                             <Run Text="Applied via email: " />
                             <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
                     </TextBlock>
-                    <TextBlock
+                    <TextBlock Grid.Row="5"
                                    Margin="0, 16, 16, 0" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1"
                                    Text="Tests" />
-                    <ListView
+                    <ListView Grid.Row="6"
                                    x:Name="TestsList"
                                    IsItemClickEnabled="False"
                                    ItemTemplate="{StaticResource TestsListItemTemplate}"
@@ -317,17 +326,16 @@
                         <x:String>Sample</x:String>
                         <x:String>Sample</x:String>
                     </ListView>
-                </StackPanel>
+                </Grid>
 
-                <Grid Grid.Row="1" Grid.Column="1" MaxWidth="400">
+                <Grid Grid.Row="1" Grid.Column="1" MaxWidth="500">
                     <Grid.RowDefinitions>
-                        <RowDefinition />
                         <RowDefinition />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition MaxWidth="400" />
+                        <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     
                     <TextBlock Grid.Row="0"
@@ -343,31 +351,36 @@
                         <x:String>Sample</x:String>
                         <x:String>Sample</x:String>
                     </ListView>
-                    <TextBlock Grid.Row="2"
-                                   Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="Notes" />
-                    <TextBlock x:Name="Notes" Grid.Row="3" MaxWidth="400"
-                                   Margin="8, 4, 8, 8" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="{Binding Notes}"
-                                   TextWrapping="Wrap" TextAlignment="Center" TextTrimming="None"
-                                   Width="200">
-                        <TextBlock.Transitions>
-                            <TransitionCollection>
-                                <ContentThemeTransition />
-                            </TransitionCollection>
-                        </TextBlock.Transitions>
-                    </TextBlock>
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
+                        <TextBlock
+                                       Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
+                                       Foreground="Black" MaxLines="1"
+                                       Text="Notes" />
+                        <TextBlock x:Name="Notes" TextWrapping="Wrap"
+                                       Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                                       Foreground="Black"
+                                       Text="{Binding Notes}"
+                                       TextAlignment="Left">
+                            <TextBlock.Transitions>
+                                <TransitionCollection>
+                                    <ContentThemeTransition />
+                                </TransitionCollection>
+                            </TextBlock.Transitions>
+                        </TextBlock>
+                    </StackPanel>
                 </Grid>
 
-                <StackPanel Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch">
-                    <TextBlock
+                <Grid Grid.Row="1" Grid.Column="2" MaxWidth="400">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
                                    Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1"
                                    Text="Communications" />
                     <ListView x:Name="CommunicationsList"
-                                   Width="200"
+                                   Grid.Row="1" Width="200"
                                    IsItemClickEnabled="False"
                                    ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
                                    ItemsSource="{Binding Communications, FallbackValue=None}">
@@ -375,9 +388,9 @@
                         <x:String>Sample</x:String>
                         <x:String>Sample</x:String>
                     </ListView>
-                </StackPanel>
+                </Grid>
 
-                <StackPanel Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
                     <TextBlock
                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1"
@@ -393,7 +406,7 @@
                     </ListView>
                 </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Stretch">
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
                     <TextBlock
                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1"

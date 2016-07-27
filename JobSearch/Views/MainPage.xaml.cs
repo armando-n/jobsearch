@@ -26,26 +26,32 @@ namespace JobSearch.Views
 
         private void AddJob_Clicked(object sender, RoutedEventArgs e)
         {
-            AddJobForm.Visibility = Visibility.Collapsed;
+            try
+            {
+                ViewModel.AddJob(
+                    position: PositionBox.Text,
+                    company: CompanyBox.Text,
+                    recruiter: RecruiterBox.Text,
+                    notes: NotesBox.Text,
+                    employmentService: EmploymentServiceBox.Text,
+                    appliedViaWebsite: AppliedViaWebsiteBox.IsChecked,
+                    appliedViaEmail: AppliedViaEmailBox.IsChecked,
+                    datePosted: DatePostedBox.Date?.Date,
+                    dateApplied: DateAppliedBox.Date?.Date,
+                    streetAddress: StreetAddressBox.Text,
+                    city: CityBox.Text,
+                    state: StateBox.Text,
+                    zipCode: (ZipCodeBox.Text.Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
+                    //ignore: 
+                );
 
-            ViewModel.AddJob(
-                position: PositionBox.Text,
-                company: CompanyBox.Text,
-                recruiter: RecruiterBox.Text,
-                notes: NotesBox.Text,
-                employmentService: EmploymentServiceBox.Text,
-                appliedViaWebsite: AppliedViaWebsiteBox.IsChecked,
-                appliedViaEmail: AppliedViaEmailBox.IsChecked,
-                datePosted: DatePostedBox.Date?.Date,
-                dateApplied: DateAppliedBox.Date?.Date,
-                streetAddress: StreetAddressBox.Text,
-                city: CityBox.Text,
-                state: StateBox.Text,
-                zipCode: (ZipCodeBox.Text.Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
-                //ignore: 
-            );
+                AddJobForm.Visibility = Visibility.Collapsed;
+                JobsList.SelectedIndex = ViewModel.JobCount() - 1;
+            }
+            catch (ArgumentNullException ex)
+            {
 
-            JobsList.SelectedIndex = ViewModel.JobCount() - 1;
+            }
         }
 
         private void FillForm_Clicked(object sender, RoutedEventArgs e)

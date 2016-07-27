@@ -116,7 +116,7 @@ namespace JobSearch.Services.DatabaseService
             company.Jobs.Add(job);
             getConnection().UpdateWithChildren(company);
 
-            if (recruiterName != null)
+            if (! String.IsNullOrWhiteSpace(recruiterName))
             {
                 IEnumerable<Recruiter> candidateRecruiters = Recruiters.Where(rcrtr => string.Equals(rcrtr.Name, recruiterName));
                 recruiter = candidateRecruiters.Single();

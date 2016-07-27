@@ -106,24 +106,31 @@ namespace JobSearch.ViewModels
                 , string employmentService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
                 , string streetAddress, string city, string state, int? zipCode)
         {
-            Job newJob = new Job()
+            try
             {
-                Position = position,
-                Notes = notes,
-                EmploymentService = employmentService,
-                AppliedViaWebsite = appliedViaWebsite ?? false,
-                AppliedViaEmail = appliedViaEmail ?? false,
-                DatePosted = datePosted,
-                DateApplied = dateApplied,
-                StreetAddress = streetAddress,
-                City = city,
-                State = state,
-                ZipCode = zipCode
-            };
+                Job newJob = new Job()
+                {
+                    Position = String.IsNullOrWhiteSpace(position) ? null : position,
+                    Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
+                    EmploymentService = String.IsNullOrWhiteSpace(employmentService) ? null : employmentService,
+                    AppliedViaWebsite = appliedViaWebsite ?? false,
+                    AppliedViaEmail = appliedViaEmail ?? false,
+                    DatePosted = datePosted,
+                    DateApplied = dateApplied,
+                    StreetAddress = String.IsNullOrWhiteSpace(streetAddress) ? null : streetAddress,
+                    City = String.IsNullOrWhiteSpace(city) ? null : city,
+                    State = String.IsNullOrWhiteSpace(state) ? null : state,
+                    ZipCode = zipCode
+                };
 
-            DatabaseService.GetDB().AddJob(newJob, company, recruiter);
-            Jobs.Add(newJob);
-            RaisePropertyChanged(nameof(Jobs));
+                DatabaseService.GetDB().AddJob(newJob, company, recruiter);
+                Jobs.Add(newJob);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new job");
+            }
         }
 
         public int JobCount()

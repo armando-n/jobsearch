@@ -10,24 +10,59 @@ using JobSearch.Models;
 
 namespace JobSearch.Services.DatabaseService
 {
-    public class DatabaseService
+    public class DatabaseService : Template10.Mvvm.BindableBase
     {
         private static DatabaseService instance;
         private SQLite.Net.SQLiteConnection db;
 
-        public List<Company> Companies { get; set; }
-        public List<Recruiter> Recruiters { get; set; }
+        List<Company> _companies;
+        public List<Company> Companies
+        {
+            get
+            {
+                //if (_companies == null)
+                //{
+                //    _companies = getConnection().GetAllWithChildren<Company>();
+                //}
+
+                return _companies;
+            }
+            set
+            {
+                _companies = value;
+            }
+        }
+
+        List<Recruiter> _recruiters;
+        public List<Recruiter> Recruiters
+        {
+            get
+            {
+                //if (_recruiters == null)
+                //{
+                //    _recruiters = getConnection().GetAllWithChildren<Recruiter>();
+                //}
+
+                return _recruiters;
+            }
+            set
+            {
+                _recruiters = value;
+            }
+        }
         List<Job> _jobs;
         public List<Job> Jobs
         {
             get
             {
-                if (_jobs == null)
-                {
-                    _jobs = getConnection().GetAllWithChildren<Job>();
-                }
+                return _jobs;// ?? getConnection().GetAllWithChildren<Job>();
 
-                return _jobs;
+                //if (_jobs == null)
+                //{
+                //    _jobs = getConnection().GetAllWithChildren<Job>();
+                //}
+
+                //return _jobs;
             }
             set
             {
@@ -49,24 +84,45 @@ namespace JobSearch.Services.DatabaseService
             InitializeTables();
             //PopulateDatabase();
             _jobs = getConnection().GetAllWithChildren<Job>();
+            _companies = getConnection().GetAllWithChildren<Company>();
+            _recruiters = getConnection().GetAllWithChildren<Recruiter>();
             //this.Close();
         }
 
-        public static DatabaseService getDB()
+        public static DatabaseService GetDB()
         {
-            if (instance == null)
-                instance = new DatabaseService();
-            return instance;
+            return instance ?? new DatabaseService();
         }
 
-        public List<Job> getJobs()
-        {
-            return Jobs;
-        }
+        //public List<Job> GetJobs()
+        //{
+        //    return Jobs;
+        //}
 
         public void Close()
         {
             getConnection().Close();
+        }
+
+        public void AddJob(Job job, string companyName, string recruiterName)
+        {
+            Company company;
+            Recruiter recruiter;
+
+            getConnection().Insert(job);
+            Jobs.Add(job);
+
+            company = Companies.Where(cmpny => string.Equals(cmpny.Name, companyName)).Single();
+            company.Jobs.Add(job);
+            getConnection().UpdateWithChildren(company);
+
+            if (recruiterName != null)
+            {
+                IEnumerable<Recruiter> candidateRecruiters = Recruiters.Where(rcrtr => string.Equals(rcrtr.Name, recruiterName));
+                recruiter = candidateRecruiters.Single();
+                recruiter.Jobs.Add(job);
+                getConnection().UpdateWithChildren(recruiter);
+            }
         }
 
         private SQLite.Net.SQLiteConnection getConnection()

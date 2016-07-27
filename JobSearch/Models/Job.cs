@@ -30,6 +30,8 @@ namespace JobSearch.Models
         public int? ZipCode { get; set; }
         [MaxLength(1000)]
         public string Notes { get; set; }
+        [Default(false, 0)]
+        //public bool? Ignore { get; set; }
 
         [ForeignKey(typeof(Company))][NotNull]
         public int CompanyId { get; set; }

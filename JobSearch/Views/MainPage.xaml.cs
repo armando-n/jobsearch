@@ -1,5 +1,6 @@
 //using System;
 //using JobSearch.ViewModels;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 //using Windows.UI.Xaml.Navigation;
@@ -21,6 +22,46 @@ namespace JobSearch.Views
         public void ToggleAddJobForm()
         {
             AddJobForm.Visibility = (AddJobForm.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private void AddJob_Clicked(object sender, RoutedEventArgs e)
+        {
+            AddJobForm.Visibility = Visibility.Collapsed;
+
+            ViewModel.AddJob(
+                position: PositionBox.Text,
+                company: CompanyBox.Text,
+                recruiter: RecruiterBox.Text,
+                notes: NotesBox.Text,
+                employmentService: EmploymentServiceBox.Text,
+                appliedViaWebsite: AppliedViaWebsiteBox.IsChecked,
+                appliedViaEmail: AppliedViaEmailBox.IsChecked,
+                datePosted: DatePostedBox.Date?.Date,
+                dateApplied: DateAppliedBox.Date?.Date,
+                streetAddress: StreetAddressBox.Text,
+                city: CityBox.Text,
+                state: StateBox.Text,
+                zipCode: (ZipCodeBox.Text.Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
+                //ignore: 
+            );
+
+            JobsList.SelectedIndex = ViewModel.JobCount() - 1;
+        }
+
+        private void FillForm_Clicked(object sender, RoutedEventArgs e)
+        {
+            PositionBox.Text = "Web Developer";
+            CompanyBox.Text = "GHG Corporation";
+            RecruiterBox.Text = "Ira D'Silva";
+            NotesBox.Text = "this is test data and not a real job";
+            EmploymentServiceBox.Text = "Zip Recruiter";
+            AppliedViaWebsiteBox.IsChecked = true;
+            DatePostedBox.Date = new System.DateTimeOffset(new System.DateTime(2016, 7, 5));
+            DateAppliedBox.Date = new System.DateTimeOffset(new System.DateTime(2016, 7, 13));
+            StreetAddressBox.Text = "1453 Waverly Lane";
+            CityBox.Text = "Houston";
+            StateBox.Text = "TX";
+            ZipCodeBox.Text = "77034";
         }
     }
 }

@@ -113,75 +113,79 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <Grid Name="AddJobForm" Grid.ColumnSpan="2" Grid.Row="1" Background="LightGray" Visibility="Collapsed">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <StackPanel Name="AddJobForm" Grid.ColumnSpan="2" Grid.Row="1" Background="LightGray" Visibility="Collapsed">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Position" />
-                <TextBox x:Name="PositionBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Company" />
-                <TextBox x:Name="CompanyBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Recruiter" />
-                <TextBox x:Name="RecruiterBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Notes" />
-                <TextBox x:Name="NotesBox" MinWidth="150" MinHeight="50"/>
-            </StackPanel>
-
-            <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Employment Service" />
-                <TextBox x:Name="EmploymentServiceBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Applied Via" />
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
-                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
-                              HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Position" />
+                    <TextBox x:Name="PositionBox" MinWidth="150" />
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Date Posted" />
-                <CalendarDatePicker x:Name="DatePostedBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Date Applied" />
-                <CalendarDatePicker x:Name="DateAppliedBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-            </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Company" />
+                    <TextBox x:Name="CompanyBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Recruiter" />
+                    <TextBox x:Name="RecruiterBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Notes" />
+                    <TextBox x:Name="NotesBox" MinWidth="150" MinHeight="50"/>
+                </StackPanel>
 
-            <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Street Address" />
-                <TextBox x:Name="StreetAddressBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="City" />
-                <TextBox x:Name="CityBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="State" />
-                <TextBox x:Name="StateBox" MinWidth="150" />
-            </StackPanel>
-            <StackPanel Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                <TextBlock Text="Zip Code" />
-                <TextBox x:Name="ZipCodeBox" MinWidth="150" />
-            </StackPanel>
-        </Grid>
+                <StackPanel Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Employment Service" />
+                    <TextBox x:Name="EmploymentServiceBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Applied Via" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                        <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Date Posted" />
+                    <CalendarDatePicker x:Name="DatePostedBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Date Applied" />
+                    <CalendarDatePicker x:Name="DateAppliedBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Street Address" />
+                    <TextBox x:Name="StreetAddressBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="City" />
+                    <TextBox x:Name="CityBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="State" />
+                    <TextBox x:Name="StateBox" MinWidth="150" />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
+                    <TextBlock Text="Zip Code" />
+                    <TextBox x:Name="ZipCodeBox" MinWidth="150" />
+                </StackPanel>
+            </Grid>
+            <Button Click="AddJob_Clicked" HorizontalAlignment="Right">Add</Button>
+            <Button HorizontalAlignment="Right" Click="FillForm_Clicked">Fill Form</Button>
+        </StackPanel>
 
         <ListView
             x:Name="JobsList"

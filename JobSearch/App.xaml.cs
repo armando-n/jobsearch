@@ -23,7 +23,7 @@ namespace JobSearch
         {
             InitializeComponent();
             //SplashFactory = (e) => new Views.Splash(e);
-            Services.DatabaseService.DatabaseService.getDB();
+            Services.DatabaseService.DatabaseService.GetDB();
 
             #region App settings
 

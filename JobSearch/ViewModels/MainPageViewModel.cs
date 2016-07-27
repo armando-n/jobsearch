@@ -9,6 +9,7 @@ using Template10.Services.NavigationService;
 using Template10.Common;
 using Template10.Mvvm;
 using JobSearch.Models;
+using JobSearch.Services.DatabaseService;
 
 namespace JobSearch.ViewModels
 {
@@ -18,11 +19,13 @@ namespace JobSearch.ViewModels
 
         public MainPageViewModel()
         {
-            if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            {
+            //if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
+            //{
                 _messageService = new Services.MessageService.MessageService();
+                Jobs = new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
+                //Jobs.Count();
                 //Value = "Designtime value";
-            }
+            //}
         }
 
         //string _Value = "Gas";
@@ -60,16 +63,19 @@ namespace JobSearch.ViewModels
         ObservableCollection<Models.Message> _messages = default(ObservableCollection<Models.Message>);
         public ObservableCollection<Models.Message> Messages { get { return _messages; } private set { Set(ref _messages, value); } }
 
-        //List<Job> _jobs;
-        public List<Job> Jobs
+        private ObservableCollection<Models.Job> _jobs;
+        public ObservableCollection<Models.Job> Jobs
         {
             get
             {
+                //if (_jobs == null)
+                //    _jobs = new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
+                return _jobs;
                 //_jobs = Services.DatabaseService.DatabaseService.getDB().Jobs;
-                //return _jobs;
-                return Services.DatabaseService.DatabaseService.getDB().Jobs;
+                //return _jobs ?? new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
+                //return DatabaseService.GetDB().Jobs;
             }
-            private set { /*Set(ref _jobs, value);*/ }
+            set { /*_jobs = value;*/ Set(ref _jobs, value); }
             //get
             //{
             //    return Services.DatabaseService.DatabaseService.getDB().Jobs;
@@ -94,6 +100,35 @@ namespace JobSearch.ViewModels
                 //if (job != null)
                 //    job.IsRead = true;
             }
+        }
+
+        public void AddJob(string position, string company, string recruiter, string notes
+                , string employmentService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
+                , string streetAddress, string city, string state, int? zipCode)
+        {
+            Job newJob = new Job()
+            {
+                Position = position,
+                Notes = notes,
+                EmploymentService = employmentService,
+                AppliedViaWebsite = appliedViaWebsite ?? false,
+                AppliedViaEmail = appliedViaEmail ?? false,
+                DatePosted = datePosted,
+                DateApplied = dateApplied,
+                StreetAddress = streetAddress,
+                City = city,
+                State = state,
+                ZipCode = zipCode
+            };
+
+            DatabaseService.GetDB().AddJob(newJob, company, recruiter);
+            Jobs.Add(newJob);
+            RaisePropertyChanged(nameof(Jobs));
+        }
+
+        public int JobCount()
+        {
+            return Jobs.Count();
         }
 
         //public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)

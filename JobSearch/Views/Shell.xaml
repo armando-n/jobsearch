@@ -63,8 +63,8 @@
                     </TextBlock>-->
                 </ToggleButton>
             </c:HamburgerButtonInfo>
-            
-            <c:HamburgerButtonInfo ButtonType="Command">
+
+            <!--<c:HamburgerButtonInfo ButtonType="Command">
                 <Interactivity:Interaction.Behaviors>
                     <Core:EventTriggerBehavior EventName="Tapped">
                         <behaviors:MessageDialogAction Title="Create message" Content="This is not a real mail client." />
@@ -74,9 +74,26 @@
                     <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="Page" />
                     <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Jobs" />
                 </StackPanel>
+            </c:HamburgerButtonInfo>-->
+
+            <c:HamburgerButtonInfo x:Name="JobsButton" PageType="views:MainPage">
+                <!--<RelativePanel Style="{StaticResource ButtonRelativePanel}">-->
+                    <!--<TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" Style="{StaticResource ButtonTextBlock}">
+                        <Run Text="Other button" />
+                        <LineBreak />
+                        <Run FontSize="12" Text="This does nothing" />
+                    </TextBlock>
+                    <TextBlock RelativePanel.AlignRightWithPanel="True"
+                               RelativePanel.AlignVerticalCenterWithPanel="True"
+                               Text="47" />-->
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="Page" />
+                        <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Jobs" />
+                    </StackPanel>
+                <!--</RelativePanel>-->
             </c:HamburgerButtonInfo>
 
-            <c:HamburgerButtonInfo ButtonType="Command" Tapped="Accounts_Tapped">
+            <!--<c:HamburgerButtonInfo ButtonType="Command" Tapped="Accounts_Tapped">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="OpenLocal" />
                     <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Fake accounts" />
@@ -116,7 +133,7 @@
                     </TextBlock>
                 </RelativePanel>
             </c:HamburgerButtonInfo>
-            <c:HamburgerButtonInfo x:Name="b2" PageType="views:MainPage"> <!-- was MasterDetailsPage -->
+            <c:HamburgerButtonInfo x:Name="b2" PageType="views:MainPage"> --><!-- was MasterDetailsPage --><!--
                 <RelativePanel Style="{StaticResource ButtonRelativePanel}">
                     <TextBlock RelativePanel.AlignVerticalCenterWithPanel="True" Style="{StaticResource ButtonTextBlock}">
                         <Run Text="Master/Details 2" />
@@ -184,9 +201,25 @@
                                RelativePanel.AlignVerticalCenterWithPanel="True"
                                Text="47" />
                 </RelativePanel>
-            </c:HamburgerButtonInfo>
+            </c:HamburgerButtonInfo>-->
 
         </c:HamburgerMenu.PrimaryButtons>
+
+        <c:HamburgerMenu.SecondaryButtons>
+            <!--  settingspage button  -->
+            <c:HamburgerButtonInfo x:Name="SettingsButton" PageParameter="0"
+                                          PageType="views:SettingsPage">
+                <c:HamburgerButtonInfo.NavigationTransitionInfo>
+                    <SuppressNavigationTransitionInfo />
+                </c:HamburgerButtonInfo.NavigationTransitionInfo>
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48" Height="48"
+                                Symbol="Setting" />
+                    <TextBlock Margin="12,0,0,0" VerticalAlignment="Center"
+                               Text="Settings" />
+                </StackPanel>
+            </c:HamburgerButtonInfo>
+        </c:HamburgerMenu.SecondaryButtons>
 
     </c:HamburgerMenu>
 

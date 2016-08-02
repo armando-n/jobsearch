@@ -46,8 +46,19 @@ namespace JobSearch.Views
 
         private void Add_Tapped(object sender, RoutedEventArgs e)
         {
-            AddJobSymbol.Symbol = (AddJobSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
-            MainPage.Instance.ToggleAddJobForm();
+            //System.Diagnostics.Debug.Write(MyHamburgerMenu.NavigationService.Content.GetType().ToString());
+            Type currentPage = MyHamburgerMenu.NavigationService.Content.GetType();
+            if (currentPage.Equals(typeof(CompaniesPage)))
+            {
+                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
+                CompaniesPage.Instance.ToggleAddCompanyForm();
+            }
+            else if (currentPage.Equals(typeof(MainPage)))
+            {
+                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
+                MainPage.Instance.ToggleAddJobForm();
+            }
+            
         }
     }
 }

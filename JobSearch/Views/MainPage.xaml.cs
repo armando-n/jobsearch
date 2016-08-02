@@ -41,7 +41,7 @@ namespace JobSearch.Views
                     streetAddress: StreetAddressBox.Text,
                     city: CityBox.Text,
                     state: StateBox.Text,
-                    zipCode: (ZipCodeBox.Text.Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
+                    zipCode: (ZipCodeBox.Text.Trim().Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
                     //ignore: 
                 );
 

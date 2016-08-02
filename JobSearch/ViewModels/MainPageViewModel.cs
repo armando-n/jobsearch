@@ -9,20 +9,21 @@ using Template10.Services.NavigationService;
 using Template10.Common;
 using Template10.Mvvm;
 using JobSearch.Models;
-using JobSearch.Services.DatabaseService;
 
 namespace JobSearch.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        Services.MessageService.MessageService _messageService;
+        //Services.MessageService.MessageService _messageService;
+        Services.DatabaseService.DatabaseService db;
 
         public MainPageViewModel()
         {
             //if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
             //{
-                _messageService = new Services.MessageService.MessageService();
-                Jobs = new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
+            //_messageService = new Services.MessageService.MessageService();
+            db = Services.DatabaseService.DatabaseService.GetDB();
+                
                 //Jobs.Count();
                 //Value = "Designtime value";
             //}
@@ -39,8 +40,11 @@ namespace JobSearch.ViewModels
             //}
             //await Task.CompletedTask;
 
-            Messages = _messageService.GetMessages();
-            Selected = Messages?.FirstOrDefault();
+            //Messages = _messageService.GetMessages();
+            //Selected = Messages?.FirstOrDefault();
+
+            Jobs = new ObservableCollection<Job>(db.Jobs);
+            Selected = Jobs?.First();
 
             //Jobs = new ObservableCollection<Job>();
             //var dbService = Services.DatabaseService.DatabaseService.getDB();
@@ -60,8 +64,8 @@ namespace JobSearch.ViewModels
         //    await Task.CompletedTask;
         //}
 
-        ObservableCollection<Models.Message> _messages = default(ObservableCollection<Models.Message>);
-        public ObservableCollection<Models.Message> Messages { get { return _messages; } private set { Set(ref _messages, value); } }
+        //ObservableCollection<Models.Message> _messages = default(ObservableCollection<Models.Message>);
+        //public ObservableCollection<Models.Message> Messages { get { return _messages; } private set { Set(ref _messages, value); } }
 
         private ObservableCollection<Models.Job> _jobs;
         public ObservableCollection<Models.Job> Jobs
@@ -83,8 +87,8 @@ namespace JobSearch.ViewModels
             //private set { }
         }
 
-        string _searchText = default(string);
-        public string SearchText { get { return _searchText; } set { Set(ref _searchText, value); } }
+        //string _searchText = default(string);
+        //public string SearchText { get { return _searchText; } set { Set(ref _searchText, value); } }
 
         public DelegateCommand SwitchToControlCommand =
             new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(MainPage))); // was originally MasterDetailsPage
@@ -123,7 +127,7 @@ namespace JobSearch.ViewModels
                     ZipCode = zipCode
                 };
 
-                DatabaseService.GetDB().AddJob(newJob, company, recruiter);
+                db.AddJob(newJob, company, recruiter);
                 Jobs.Add(newJob);
                 RaisePropertyChanged(nameof(Jobs));
             }

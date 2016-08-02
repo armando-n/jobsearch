@@ -9,7 +9,7 @@ namespace JobSearch.Models
     {
         [PrimaryKey, AutoIncrement]
         public int CompanyId { get; set; }
-        [MaxLength(100)][Unique]
+        [MaxLength(100)][Unique][NotNull]
         public string Name { get; set; }
         [MaxLength(100)]
         public string Domain { get; set; }
@@ -34,11 +34,5 @@ namespace JobSearch.Models
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
         public List<Job> Jobs { get; set; }
-
-        /*public Company()
-        {
-            if (Jobs == null)
-                Jobs = new List<Job>();
-        }*/
     }
 }

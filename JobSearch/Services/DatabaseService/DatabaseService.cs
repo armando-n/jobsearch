@@ -13,7 +13,7 @@ namespace JobSearch.Services.DatabaseService
     public class DatabaseService : Template10.Mvvm.BindableBase
     {
         private static DatabaseService instance;
-        private SQLite.Net.SQLiteConnection db;
+        private SQLite.Net.SQLiteConnection connection;
 
         List<Company> _companies;
         public List<Company> Companies
@@ -125,15 +125,21 @@ namespace JobSearch.Services.DatabaseService
             }
         }
 
+        public void AddCompany(Company company)
+        {
+            getConnection().Insert(company);
+            Companies.Add(company);
+        }
+
         private SQLite.Net.SQLiteConnection getConnection()
         {
-            if (db == null)
+            if (connection == null)
             {
                 var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
-                db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-                db.TraceListener = new DebugTraceListener();
+                connection = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
+                //connection.TraceListener = new DebugTraceListener();
             }
-            return db;
+            return connection;
         }
 
         private void InitializeTables()

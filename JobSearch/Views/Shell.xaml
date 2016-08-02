@@ -53,7 +53,7 @@
                 </Interactivity:Interaction.Behaviors>-->
                 <ToggleButton Style="{StaticResource ButtonToggleButton}" Tapped="Add_Tapped">
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Name="AddJobSymbol" Style="{StaticResource ButtonSymbolIcon}" Symbol="Add" />
+                        <SymbolIcon Name="AddSymbol" Style="{StaticResource ButtonSymbolIcon}" Symbol="Add" />
                         <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Add" />
                     </StackPanel>
                     <!--<TextBlock Style="{StaticResource ButtonTextBlock}">
@@ -90,6 +90,14 @@
                         <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="Page" />
                         <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Jobs" />
                     </StackPanel>
+                <!--</RelativePanel>-->
+            </c:HamburgerButtonInfo>
+
+            <c:HamburgerButtonInfo x:Name="CompaniesButton" PageType="views:CompaniesPage">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="World" />
+                    <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Companies" />
+                </StackPanel>
                 <!--</RelativePanel>-->
             </c:HamburgerButtonInfo>
 

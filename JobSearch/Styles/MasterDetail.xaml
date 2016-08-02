@@ -77,7 +77,7 @@
                                Style="{StaticResource TitleTextBlockStyle}"
                                Text="{Binding Notes, FallbackValue=Notes}" />
             </StackPanel>
-            <Grid>
+            <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />

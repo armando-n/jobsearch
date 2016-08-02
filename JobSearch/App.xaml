@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\Custom.xaml" />
                 <ResourceDictionary Source="Styles\MasterDetail.xaml" />
+                <ResourceDictionary Source="Styles\CompaniesResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--  custom resources  -->

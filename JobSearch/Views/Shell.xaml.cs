@@ -48,15 +48,21 @@ namespace JobSearch.Views
         {
             //System.Diagnostics.Debug.Write(MyHamburgerMenu.NavigationService.Content.GetType().ToString());
             Type currentPage = MyHamburgerMenu.NavigationService.Content.GetType();
-            if (currentPage.Equals(typeof(CompaniesPage)))
+            if (currentPage.Equals(typeof(MainPage)))
+            {
+                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
+                MainPage.Instance.ToggleAddJobForm();
+            }
+            else if (currentPage.Equals(typeof(CompaniesPage)))
             {
                 AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
                 CompaniesPage.Instance.ToggleAddCompanyForm();
             }
-            else if (currentPage.Equals(typeof(MainPage)))
+
+            else if (currentPage.Equals(typeof(RecruitersPage)))
             {
                 AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
-                MainPage.Instance.ToggleAddJobForm();
+                RecruitersPage.Instance.ToggleAddRecruiterForm();
             }
             
         }

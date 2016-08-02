@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="Styles\Custom.xaml" />
                 <ResourceDictionary Source="Styles\MasterDetail.xaml" />
                 <ResourceDictionary Source="Styles\CompaniesResources.xaml" />
+                <ResourceDictionary Source="Styles\RecruitersResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!--  custom resources  -->

@@ -131,6 +131,14 @@ namespace JobSearch.Services.DatabaseService
             Companies.Add(company);
         }
 
+
+
+        internal void AddRecruiter(Recruiter recruiter)
+        {
+            getConnection().Insert(recruiter);
+            Recruiters.Add(recruiter);
+        }
+
         private SQLite.Net.SQLiteConnection getConnection()
         {
             if (connection == null)

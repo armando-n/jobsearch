@@ -44,10 +44,10 @@ namespace JobSearch.Views
         //        (b1.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
         //}
 
-        private void Add_Tapped(object sender, RoutedEventArgs e)
+        private void Add_Clicked(object sender, RoutedEventArgs e)
         {
-            //System.Diagnostics.Debug.Write(MyHamburgerMenu.NavigationService.Content.GetType().ToString());
             Type currentPage = MyHamburgerMenu.NavigationService.Content.GetType();
+
             if (currentPage.Equals(typeof(MainPage)))
             {
                 AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
@@ -65,6 +65,11 @@ namespace JobSearch.Views
                 RecruitersPage.Instance.ToggleAddRecruiterForm();
             }
             
+        }
+
+        private void NavButton_Tapped(object sender, RoutedEventArgs e)
+        {
+            AddSymbol.Symbol = Symbol.Add;
         }
     }
 }

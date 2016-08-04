@@ -16,84 +16,53 @@ namespace JobSearch.Services.DatabaseService
         private static DatabaseService instance;
         private SQLite.Net.SQLiteConnection connection;
 
-        List<Company> _companies;
+        private List<Company> _companies;
         public List<Company> Companies
         {
-            get
-            {
-                //if (_companies == null)
-                //{
-                //    _companies = getConnection().GetAllWithChildren<Company>();
-                //}
-
-                return _companies;
-            }
-            set
-            {
-                _companies = value;
-            }
+            get { return _companies; }
+            set { _companies = value; }
         }
 
-        List<Recruiter> _recruiters;
+        private List<Recruiter> _recruiters;
         public List<Recruiter> Recruiters
         {
-            get
-            {
-                //if (_recruiters == null)
-                //{
-                //    _recruiters = getConnection().GetAllWithChildren<Recruiter>();
-                //}
-
-                return _recruiters;
-            }
-            set
-            {
-                _recruiters = value;
-            }
+            get { return _recruiters; }
+            set { _recruiters = value; }
         }
-        List<Job> _jobs;
+        private List<Job> _jobs;
         public List<Job> Jobs
         {
-            get
-            {
-                return _jobs;// ?? getConnection().GetAllWithChildren<Job>();
-
-                //if (_jobs == null)
-                //{
-                //    _jobs = getConnection().GetAllWithChildren<Job>();
-                //}
-
-                //return _jobs;
-            }
-            set
-            {
-                _jobs = value;
-            }
+            get { return _jobs; }
+            set { _jobs = value; }
         }
         public List<Job_Communication> Communications { get; set; }
         public List<Job_Interview> Interviews { get; set; }
-        List<Job_Requirement> _requirements;
+
+        private List<Job_Requirement> _requirements;
         public List<Job_Requirement> Requirements
         {
             get { return _requirements; }
             set { _requirements = value; }
         }
-        public List<Job_Responsibility> Responsibilities { get; set; }
+
+        private List<Job_Responsibility> _responsibilities;
+        public List<Job_Responsibility> Responsibilities
+        {
+            get { return _responsibilities; }
+            set { _responsibilities = value; }
+        }
         public List<Job_Test> Tests { get; set; }
 
         private DatabaseService()
         {
-            //var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
-            //db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            //getConnection().TraceListener = new DebugTraceListener();
-            //getConnection();
             //InitializeTables();
             //PopulateDatabase();
+
             _jobs = getConnection().GetAllWithChildren<Job>();
             _companies = getConnection().GetAllWithChildren<Company>();
             _recruiters = getConnection().GetAllWithChildren<Recruiter>();
             _requirements = getConnection().GetAllWithChildren<Job_Requirement>();
-            //this.Close();
+            _responsibilities = getConnection().GetAllWithChildren<Job_Responsibility>();
         }
 
         public static DatabaseService GetDB()
@@ -103,11 +72,6 @@ namespace JobSearch.Services.DatabaseService
 
             return instance;
         }
-
-        //public List<Job> GetJobs()
-        //{
-        //    return Jobs;
-        //}
 
         public void Close()
         {
@@ -156,6 +120,18 @@ namespace JobSearch.Services.DatabaseService
 
             job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
             job.Requirements.Add(jobRequirement);
+            getConnection().UpdateWithChildren(job);
+        }
+
+        public void AddJobResponsibility(Job_Responsibility jobResponsibility, int jobId)
+        {
+            Job job;
+
+            getConnection().Insert(jobResponsibility);
+            Responsibilities.Add(jobResponsibility);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Responsibilities.Add(jobResponsibility);
             getConnection().UpdateWithChildren(job);
         }
 
@@ -311,5 +287,6 @@ namespace JobSearch.Services.DatabaseService
                 Debug.WriteLine("Object and relationships loaded correctly!");
             }
         }
+
     }
 }

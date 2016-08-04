@@ -49,6 +49,7 @@ namespace JobSearch.ViewModels
             Jobs = new ObservableCollection<Job>(db.Jobs);
             Selected = Jobs?.First();
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
+            Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
 
             return Task.CompletedTask;
         }
@@ -74,6 +75,13 @@ namespace JobSearch.ViewModels
         {
             get { return _requirements; }
             set { Set(ref _requirements, value);  }
+        }
+
+        private ObservableCollection<Job_Responsibility> _responsiblities;
+        public ObservableCollection<Job_Responsibility> Responsibilities
+        {
+            get { return _responsiblities; }
+            set { Set(ref _responsiblities, value); }
         }
 
         //public DelegateCommand SwitchToControlCommand =
@@ -135,6 +143,27 @@ namespace JobSearch.ViewModels
                 db.AddJobRequirement(newRequirement, currentJob.JobId);
                 //currentJob.Requirements.Add(newRequirement);
                 Requirements.Add(newRequirement);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new job requirement. " + ex.Message);
+            }
+        }
+
+        public void AddResponsibility(string responsibility)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+
+                Job_Responsibility newResponsibility = new Job_Responsibility()
+                {
+                    Responsibility = String.IsNullOrWhiteSpace(responsibility) ? null : responsibility
+                };
+
+                db.AddJobResponsibility(newResponsibility, currentJob.JobId);
+                Responsibilities.Add(newResponsibility);
                 RaisePropertyChanged(nameof(Jobs));
             }
             catch (SQLite.Net.NotNullConstraintViolationException ex)

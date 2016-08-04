@@ -406,7 +406,7 @@
                                                     Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
                                                     Foreground="Black" MaxLines="1"
                                                     Text="Requirements" VerticalAlignment="Top" />
-                                        <Button x:Name="RequirementFlyoutButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="RequirementsBlock">
+                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="RequirementsBlock">
                                             <Button.Flyout>
                                                 <myControls:InputFlyout MethodName="AddRequirement" />
                                             </Button.Flyout>
@@ -425,10 +425,19 @@
                                 </StackPanel>
 
                                 <StackPanel Grid.Row="2" Grid.Column="1">
-                                    <TextBlock
-                                   Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="Responsibilities" />
+                                    <RelativePanel>
+                                        <TextBlock x:Name="ResponsibilitiesBlock"
+                                                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                   Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                                   Foreground="Black" MaxLines="1"
+                                                   Text="Responsibilities" />
+                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="ResponsibilitiesBlock">
+                                            <Button.Flyout>
+                                                <myControls:InputFlyout MethodName="AddResponsibility" />
+                                            </Button.Flyout>
+                                            <SymbolIcon Symbol="Add" />
+                                        </Button>
+                                    </RelativePanel>
                                     <ListView x:Name="ResponsibilitiesList"
                                    MinWidth="200"
                                    IsItemClickEnabled="False"

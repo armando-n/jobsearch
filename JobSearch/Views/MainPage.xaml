@@ -226,7 +226,7 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition MinWidth="150" />
-                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition MinWidth="300" Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <RelativePanel Grid.ColumnSpan="3" Padding="16">
@@ -356,10 +356,6 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <!--<TextBlock Grid.Row="0"
-                                   Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="Interviews" />-->
                                     <RelativePanel Grid.Row="0">
                                         <TextBlock x:Name="InterviewsBlock"
                                                     RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
@@ -403,18 +399,31 @@
 
                                 <Grid Grid.Row="1" Grid.Column="2" MaxWidth="400">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Row="0"
-                                   Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="Communications" />
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <RelativePanel Grid.Row="0">
+                                        <TextBlock x:Name="CommunicationsBlock"
+                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                                    Foreground="Black" MaxLines="1"
+                                                    Text="Communications" VerticalAlignment="Top" />
+                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="CommunicationsBlock" Click="ShowCommunicationPopup">
+                                            <SymbolIcon Symbol="Add" />
+                                        </Button>
+                                        <Popup x:Name="CommunicationPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-85">
+                                            <myControls:CommunicationForm MethodName="AddCommunication" />
+                                        </Popup>
+                                    </RelativePanel>
                                     <ListView x:Name="CommunicationsList"
-                                   Grid.Row="1" Width="200"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
-                                   ItemsSource="{Binding Communications, FallbackValue=None}">
+                                               Grid.Row="1"
+                                               IsItemClickEnabled="False"
+                                               ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
+                                               ItemsSource="{Binding Communications, FallbackValue=None}">
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>

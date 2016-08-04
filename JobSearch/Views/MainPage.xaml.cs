@@ -88,6 +88,13 @@ namespace JobSearch.Views
             (popup.Child as InterviewForm).Focus();
         }
 
+        private void ShowCommunicationPopup(object sender, RoutedEventArgs e)
+        {
+            Popup popup = FindSiblingPopup(sender);
+            popup.IsOpen = true;
+            (popup.Child as CommunicationForm).Focus();
+        }
+
         private Popup FindSiblingPopup(object sender)
         {
             DependencyObject parent = VisualTreeHelper.GetParent(sender as DependencyObject);

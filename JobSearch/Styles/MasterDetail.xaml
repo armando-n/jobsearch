@@ -144,48 +144,55 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
 
             <TextBlock Grid.Row="0" Grid.Column="0"
-                               Margin="8,8,16,0" HorizontalAlignment="Right"
+                               Margin="8,8,16,0" HorizontalAlignment="Left"
                                VerticalAlignment="Top" FontSize="12"
                                FontWeight="Light" Foreground="DimGray"
-                               Text="From"
-                               TextAlignment="Right" />
+                               Text="From" />
             <TextBlock Grid.Row="1" Grid.Column="0"
-                               Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                               Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
                                Text="{Binding From}"/>
             <TextBlock Grid.Row="0" Grid.Column="1"
-                               Margin="8,8,16,0" HorizontalAlignment="Right"
+                               Margin="8,8,16,0" HorizontalAlignment="Left"
                                VerticalAlignment="Top" FontSize="12"
                                FontWeight="Light" Foreground="DimGray"
-                               Text="To"
-                               TextAlignment="Right" />
+                               Text="To" />
             <TextBlock Grid.Row="1" Grid.Column="1"
-                               Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                               Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
                                Text="{Binding To}"/>
             <TextBlock Grid.Row="0" Grid.Column="2"
-                               Margin="8,8,16,0" HorizontalAlignment="Right"
+                               Margin="8,8,16,0" HorizontalAlignment="Left"
                                VerticalAlignment="Top" FontSize="12"
                                FontWeight="Light" Foreground="DimGray"
-                               Text="Subject"
-                               TextAlignment="Right" />
+                               Text="Subject" />
             <TextBlock Grid.Row="1" Grid.Column="2"
-                               Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                               Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
                                Text="{Binding Subject}"/>
-            
-            <TextBlock Grid.Column="2"
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
+            <TextBlock Grid.Row="0" Grid.Column="3"
+                               Margin="8,8,16,0" HorizontalAlignment="Left"
+                               VerticalAlignment="Top" FontSize="12"
+                               FontWeight="Light" Foreground="DimGray"
+                               Text="Date" />
+            <TextBlock Grid.Row="1" Grid.Column="3"
+                               Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
-                               Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}" />
+                               Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}" />
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="4"
+                               Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                               Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
+                               Text="{Binding Description}"/>
         </Grid>
     </DataTemplate>
 

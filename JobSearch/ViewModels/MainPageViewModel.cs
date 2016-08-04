@@ -52,6 +52,7 @@ namespace JobSearch.ViewModels
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
             Tests = new ObservableCollection<Job_Test>(db.Tests);
             Interviews = new ObservableCollection<Job_Interview>(db.Interviews);
+            Communications = new ObservableCollection<Job_Communication>(db.Communications);
 
             return Task.CompletedTask;
         }
@@ -98,6 +99,13 @@ namespace JobSearch.ViewModels
         {
             get { return _interviews; }
             set { Set(ref _interviews, value); }
+        }
+
+        private ObservableCollection<Job_Communication> _communications;
+        public ObservableCollection<Job_Communication> Communications
+        {
+            get { return _communications; }
+            set { Set(ref _communications, value); }
         }
 
         //public DelegateCommand SwitchToControlCommand =
@@ -225,6 +233,30 @@ namespace JobSearch.ViewModels
 
                 db.AddJobInterview(newInterview, currentJob.JobId);
                 Interviews.Add(newInterview);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            // note that exceptions must be caught here because the calling method code is not accessible
+            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
+        }
+
+        public void AddCommunication(string to, string from, string subject, string via, DateTime date, TimeSpan time, string description)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+
+                Job_Communication newCommunication = new Job_Communication()
+                {
+                    To = String.IsNullOrWhiteSpace(to) ? null : to,
+                    From = String.IsNullOrWhiteSpace(from) ? null : from,
+                    Subject = String.IsNullOrWhiteSpace(subject) ? null : subject,
+                    Via = String.IsNullOrWhiteSpace(via) ? null : via,
+                    DateAndTime = date.Add(time),
+                    Description = String.IsNullOrWhiteSpace(description) ? null : description
+                };
+
+                db.AddJobCommunication(newCommunication, currentJob.JobId);
+                Communications.Add(newCommunication);
                 RaisePropertyChanged(nameof(Jobs));
             }
             // note that exceptions must be caught here because the calling method code is not accessible

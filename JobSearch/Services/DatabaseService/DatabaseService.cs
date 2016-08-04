@@ -29,13 +29,20 @@ namespace JobSearch.Services.DatabaseService
             get { return _recruiters; }
             set { _recruiters = value; }
         }
+
         private List<Job> _jobs;
         public List<Job> Jobs
         {
             get { return _jobs; }
             set { _jobs = value; }
         }
-        public List<Job_Communication> Communications { get; set; }
+
+        private List<Job_Communication> _communications;
+        public List<Job_Communication> Communications
+        {
+            get { return _communications; }
+            set { _communications = value; }
+        }
 
         private List<Job_Interview> _interviews;
         public List<Job_Interview> Interviews
@@ -76,6 +83,7 @@ namespace JobSearch.Services.DatabaseService
             _responsibilities = getConnection().GetAllWithChildren<Job_Responsibility>();
             _tests = getConnection().GetAllWithChildren<Job_Test>();
             _interviews = getConnection().GetAllWithChildren<Job_Interview>();
+            _communications = getConnection().GetAllWithChildren<Job_Communication>();
         }
 
         public static DatabaseService GetDB()
@@ -169,6 +177,18 @@ namespace JobSearch.Services.DatabaseService
 
             job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
             job.Interviews.Add(jobInterview);
+            getConnection().UpdateWithChildren(job);
+        }
+
+        public void AddJobCommunication(Job_Communication jobCommunication, int jobId)
+        {
+            Job job;
+
+            getConnection().Insert(jobCommunication);
+            Communications.Add(jobCommunication);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Communications.Add(jobCommunication);
             getConnection().UpdateWithChildren(job);
         }
 

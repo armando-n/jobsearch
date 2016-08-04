@@ -76,17 +76,29 @@ namespace JobSearch.Views
 
         private void ShowTestPopup(object sender, RoutedEventArgs e)
         {
+            Popup popup = FindSiblingPopup(sender);
+            popup.IsOpen = true;
+            (popup.Child as TestForm).Focus();
+        }
+
+        private void ShowInterviewPopup(object sender, RoutedEventArgs e)
+        {
+            Popup popup = FindSiblingPopup(sender);
+            popup.IsOpen = true;
+            (popup.Child as InterviewForm).Focus();
+        }
+
+        private Popup FindSiblingPopup(object sender)
+        {
             DependencyObject parent = VisualTreeHelper.GetParent(sender as DependencyObject);
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
                 if (child != null && child is Popup)
-                {
-                    Popup popup = child as Popup;
-                    popup.IsOpen = true;
-                    (popup.Child as TestForm).Focus();
-                }
+                    return child as Popup;
             }
+
+            return null;
         }
     }
 }

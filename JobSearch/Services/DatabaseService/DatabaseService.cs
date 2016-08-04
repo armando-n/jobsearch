@@ -36,7 +36,13 @@ namespace JobSearch.Services.DatabaseService
             set { _jobs = value; }
         }
         public List<Job_Communication> Communications { get; set; }
-        public List<Job_Interview> Interviews { get; set; }
+
+        private List<Job_Interview> _interviews;
+        public List<Job_Interview> Interviews
+        {
+            get { return _interviews; }
+            set { _interviews = value; }
+        }
 
         private List<Job_Requirement> _requirements;
         public List<Job_Requirement> Requirements
@@ -69,6 +75,7 @@ namespace JobSearch.Services.DatabaseService
             _requirements = getConnection().GetAllWithChildren<Job_Requirement>();
             _responsibilities = getConnection().GetAllWithChildren<Job_Responsibility>();
             _tests = getConnection().GetAllWithChildren<Job_Test>();
+            _interviews = getConnection().GetAllWithChildren<Job_Interview>();
         }
 
         public static DatabaseService GetDB()
@@ -150,6 +157,18 @@ namespace JobSearch.Services.DatabaseService
 
             job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
             job.Tests.Add(jobTest);
+            getConnection().UpdateWithChildren(job);
+        }
+
+        public void AddJobInterview(Job_Interview jobInterview, int jobId)
+        {
+            Job job;
+
+            getConnection().Insert(jobInterview);
+            Interviews.Add(jobInterview);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Interviews.Add(jobInterview);
             getConnection().UpdateWithChildren(job);
         }
 

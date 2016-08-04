@@ -348,37 +348,50 @@
 
                                 <Grid Grid.Row="1" Grid.Column="1" MaxWidth="500">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
                                         <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Row="0"
+                                    <!--<TextBlock Grid.Row="0"
                                    Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1"
-                                   Text="Interviews" />
+                                   Text="Interviews" />-->
+                                    <RelativePanel Grid.Row="0">
+                                        <TextBlock x:Name="InterviewsBlock"
+                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                                    Foreground="Black" MaxLines="1"
+                                                    Text="Interviews" VerticalAlignment="Top" />
+                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="InterviewsBlock" Click="ShowInterviewPopup">
+                                            <SymbolIcon Symbol="Add" />
+                                        </Button>
+                                        <Popup x:Name="InterviewPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-150">
+                                            <myControls:InterviewForm MethodName="AddInterview" />
+                                        </Popup>
+                                    </RelativePanel>
                                     <ListView Grid.Row="1"
-                                   x:Name="InterviewsList"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource InterviewsListItemTemplate}"
-                                   ItemsSource="{Binding Interviews, FallbackValue=None}">
+                                               x:Name="InterviewsList"
+                                               IsItemClickEnabled="False"
+                                               ItemTemplate="{StaticResource InterviewsListItemTemplate}"
+                                               ItemsSource="{Binding Interviews, FallbackValue=None}">
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                     </ListView>
                                     <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
                                         <TextBlock
-                                       Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
-                                       Foreground="Black" MaxLines="1"
-                                       Text="Notes" />
+                                                   Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
+                                                   Foreground="Black" MaxLines="1"
+                                                   Text="Notes" />
                                         <TextBlock x:Name="Notes" TextWrapping="Wrap"
-                                       Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
-                                       Foreground="Black"
-                                       Text="{Binding Notes}"
-                                       TextAlignment="Left">
+                                                   Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                                                   Foreground="Black"
+                                                   Text="{Binding Notes}"
+                                                   TextAlignment="Left">
                                             <TextBlock.Transitions>
                                                 <TransitionCollection>
                                                     <ContentThemeTransition />

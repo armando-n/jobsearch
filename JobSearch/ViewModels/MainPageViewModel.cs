@@ -51,6 +51,7 @@ namespace JobSearch.ViewModels
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
             Tests = new ObservableCollection<Job_Test>(db.Tests);
+            Interviews = new ObservableCollection<Job_Interview>(db.Interviews);
 
             return Task.CompletedTask;
         }
@@ -90,6 +91,13 @@ namespace JobSearch.ViewModels
         {
             get { return _tests; }
             set { Set(ref _tests, value); }
+        }
+
+        private ObservableCollection<Job_Interview> _interviews;
+        public ObservableCollection<Job_Interview> Interviews
+        {
+            get { return _interviews; }
+            set { Set(ref _interviews, value); }
         }
 
         //public DelegateCommand SwitchToControlCommand =
@@ -190,11 +198,33 @@ namespace JobSearch.ViewModels
                 {
                     Type = String.IsNullOrWhiteSpace(type) ? null : type,
                     DateAndTime = date.Add(time),
-                    Notes = notes
+                    Notes = String.IsNullOrWhiteSpace(notes) ? null : notes
                 };
 
                 db.AddJobTest(newTest, currentJob.JobId);
                 Tests.Add(newTest);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            // note that exceptions must be caught here because the calling method code is not accessible
+            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
+        }
+
+        public void AddInterview(string via, string interviewer, DateTime date, TimeSpan time, string notes)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+
+                Job_Interview newInterview = new Job_Interview()
+                {
+                    Via = String.IsNullOrWhiteSpace(via) ? null : via,
+                    Interviewer = String.IsNullOrWhiteSpace(interviewer) ? null : interviewer,
+                    DateAndTime = date.Add(time),
+                    Notes = String.IsNullOrWhiteSpace(notes) ? null : notes
+                };
+
+                db.AddJobInterview(newInterview, currentJob.JobId);
+                Interviews.Add(newInterview);
                 RaisePropertyChanged(nameof(Jobs));
             }
             // note that exceptions must be caught here because the calling method code is not accessible

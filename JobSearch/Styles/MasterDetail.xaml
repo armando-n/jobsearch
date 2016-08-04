@@ -99,23 +99,23 @@
     </DataTemplate>
 
     <DataTemplate x:Name="TestsListItemTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-
-            <TextBlock Grid.Column="0"
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
+        <RelativePanel HorizontalAlignment="Stretch">
+            <TextBlock x:Name="TestTypeBlock" HorizontalAlignment="Stretch"
+                               RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                               Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
                                Text="{Binding Type}"/>
-            <TextBlock Grid.Column="2"
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
+            <TextBlock x:Name="TestDateAndTimeBlock" HorizontalAlignment="Stretch"
+                               RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                               Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
                                Foreground="Black" MaxLines="1"
-                               Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}" />
-        </Grid>
+                               Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}" />
+            <TextBlock x:Name="TestNotesBlock" HorizontalAlignment="Stretch"
+                               RelativePanel.Below="TestTypeBlock" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                               Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                               Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
+                               Text="{Binding Notes}"/>
+        </RelativePanel>
     </DataTemplate>
 
     <DataTemplate x:Name="InterviewsListItemTemplate">

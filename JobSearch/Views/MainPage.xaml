@@ -224,67 +224,66 @@
                                     <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition MinWidth="250"/>
                                     <ColumnDefinition MinWidth="150" />
                                     <ColumnDefinition MinWidth="300" Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <RelativePanel Grid.ColumnSpan="3" Padding="16">
                                     <Ellipse x:Name="CompanyLogo"
-                                 Width="50" Height="50" Margin="0,0,16,0"
-                                 Fill="Gainsboro" />
+                                                 Width="50" Height="50" Margin="0,0,16,0"
+                                                 Fill="Gainsboro" />
                                     <TextBlock x:Name="Position"
-                                   FontSize="20" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
-                                   Text="{Binding Position, FallbackValue=Position}" />
+                                               FontSize="20" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1"
+                                               RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
+                                               Text="{Binding Position, FallbackValue=Position}" />
                                     <TextBlock x:Name="DateApplied"
-                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                   FontSize="14" FontWeight="Light"
-                                   Foreground="DimGray"
-                                   RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo"
-                                   Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
-                                   TextAlignment="Right" />
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               FontSize="14" FontWeight="Light"
+                                               Foreground="DimGray"
+                                               RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo"
+                                               Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
+                                               TextAlignment="Right" />
                                     <TextBlock x:Name="Company"
-                                   Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
-                                   Foreground="Black" MaxLines="1"
-                                   RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                   Text="{Binding Company.Name, FallbackValue=Company}"
-                                   TextAlignment="Right"
-                                   TextWrapping="WrapWholeWords" />
+                                               Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
+                                               Foreground="Black" MaxLines="1"
+                                               RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                               Text="{Binding Company.Name, FallbackValue=Company}"
+                                               TextAlignment="Right"
+                                               TextWrapping="WrapWholeWords" />
                                     <TextBlock x:Name="StreetAddress"
-                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                   FontSize="14" FontWeight="Light"
-                                   Foreground="DimGray"
-                                   RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
-                                   Text="{Binding StreetAddress}"
-                                   TextAlignment="Right" />
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               FontSize="14" FontWeight="Light"
+                                               Foreground="DimGray"
+                                               RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
+                                               Text="{Binding StreetAddress}"
+                                               TextAlignment="Right" />
                                     <TextBlock x:Name="City"
-                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                   FontSize="14" FontWeight="Light"
-                                   Foreground="DimGray"
-                                   RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
-                                   Text="{Binding City}"
-                                   TextAlignment="Right" />
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               FontSize="14" FontWeight="Light"
+                                               Foreground="DimGray"
+                                               RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
+                                               Text="{Binding City}"
+                                               TextAlignment="Right" />
                                     <TextBlock x:Name="State"
-                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                   FontSize="14" FontWeight="Light"
-                                   Foreground="DimGray"
-                                   RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
-                                   Text="{Binding State}"
-                                   TextAlignment="Right" />
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               FontSize="14" FontWeight="Light"
+                                               Foreground="DimGray"
+                                               RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
+                                               Text="{Binding State}"
+                                               TextAlignment="Right" />
                                     <TextBlock x:Name="ZipCode"
-                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                   FontSize="14" FontWeight="Light"
-                                   Foreground="DimGray"
-                                   RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
-                                   Text="{Binding ZipCode}"
-                                   TextAlignment="Right" />
+                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                               FontSize="14" FontWeight="Light"
+                                               Foreground="DimGray"
+                                               RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
+                                               Text="{Binding ZipCode}"
+                                               TextAlignment="Right" />
                                 </RelativePanel>
 
                                 <Grid Grid.Row="1">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
@@ -322,28 +321,36 @@
                                         <Run Text="Applied via email: " />
                                         <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
                                     </TextBlock>
-                                    <RelativePanel Grid.Row="5">
-                                        <TextBlock x:Name="TestsBlock"
-                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                                    Foreground="Black" MaxLines="1"
-                                                    Text="Tests" VerticalAlignment="Top" />
-                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TestsBlock" Click="ShowTestPopup">
-                                            <SymbolIcon Symbol="Add" />
-                                        </Button>
-                                        <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
-                                            <myControls:TestForm MethodName="AddTest" />
-                                        </Popup>
-                                    </RelativePanel>
-                                    <ListView Grid.Row="6"
-                                               x:Name="TestsList"
-                                               IsItemClickEnabled="False"
-                                               ItemTemplate="{StaticResource TestsListItemTemplate}"
-                                               ItemsSource="{Binding Tests}">
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                    </ListView>
+                                    <StackPanel Grid.Row="5" Margin="16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="TestsBlock"
+                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                            Foreground="Black" MaxLines="1"
+                                                            Text="Tests" VerticalAlignment="Top" />
+                                                <Button Margin="8"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestPopup">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                                <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
+                                                    <myControls:TestForm MethodName="AddTest" />
+                                                </Popup>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView x:Name="TestsList"
+                                                        IsItemClickEnabled="False" MaxHeight="150"
+                                                        ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                                        ItemsSource="{Binding Tests}">
+                                                <ListView.ItemContainerStyle>
+                                                    <Style TargetType="ListViewItem">
+                                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                                    </Style>
+                                                </ListView.ItemContainerStyle>
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
                                 </Grid>
 
                                 <Grid Grid.Row="1" Grid.Column="1" MaxWidth="500">
@@ -405,7 +412,7 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    
+
                                     <RelativePanel Grid.Row="0">
                                         <TextBlock x:Name="CommunicationsBlock"
                                                     RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
@@ -470,10 +477,10 @@
                                         </Button>
                                     </RelativePanel>
                                     <ListView x:Name="ResponsibilitiesList"
-                                   MinWidth="200"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
-                                   ItemsSource="{Binding Responsibilities, FallbackValue=None}">
+                                               MinWidth="200"
+                                               IsItemClickEnabled="False"
+                                               ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
+                                               ItemsSource="{Binding Responsibilities, FallbackValue=None}">
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
@@ -489,102 +496,5 @@
         </RelativePanel>
 
     </Grid>
-
-    <!--<Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel" />
-    </Page.DataContext>
-
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
-                <VisualState x:Name="VisualStateNarrow">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        -->
-    <!--  TODO: change properties for narrow view  -->
-    <!--
-                        <Setter Target="stateTextBox.Text" Value="Narrow Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="VisualStateNormal">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource NormalMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        -->
-    <!--  TODO: change properties for normal view  -->
-    <!--
-                        <Setter Target="stateTextBox.Text" Value="Normal Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-                <VisualState x:Name="VisualStateWide">
-                    <VisualState.StateTriggers>
-                        <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
-                    </VisualState.StateTriggers>
-                    <VisualState.Setters>
-                        -->
-    <!--  TODO: change properties for wide view  -->
-    <!--
-                        <Setter Target="stateTextBox.Text" Value="Wide Visual State" />
-                    </VisualState.Setters>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
-
-        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Main Page">
-
-            -->
-    <!--  secondary commands  -->
-    <!--
-            <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
-                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
-                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
-            </controls:PageHeader.SecondaryCommands>
-
-        </controls:PageHeader>
-
-        <controls:Resizer x:Name="parameterResizer" Margin="16,16,16,0"
-                          RelativePanel.AlignLeftWithPanel="True"
-                          RelativePanel.Below="pageHeader">
-
-            <TextBox MinWidth="150" MinHeight="62"
-                     Header="Parameter to pass"
-                     Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                     TextWrapping="Wrap">
-                <Interactivity:Interaction.Behaviors>
-                    -->
-    <!--  enable submit on enter key  -->
-    <!--
-                    <Behaviors:KeyBehavior Key="Enter">
-                        <Core:CallMethodAction MethodName="GotoDetailsPage" TargetObject="{Binding}" />
-                    </Behaviors:KeyBehavior>
-                    -->
-    <!--  focus on textbox when page loads  -->
-    <!--
-                    <Core:EventTriggerBehavior>
-                        <Behaviors:FocusAction />
-                    </Core:EventTriggerBehavior>
-                </Interactivity:Interaction.Behaviors>
-            </TextBox>
-
-        </controls:Resizer>
-
-        <Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
-                RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
-
-        <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
-                   RelativePanel.AlignLeftWith="parameterResizer"
-                   RelativePanel.Below="parameterResizer"
-                   Text="Current Visual State" />
-
-    </RelativePanel>-->
 </Page>
 

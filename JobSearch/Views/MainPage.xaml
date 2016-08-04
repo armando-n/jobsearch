@@ -225,7 +225,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition MinWidth="250"/>
-                                    <ColumnDefinition MinWidth="150" />
+                                    <ColumnDefinition MinWidth="250" />
                                     <ColumnDefinition MinWidth="300" Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
@@ -321,7 +321,7 @@
                                         <Run Text="Applied via email: " />
                                         <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
                                     </TextBlock>
-                                    <StackPanel Grid.Row="5" Margin="16">
+                                    <StackPanel Grid.Row="5" Margin="0, 16, 8, 16">
                                         <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
                                             <RelativePanel>
                                                 <TextBlock x:Name="TestsBlock"
@@ -342,12 +342,8 @@
                                             <ListView x:Name="TestsList"
                                                         IsItemClickEnabled="False" MaxHeight="150"
                                                         ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                                        ItemContainerStyle="{StaticResource StretchList}"
                                                         ItemsSource="{Binding Tests}">
-                                                <ListView.ItemContainerStyle>
-                                                    <Style TargetType="ListViewItem">
-                                                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                                    </Style>
-                                                </ListView.ItemContainerStyle>
                                             </ListView>
                                         </Border>
                                     </StackPanel>
@@ -437,54 +433,64 @@
                                     </ListView>
                                 </Grid>
 
-                                <StackPanel Grid.Row="2" Grid.Column="0" MaxWidth="500">
-                                    <RelativePanel>
-                                        <TextBlock x:Name="RequirementsBlock"
-                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                                    Foreground="Black" MaxLines="1"
-                                                    Text="Requirements" VerticalAlignment="Top" />
-                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="RequirementsBlock">
-                                            <Button.Flyout>
-                                                <myControls:InputFlyout MethodName="AddRequirement" />
-                                            </Button.Flyout>
-                                            <SymbolIcon Symbol="Add" />
-                                        </Button>
-                                    </RelativePanel>
-                                    <ListView x:Name="RequirementsList"
-                                               MinWidth="200"
-                                               IsItemClickEnabled="False"
-                                               ItemTemplate="{StaticResource RequirementsListItemTemplate}"
-                                               ItemsSource="{Binding Requirements, FallbackValue=None}">
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                    </ListView>
+                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0, 16, 8, 16" MaxWidth="500">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                        <RelativePanel>
+                                            <TextBlock x:Name="RequirementsBlock"
+                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                        Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                        Foreground="Black" MaxLines="1"
+                                                        Text="Requirements" VerticalAlignment="Top" />
+                                            <Button Margin="8"
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                                                <Button.Flyout>
+                                                    <myControls:InputFlyout MethodName="AddRequirement" />
+                                                </Button.Flyout>
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                        </RelativePanel>
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                        <ListView x:Name="RequirementsList"
+                                                   MinWidth="200" MaxHeight="450"
+                                                   IsItemClickEnabled="False"
+                                                   ItemTemplate="{StaticResource RequirementsListItemTemplate}"
+                                                   ItemsSource="{Binding Requirements, FallbackValue=None}">
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                        </ListView>
+                                    </Border>
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="1" MaxWidth="450">
-                                    <RelativePanel>
-                                        <TextBlock x:Name="ResponsibilitiesBlock"
-                                                   RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                   Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                                   Foreground="Black" MaxLines="1"
-                                                   Text="Responsibilities" />
-                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="ResponsibilitiesBlock">
-                                            <Button.Flyout>
-                                                <myControls:InputFlyout MethodName="AddResponsibility" />
-                                            </Button.Flyout>
-                                            <SymbolIcon Symbol="Add" />
-                                        </Button>
-                                    </RelativePanel>
-                                    <ListView x:Name="ResponsibilitiesList"
-                                               MinWidth="200"
-                                               IsItemClickEnabled="False"
-                                               ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
-                                               ItemsSource="{Binding Responsibilities, FallbackValue=None}">
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                    </ListView>
+                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="8, 16, 8, 16" MaxWidth="500">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                        <RelativePanel>
+                                            <TextBlock x:Name="ResponsibilitiesBlock"
+                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                       Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                       Foreground="Black" MaxLines="1"
+                                                       Text="Responsibilities" />
+                                            <Button Margin="8"
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                                                <Button.Flyout>
+                                                    <myControls:InputFlyout MethodName="AddResponsibility" />
+                                                </Button.Flyout>
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                        </RelativePanel>
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                        <ListView x:Name="ResponsibilitiesList"
+                                                   MinWidth="200" MaxHeight="450"
+                                                   IsItemClickEnabled="False"
+                                                   ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
+                                                   ItemsSource="{Binding Responsibilities, FallbackValue=None}">
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                        </ListView>
+                                    </Border>
                                 </StackPanel>
 
                             </Grid>

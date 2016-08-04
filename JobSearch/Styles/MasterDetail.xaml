@@ -54,6 +54,10 @@
         </c:ValueWhenConverter.Otherwise>
     </c:ValueWhenConverter>
 
+    <Style x:Key="StretchList" TargetType="ListViewItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    </Style>
+
     <DataTemplate x:Name="JobsListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -197,17 +201,31 @@
     </DataTemplate>
 
     <DataTemplate x:Name="RequirementsListItemTemplate">
-        <TextBlock
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
-                               Text="{Binding Requirement}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Top" Margin="0, 10, 0, 0">&#x2022;</TextBlock>
+            <TextBlock Grid.Column="1"
+                        Margin="8" FontSize="16" FontWeight="Normal"
+                        Foreground="Black" TextWrapping="Wrap"
+                        Text="{Binding Requirement}"/>
+        </Grid>
     </DataTemplate>
 
     <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
-        <TextBlock
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
-                               Text="{Binding Responsibility}"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" VerticalAlignment="Top" Margin="0, 10, 0, 0">&#x2022;</TextBlock>
+            <TextBlock Grid.Column="1"
+                        Margin="8" FontSize="16" FontWeight="Normal"
+                        Foreground="Black" TextWrapping="Wrap"
+                        Text="{Binding Responsibility}"/>
+        </Grid>
     </DataTemplate>
 
     <Style x:Name="JobsListViewStyle" TargetType="ListView">

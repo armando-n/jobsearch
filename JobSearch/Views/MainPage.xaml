@@ -293,44 +293,53 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <TextBlock x:Name="EmploymentService" Grid.Row="0"
-                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1">
-                            <Run Text="Using " />
-                            <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
+                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1">
+                                        <Run Text="Using " />
+                                        <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
                                     </TextBlock>
                                     <TextBlock x:Name="DatePosted" Grid.Row="1"
-                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1">
-                            <Run Text="Date Posted: " />
-                            <Run Foreground="DimGray" Text="{Binding DatePosted, FallbackValue=DatePosted}" />
+                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1">
+                                        <Run Text="Date Posted: " />
+                                        <Run Foreground="DimGray" Text="{Binding DatePosted, FallbackValue=DatePosted}" />
                                     </TextBlock>
                                     <TextBlock x:Name="Recruiter" Grid.Row="2"
-                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1">
-                            <Run Text="Recruiter: " />
-                            <Run Foreground="DimGray" Text="{Binding Recruiter.Name}" />
+                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1">
+                                        <Run Text="Recruiter: " />
+                                        <Run Foreground="DimGray" Text="{Binding Recruiter.Name}" />
                                     </TextBlock>
                                     <TextBlock x:Name="AppliedViaWebsite" Grid.Row="3"
-                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1">
-                            <Run Text="Applied via website: " />
-                            <Run Foreground="DimGray" Text="{Binding AppliedViaWebsite}" />
+                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1">
+                                        <Run Text="Applied via website: " />
+                                        <Run Foreground="DimGray" Text="{Binding AppliedViaWebsite}" />
                                     </TextBlock>
                                     <TextBlock x:Name="AppliedViaEmail" Grid.Row="4"
-                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1">
-                            <Run Text="Applied via email: " />
-                            <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
+                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                               Foreground="Black" MaxLines="1">
+                                        <Run Text="Applied via email: " />
+                                        <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
                                     </TextBlock>
-                                    <TextBlock Grid.Row="5"
-                                   Margin="0, 16, 16, 0" FontSize="14" FontWeight="Normal"
-                                   Foreground="Black" MaxLines="1"
-                                   Text="Tests" />
+                                    <RelativePanel Grid.Row="5">
+                                        <TextBlock x:Name="TestsBlock"
+                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                                    Foreground="Black" MaxLines="1"
+                                                    Text="Tests" VerticalAlignment="Top" />
+                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="TestsBlock" Click="ShowTestPopup">
+                                            <SymbolIcon Symbol="Add" />
+                                        </Button>
+                                        <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
+                                            <myControls:TestForm MethodName="AddTest" />
+                                        </Popup>
+                                    </RelativePanel>
                                     <ListView Grid.Row="6"
-                                   x:Name="TestsList"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource TestsListItemTemplate}"
-                                   ItemsSource="{Binding Tests}">
+                                               x:Name="TestsList"
+                                               IsItemClickEnabled="False"
+                                               ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                               ItemsSource="{Binding Tests}">
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
@@ -414,17 +423,17 @@
                                         </Button>
                                     </RelativePanel>
                                     <ListView x:Name="RequirementsList"
-                                   MinWidth="200"
-                                   IsItemClickEnabled="False"
-                                   ItemTemplate="{StaticResource RequirementsListItemTemplate}"
-                                   ItemsSource="{Binding Requirements, FallbackValue=None}">
+                                               MinWidth="200"
+                                               IsItemClickEnabled="False"
+                                               ItemTemplate="{StaticResource RequirementsListItemTemplate}"
+                                               ItemsSource="{Binding Requirements, FallbackValue=None}">
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                         <x:String>Sample</x:String>
                                     </ListView>
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="1">
+                                <StackPanel Grid.Row="2" Grid.Column="1" MaxWidth="450">
                                     <RelativePanel>
                                         <TextBlock x:Name="ResponsibilitiesBlock"
                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"

@@ -97,6 +97,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TestForm.cs" />
     <Compile Include="Controls\InputFlyout.cs" />
     <Compile Include="DebugTraceListener.cs" />
     <Compile Include="Models\Company.cs" />

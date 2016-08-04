@@ -6,6 +6,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using System.Windows;
+using Windows.UI.Xaml.Controls.Primitives;
+using JobSearch.Controls;
 //using Windows.UI.Xaml.Navigation;
 //using System.Collections.ObjectModel;
 
@@ -53,7 +55,6 @@ namespace JobSearch.Views
             }
             catch (ArgumentNullException ex)
             {
-
             }
         }
 
@@ -71,6 +72,21 @@ namespace JobSearch.Views
             CityBox.Text = "Houston";
             StateBox.Text = "TX";
             ZipCodeBox.Text = "77034";
+        }
+
+        private void ShowTestPopup(object sender, RoutedEventArgs e)
+        {
+            DependencyObject parent = VisualTreeHelper.GetParent(sender as DependencyObject);
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child != null && child is Popup)
+                {
+                    Popup popup = child as Popup;
+                    popup.IsOpen = true;
+                    (popup.Child as TestForm).Focus();
+                }
+            }
         }
     }
 }

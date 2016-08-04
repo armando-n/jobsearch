@@ -51,7 +51,12 @@ namespace JobSearch.Services.DatabaseService
             get { return _responsibilities; }
             set { _responsibilities = value; }
         }
-        public List<Job_Test> Tests { get; set; }
+        private List<Job_Test> _tests;
+        public List<Job_Test> Tests
+        {
+            get { return _tests; }
+            set { _tests = value; }
+        }
 
         private DatabaseService()
         {
@@ -63,6 +68,7 @@ namespace JobSearch.Services.DatabaseService
             _recruiters = getConnection().GetAllWithChildren<Recruiter>();
             _requirements = getConnection().GetAllWithChildren<Job_Requirement>();
             _responsibilities = getConnection().GetAllWithChildren<Job_Responsibility>();
+            _tests = getConnection().GetAllWithChildren<Job_Test>();
         }
 
         public static DatabaseService GetDB()
@@ -132,6 +138,18 @@ namespace JobSearch.Services.DatabaseService
 
             job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
             job.Responsibilities.Add(jobResponsibility);
+            getConnection().UpdateWithChildren(job);
+        }
+
+        public void AddJobTest(Job_Test jobTest, int jobId)
+        {
+            Job job;
+
+            getConnection().Insert(jobTest);
+            Tests.Add(jobTest);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Tests.Add(jobTest);
             getConnection().UpdateWithChildren(job);
         }
 

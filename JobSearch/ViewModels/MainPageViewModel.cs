@@ -50,6 +50,7 @@ namespace JobSearch.ViewModels
             Selected = Jobs?.First();
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
+            Tests = new ObservableCollection<Job_Test>(db.Tests);
 
             return Task.CompletedTask;
         }
@@ -82,6 +83,13 @@ namespace JobSearch.ViewModels
         {
             get { return _responsiblities; }
             set { Set(ref _responsiblities, value); }
+        }
+
+        private ObservableCollection<Job_Test> _tests;
+        public ObservableCollection<Job_Test> Tests
+        {
+            get { return _tests; }
+            set { Set(ref _tests, value); }
         }
 
         //public DelegateCommand SwitchToControlCommand =
@@ -170,6 +178,27 @@ namespace JobSearch.ViewModels
             {
                 throw new ArgumentNullException("Required fields were omitted for the new job requirement. " + ex.Message);
             }
+        }
+
+        public void AddTest(string type, DateTime date, TimeSpan time, string notes)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+
+                Job_Test newTest = new Job_Test()
+                {
+                    Type = String.IsNullOrWhiteSpace(type) ? null : type,
+                    DateAndTime = date.Add(time),
+                    Notes = notes
+                };
+
+                db.AddJobTest(newTest, currentJob.JobId);
+                Tests.Add(newTest);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            // note that exceptions must be caught here because the calling method code is not accessible
+            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
         }
 
         public int JobCount()

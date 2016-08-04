@@ -9,7 +9,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="using:JobSearch.ViewModels"
-      x:Name="ThisPage"
+      xmlns:myControls="using:JobSearch.Controls"
+      x:Name="JobsPage"
       Background="White"
       RequestedTheme="Light"
       mc:Ignorable="d">
@@ -17,10 +18,6 @@
     <Page.DataContext>
         <viewModels:MainPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
-    <!--<Page.Resources>
-        
-    </Page.Resources>-->
 
     <Grid x:Name="RootGrid">
         <VisualStateManager.VisualStateGroups>
@@ -214,7 +211,241 @@
             <ContentControl
                 x:Name="contentControl" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                 Content="{Binding Selected}"
-                ContentTemplate="{StaticResource JobDetailTemplate}" HorizontalContentAlignment="Stretch" />
+                HorizontalContentAlignment="Stretch">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate x:Name="JobDetailTemplate">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                            <Grid>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition MinWidth="150" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <RelativePanel Grid.ColumnSpan="3" Padding="16">
+                                    <Ellipse x:Name="CompanyLogo"
+                                 Width="50" Height="50" Margin="0,0,16,0"
+                                 Fill="Gainsboro" />
+                                    <TextBlock x:Name="Position"
+                                   FontSize="20" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1"
+                                   RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
+                                   Text="{Binding Position, FallbackValue=Position}" />
+                                    <TextBlock x:Name="DateApplied"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   FontSize="14" FontWeight="Light"
+                                   Foreground="DimGray"
+                                   RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo"
+                                   Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
+                                   TextAlignment="Right" />
+                                    <TextBlock x:Name="Company"
+                                   Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
+                                   Foreground="Black" MaxLines="1"
+                                   RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                   Text="{Binding Company.Name, FallbackValue=Company}"
+                                   TextAlignment="Right"
+                                   TextWrapping="WrapWholeWords" />
+                                    <TextBlock x:Name="StreetAddress"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   FontSize="14" FontWeight="Light"
+                                   Foreground="DimGray"
+                                   RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
+                                   Text="{Binding StreetAddress}"
+                                   TextAlignment="Right" />
+                                    <TextBlock x:Name="City"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   FontSize="14" FontWeight="Light"
+                                   Foreground="DimGray"
+                                   RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
+                                   Text="{Binding City}"
+                                   TextAlignment="Right" />
+                                    <TextBlock x:Name="State"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   FontSize="14" FontWeight="Light"
+                                   Foreground="DimGray"
+                                   RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
+                                   Text="{Binding State}"
+                                   TextAlignment="Right" />
+                                    <TextBlock x:Name="ZipCode"
+                                   HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                   FontSize="14" FontWeight="Light"
+                                   Foreground="DimGray"
+                                   RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
+                                   Text="{Binding ZipCode}"
+                                   TextAlignment="Right" />
+                                </RelativePanel>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="EmploymentService" Grid.Row="0"
+                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1">
+                            <Run Text="Using " />
+                            <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="DatePosted" Grid.Row="1"
+                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1">
+                            <Run Text="Date Posted: " />
+                            <Run Foreground="DimGray" Text="{Binding DatePosted, FallbackValue=DatePosted}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="Recruiter" Grid.Row="2"
+                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1">
+                            <Run Text="Recruiter: " />
+                            <Run Foreground="DimGray" Text="{Binding Recruiter.Name}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="AppliedViaWebsite" Grid.Row="3"
+                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1">
+                            <Run Text="Applied via website: " />
+                            <Run Foreground="DimGray" Text="{Binding AppliedViaWebsite}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="AppliedViaEmail" Grid.Row="4"
+                                   Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1">
+                            <Run Text="Applied via email: " />
+                            <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="5"
+                                   Margin="0, 16, 16, 0" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1"
+                                   Text="Tests" />
+                                    <ListView Grid.Row="6"
+                                   x:Name="TestsList"
+                                   IsItemClickEnabled="False"
+                                   ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                   ItemsSource="{Binding Tests}">
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                    </ListView>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="1" MaxWidth="500">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Row="0"
+                                   Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1"
+                                   Text="Interviews" />
+                                    <ListView Grid.Row="1"
+                                   x:Name="InterviewsList"
+                                   IsItemClickEnabled="False"
+                                   ItemTemplate="{StaticResource InterviewsListItemTemplate}"
+                                   ItemsSource="{Binding Interviews, FallbackValue=None}">
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                    </ListView>
+                                    <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
+                                        <TextBlock
+                                       Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
+                                       Foreground="Black" MaxLines="1"
+                                       Text="Notes" />
+                                        <TextBlock x:Name="Notes" TextWrapping="Wrap"
+                                       Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                                       Foreground="Black"
+                                       Text="{Binding Notes}"
+                                       TextAlignment="Left">
+                                            <TextBlock.Transitions>
+                                                <TransitionCollection>
+                                                    <ContentThemeTransition />
+                                                </TransitionCollection>
+                                            </TextBlock.Transitions>
+                                        </TextBlock>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Grid.Row="1" Grid.Column="2" MaxWidth="400">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                   Margin="8, 8, 8, 0" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1"
+                                   Text="Communications" />
+                                    <ListView x:Name="CommunicationsList"
+                                   Grid.Row="1" Width="200"
+                                   IsItemClickEnabled="False"
+                                   ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
+                                   ItemsSource="{Binding Communications, FallbackValue=None}">
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                    </ListView>
+                                </Grid>
+
+                                <StackPanel Grid.Row="2" Grid.Column="0" MaxWidth="500">
+                                    <RelativePanel>
+                                        <TextBlock x:Name="RequirementsBlock"
+                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                                    Foreground="Black" MaxLines="1"
+                                                    Text="Requirements" VerticalAlignment="Top" />
+                                        <Button x:Name="RequirementFlyoutButton" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="RequirementsBlock">
+                                            <Button.Flyout>
+                                                <myControls:InputFlyout MethodName="AddRequirement" />
+                                            </Button.Flyout>
+                                            <SymbolIcon Symbol="Add" />
+                                        </Button>
+                                    </RelativePanel>
+                                    <ListView x:Name="RequirementsList"
+                                   MinWidth="200"
+                                   IsItemClickEnabled="False"
+                                   ItemTemplate="{StaticResource RequirementsListItemTemplate}"
+                                   ItemsSource="{Binding Requirements, FallbackValue=None}">
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                    </ListView>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="2" Grid.Column="1">
+                                    <TextBlock
+                                   Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
+                                   Foreground="Black" MaxLines="1"
+                                   Text="Responsibilities" />
+                                    <ListView x:Name="ResponsibilitiesList"
+                                   MinWidth="200"
+                                   IsItemClickEnabled="False"
+                                   ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
+                                   ItemsSource="{Binding Responsibilities, FallbackValue=None}">
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                        <x:String>Sample</x:String>
+                                    </ListView>
+                                </StackPanel>
+
+                            </Grid>
+
+                        </ScrollViewer>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
         </RelativePanel>
 
     </Grid>

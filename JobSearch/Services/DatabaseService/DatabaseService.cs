@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JobSearch.Models;
+using System.Collections.ObjectModel;
 
 namespace JobSearch.Services.DatabaseService
 {
@@ -71,7 +72,12 @@ namespace JobSearch.Services.DatabaseService
         }
         public List<Job_Communication> Communications { get; set; }
         public List<Job_Interview> Interviews { get; set; }
-        public List<Job_Requirement> Requirements { get; set; }
+        List<Job_Requirement> _requirements;
+        public List<Job_Requirement> Requirements
+        {
+            get { return _requirements; }
+            set { _requirements = value; }
+        }
         public List<Job_Responsibility> Responsibilities { get; set; }
         public List<Job_Test> Tests { get; set; }
 
@@ -79,19 +85,23 @@ namespace JobSearch.Services.DatabaseService
         {
             //var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
             //db = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-            //db.TraceListener = new DebugTraceListener();
+            //getConnection().TraceListener = new DebugTraceListener();
             //getConnection();
-            InitializeTables();
+            //InitializeTables();
             //PopulateDatabase();
             _jobs = getConnection().GetAllWithChildren<Job>();
             _companies = getConnection().GetAllWithChildren<Company>();
             _recruiters = getConnection().GetAllWithChildren<Recruiter>();
+            _requirements = getConnection().GetAllWithChildren<Job_Requirement>();
             //this.Close();
         }
 
         public static DatabaseService GetDB()
         {
-            return instance ?? new DatabaseService();
+            if (instance == null)
+                instance = new DatabaseService();
+
+            return instance;
         }
 
         //public List<Job> GetJobs()
@@ -131,12 +141,22 @@ namespace JobSearch.Services.DatabaseService
             Companies.Add(company);
         }
 
-
-
-        internal void AddRecruiter(Recruiter recruiter)
+        public void AddRecruiter(Recruiter recruiter)
         {
             getConnection().Insert(recruiter);
             Recruiters.Add(recruiter);
+        }
+
+        public void AddJobRequirement(Job_Requirement jobRequirement, int jobId)
+        {
+            Job job;
+
+            getConnection().Insert(jobRequirement);
+            Requirements.Add(jobRequirement);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Requirements.Add(jobRequirement);
+            getConnection().UpdateWithChildren(job);
         }
 
         private SQLite.Net.SQLiteConnection getConnection()
@@ -145,7 +165,7 @@ namespace JobSearch.Services.DatabaseService
             {
                 var path = Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "JobSearch.sqlite");
                 connection = new SQLite.Net.SQLiteConnection(new SQLite.Net.Platform.WinRT.SQLitePlatformWinRT(), path);
-                //connection.TraceListener = new DebugTraceListener();
+                connection.TraceListener = new DebugTraceListener();
             }
             return connection;
         }
@@ -190,7 +210,8 @@ namespace JobSearch.Services.DatabaseService
                 StreetAddress = "960 Clear Lake City Blvd.",
                 City = "Webster",
                 State = "TX",
-                ZipCode = 77598
+                ZipCode = 77598,
+                Jobs = new List<Job>()
             };
             Company cyberCoders = new Company()
             {
@@ -203,7 +224,8 @@ namespace JobSearch.Services.DatabaseService
                 StreetAddress = "6591 Irvine Center Drive Suite 200",
                 City = "Irving",
                 State = "CA",
-                ZipCode = 92618
+                ZipCode = 92618,
+                Jobs = new List<Job>()
             };
             Company quadriviumSystems = new Company()
             {
@@ -211,7 +233,8 @@ namespace JobSearch.Services.DatabaseService
                 Domain = "general software",
                 Website = "http://www.quadriviumsystems.com/",
                 City = "Houston",
-                State = "TX"
+                State = "TX",
+                Jobs = new List<Job>()
             };
             Company poeticSystems = new Company()
             {
@@ -225,7 +248,8 @@ namespace JobSearch.Services.DatabaseService
                 StreetAddress = "675 Bering Dr. Ste. 725",
                 City = "Houston",
                 State = "TX",
-                ZipCode = 77057
+                ZipCode = 77057,
+                Jobs = new List<Job>()
             };
 
             getConnection().Insert(weston);
@@ -261,7 +285,11 @@ namespace JobSearch.Services.DatabaseService
                 State = "TX",
                 ZipCode = 77074,
                 Notes = "still waiting to hear about IQ test results",
-                Tests = new List<Job_Test>()
+                Communications = new ObservableCollection<Job_Communication>(),
+                Interviews = new ObservableCollection<Job_Interview>(),
+                Requirements = new ObservableCollection<Job_Requirement>(),
+                Responsibilities = new ObservableCollection<Job_Responsibility>(),
+                Tests = new ObservableCollection<Job_Test>()
             };
             getConnection().Insert(westonSoftwareDeveloper_001);
             weston.Jobs.Add(westonSoftwareDeveloper_001);

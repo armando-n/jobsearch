@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
+using System.Collections.ObjectModel;
 
 namespace JobSearch.Models
 {
@@ -49,14 +50,14 @@ namespace JobSearch.Models
         public Recruiter Recruiter { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job_Communication> Communications { get; set; }
+        public ObservableCollection<Job_Communication> Communications { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job_Interview> Interviews { get; set; }
+        public ObservableCollection<Job_Interview> Interviews { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job_Requirement> Requirements { get; set; }
+        public ObservableCollection<Job_Requirement> Requirements { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job_Responsibility> Responsibilities { get; set; }
+        public ObservableCollection<Job_Responsibility> Responsibilities { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job_Test> Tests { get; set; }
+        public ObservableCollection<Job_Test> Tests { get; set; }
     }
 }

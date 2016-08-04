@@ -14,19 +14,25 @@ namespace JobSearch.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        //Services.MessageService.MessageService _messageService;
         Services.DatabaseService.DatabaseService db;
 
         public MainPageViewModel()
         {
-            //if (!Windows.ApplicationModel.DesignMode.DesignModeEnabled)
-            //{
-            //_messageService = new Services.MessageService.MessageService();
+            _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
-                
-                //Jobs.Count();
-                //Value = "Designtime value";
-            //}
+            //Value = "Designtime value";
+        }
+
+        private static MainPageViewModel _instance;
+        public static MainPageViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new MainPageViewModel();
+                return _instance;
+            }
+            set { _instance = value; }
         }
 
         //string _Value = "Gas";
@@ -40,17 +46,9 @@ namespace JobSearch.ViewModels
             //}
             //await Task.CompletedTask;
 
-            //Messages = _messageService.GetMessages();
-            //Selected = Messages?.FirstOrDefault();
-
             Jobs = new ObservableCollection<Job>(db.Jobs);
             Selected = Jobs?.First();
-
-            //Jobs = new ObservableCollection<Job>();
-            //var dbService = Services.DatabaseService.DatabaseService.getDB();
-            //List<Job> listOfJobs = dbService.Jobs;
-            //foreach (Job job in listOfJobs)
-            //    Jobs.Add(job);
+            Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
 
             return Task.CompletedTask;
         }
@@ -64,45 +62,31 @@ namespace JobSearch.ViewModels
         //    await Task.CompletedTask;
         //}
 
-        //ObservableCollection<Models.Message> _messages = default(ObservableCollection<Models.Message>);
-        //public ObservableCollection<Models.Message> Messages { get { return _messages; } private set { Set(ref _messages, value); } }
-
-        private ObservableCollection<Models.Job> _jobs;
-        public ObservableCollection<Models.Job> Jobs
+        private ObservableCollection<Job> _jobs;
+        public ObservableCollection<Job> Jobs
         {
-            get
-            {
-                //if (_jobs == null)
-                //    _jobs = new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
-                return _jobs;
-                //_jobs = Services.DatabaseService.DatabaseService.getDB().Jobs;
-                //return _jobs ?? new ObservableCollection<Job>(DatabaseService.GetDB().Jobs);
-                //return DatabaseService.GetDB().Jobs;
-            }
-            set { /*_jobs = value;*/ Set(ref _jobs, value); }
-            //get
-            //{
-            //    return Services.DatabaseService.DatabaseService.getDB().Jobs;
-            //}
-            //private set { }
+            get { return _jobs; }
+            set { Set(ref _jobs, value); }
         }
 
-        //string _searchText = default(string);
-        //public string SearchText { get { return _searchText; } set { Set(ref _searchText, value); } }
+        private ObservableCollection<Job_Requirement> _requirements;
+        public ObservableCollection<Job_Requirement> Requirements
+        {
+            get { return _requirements; }
+            set { Set(ref _requirements, value);  }
+        }
 
-        public DelegateCommand SwitchToControlCommand =
-            new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(MainPage))); // was originally MasterDetailsPage
+        //public DelegateCommand SwitchToControlCommand =
+        //    new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(MainPage))); // was originally MasterDetailsPage
 
-        Models.Job _selected = default(Models.Job);
+        private Job _selected = default(Job);
         public object Selected
         {
             get { return _selected; }
             set
             {
-                var job = value as Models.Job;
+                var job = value as Job;
                 Set(ref _selected, job);
-                //if (job != null)
-                //    job.IsRead = true;
             }
         }
 
@@ -134,6 +118,28 @@ namespace JobSearch.ViewModels
             catch (SQLite.Net.NotNullConstraintViolationException ex)
             {
                 throw new ArgumentNullException("Required fields were omitted for the new job");
+            }
+        }
+
+        public void AddRequirement(string requirement)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+
+                Job_Requirement newRequirement = new Job_Requirement()
+                {
+                    Requirement = String.IsNullOrWhiteSpace(requirement) ? null : requirement
+                };
+
+                db.AddJobRequirement(newRequirement, currentJob.JobId);
+                //currentJob.Requirements.Add(newRequirement);
+                Requirements.Add(newRequirement);
+                RaisePropertyChanged(nameof(Jobs));
+            }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new job requirement. " + ex.Message);
             }
         }
 

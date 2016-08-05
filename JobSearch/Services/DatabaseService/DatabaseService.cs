@@ -294,12 +294,14 @@ namespace JobSearch.Services.DatabaseService
             Recruiter bryanKuna = new Recruiter()
             {
                 Name = "Bryan Kuna",
-                Email = "Bryan.Kuna@CyberCoders.com"
+                Email = "Bryan.Kuna@CyberCoders.com",
+                Notes = "I have never actually spoken on this recruiter yet"
             };
             Recruiter iraDSilva = new Recruiter()
             {
                 Name = "Ira D'Silva",
-                Email = "ira@revature.com"
+                Email = "ira@revature.com",
+                Notes = "She offered me my first job. She contacted me. I responded late to her offer."
             };
 
             getConnection().Insert(bryanKuna);
@@ -318,6 +320,12 @@ namespace JobSearch.Services.DatabaseService
                 State = "TX",
                 ZipCode = 77074,
                 Notes = "still waiting to hear about IQ test results",
+                MinSalary = 50000,
+                MaxSalary = 75000,
+                EmploymentServiceJobLink = "http://monster.com",
+                Area = "Unknown",
+                YearsExperienceNeeded = 0,
+                Active = true,
                 Communications = new ObservableCollection<Job_Communication>(),
                 Interviews = new ObservableCollection<Job_Interview>(),
                 Requirements = new ObservableCollection<Job_Requirement>(),

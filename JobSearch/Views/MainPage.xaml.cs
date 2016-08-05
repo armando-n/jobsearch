@@ -35,10 +35,14 @@ namespace JobSearch.Views
             {
                 ViewModel.AddJob(
                     position: PositionBox.Text,
+                    minSalary: null,
+                    maxSalary: null,
                     company: CompanyBox.Text,
                     recruiter: RecruiterBox.Text,
                     notes: NotesBox.Text,
+                    yearsExperienceNeeded: null,
                     employmentService: EmploymentServiceBox.Text,
+                    employmentServiceJobLink: null,
                     appliedViaWebsite: AppliedViaWebsiteBox.IsChecked,
                     appliedViaEmail: AppliedViaEmailBox.IsChecked,
                     datePosted: DatePostedBox.Date?.Date,
@@ -46,8 +50,10 @@ namespace JobSearch.Views
                     streetAddress: StreetAddressBox.Text,
                     city: CityBox.Text,
                     state: StateBox.Text,
-                    zipCode: (ZipCodeBox.Text.Trim().Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
-                    //ignore: 
+                    zipCode: (ZipCodeBox.Text.Trim().Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null,
+                    area: "TEMP AREA",
+                    active: null,
+                    flagged: null
                 );
 
                 AddJobForm.Visibility = Visibility.Collapsed;

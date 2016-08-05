@@ -52,7 +52,7 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public void AddRecruiter(string name, string email, string title)
+        public void AddRecruiter(string name, string email, string title, string notes)
         {
             try
             {
@@ -60,7 +60,8 @@ namespace JobSearch.ViewModels
                 {
                     Name = String.IsNullOrWhiteSpace(name) ? null : name,
                     Email = String.IsNullOrWhiteSpace(email) ? null : email,
-                    Title = String.IsNullOrWhiteSpace(title) ? null : title
+                    Title = String.IsNullOrWhiteSpace(title) ? null : title,
+                    Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
                 };
 
                 db.AddRecruiter(newRecruiter);

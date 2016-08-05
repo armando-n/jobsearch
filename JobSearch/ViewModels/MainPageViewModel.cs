@@ -122,17 +122,23 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public void AddJob(string position, string company, string recruiter, string notes
-                , string employmentService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
-                , string streetAddress, string city, string state, int? zipCode)
+        public void AddJob(string position, int? minSalary, int? maxSalary, string company, string recruiter, string notes
+                , int? yearsExperienceNeeded, string employmentService, string employmentServiceJobLink
+                , bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
+                , string streetAddress, string city, string state, int? zipCode, string area, bool? active, bool? flagged)
         {
             try
             {
                 Job newJob = new Job()
                 {
                     Position = String.IsNullOrWhiteSpace(position) ? null : position,
+                    MinSalary = minSalary,
+                    MaxSalary = maxSalary,
+                    YearsExperienceNeeded = yearsExperienceNeeded,
+
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
                     EmploymentService = String.IsNullOrWhiteSpace(employmentService) ? null : employmentService,
+                    EmploymentServiceJobLink = String.IsNullOrWhiteSpace(employmentServiceJobLink) ? null : employmentServiceJobLink,
                     AppliedViaWebsite = appliedViaWebsite ?? false,
                     AppliedViaEmail = appliedViaEmail ?? false,
                     DatePosted = datePosted,
@@ -140,7 +146,10 @@ namespace JobSearch.ViewModels
                     StreetAddress = String.IsNullOrWhiteSpace(streetAddress) ? null : streetAddress,
                     City = String.IsNullOrWhiteSpace(city) ? null : city,
                     State = String.IsNullOrWhiteSpace(state) ? null : state,
-                    ZipCode = zipCode
+                    ZipCode = zipCode,
+                    Area = String.IsNullOrWhiteSpace(area) ? null : area,
+                    Active = active ?? true,
+                    Flagged = flagged ?? false
                 };
 
                 db.AddJob(newJob, company, recruiter);

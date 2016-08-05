@@ -15,8 +15,8 @@ namespace JobSearch.Models
         public string Email { get; set; }
         [MaxLength(100)]
         public string Title { get; set; }
-        //[MaxLength(1000)]
-        //public string Notes { get; set; }
+        [MaxLength(1000)]
+        public string Notes { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
         public List<Job> Jobs { get; set; }

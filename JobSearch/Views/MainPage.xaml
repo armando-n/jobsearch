@@ -232,96 +232,145 @@
 
                                 <RelativePanel Grid.ColumnSpan="3" Padding="16">
                                     <Ellipse x:Name="CompanyLogo"
-                                                 Width="50" Height="50" Margin="0,0,16,0"
-                                                 Fill="Gainsboro" />
+                                                Width="50" Height="50" Margin="0,0,16,0"
+                                                Fill="Gainsboro" />
                                     <TextBlock x:Name="Position"
-                                               FontSize="20" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1"
-                                               RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
-                                               Text="{Binding Position, FallbackValue=Position}" />
-                                    <TextBlock x:Name="DateApplied"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               FontSize="14" FontWeight="Light"
-                                               Foreground="DimGray"
-                                               RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo"
-                                               Text="{Binding DateApplied, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}"
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="Company"
-                                               Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
-                                               Foreground="Black" MaxLines="1"
-                                               RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                               Text="{Binding Company.Name, FallbackValue=Company}"
-                                               TextAlignment="Right"
-                                               TextWrapping="WrapWholeWords" />
-                                    <TextBlock x:Name="StreetAddress"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               FontSize="14" FontWeight="Light"
-                                               Foreground="DimGray"
-                                               RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
-                                               Text="{Binding StreetAddress}"
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="City"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               FontSize="14" FontWeight="Light"
-                                               Foreground="DimGray"
-                                               RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
-                                               Text="{Binding City}"
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="State"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               FontSize="14" FontWeight="Light"
-                                               Foreground="DimGray"
-                                               RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
-                                               Text="{Binding State}"
-                                               TextAlignment="Right" />
-                                    <TextBlock x:Name="ZipCode"
-                                               HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                               FontSize="14" FontWeight="Light"
-                                               Foreground="DimGray"
-                                               RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
-                                               Text="{Binding ZipCode}"
-                                               TextAlignment="Right" />
-                                </RelativePanel>
+                                                FontSize="22" FontWeight="Normal"
+                                                Foreground="Black" MaxLines="1"
+                                                RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
+                                                Text="{Binding Position, FallbackValue=Position}" />
+                                    <TextBlock x:Name="Area"
+                                                FontSize="14" FontWeight="SemiLight"
+                                                Foreground="Black" MaxLines="1"
+                                                RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo">
+                                        <Run Text="{Binding Area, FallbackValue=Area}" />
+                                        <Run Text="Area" Foreground="DimGray" FontWeight="Light" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="DatePosted"
+                                                FontSize="14" FontWeight="SemiLight" Foreground="Black"
+                                                RelativePanel.Below="Position" RelativePanel.RightOf="Area">
+                                        <Run Text=" | Posted" Foreground="DimGray" FontWeight="Light" />
+                                        <Run Text="{Binding DatePosted, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="MinSalary"
+                                                FontSize="20" FontWeight="Bold"
+                                                Foreground="ForestGreen" MaxLines="1"
+                                                RelativePanel.Below="Area" RelativePanel.RightOf="CompanyLogo">
+                                        <Run Text="$" /><Run Text="{Binding MinSalary, FallbackValue=MinSalary}" />
+                                    </TextBlock>
+                                    <TextBlock x:Name="MaxSalary"
+                                                FontSize="20" FontWeight="Bold"
+                                                Foreground="ForestGreen" MaxLines="1"
+                                                RelativePanel.Below="DatePosted" RelativePanel.RightOf="MinSalary">
+                                        <Run Text=" -" Foreground="Black" />
+                                        <Run Text="$" /><Run Text="{Binding MaxSalary, FallbackValue=MaxSalary}" />
+                                    </TextBlock>
+                                    <HyperlinkButton x:Name="EmploymentService"
+                                                Margin="0, -6, 0, 0" FontSize="12"
+                                                RelativePanel.Below="MinSalary" RelativePanel.RightOf="CompanyLogo"
+                                                Content="{Binding EmploymentService}" NavigateUri="{Binding EmploymentServiceJobLink}" />
+                                    <TextBlock FontSize="12"
+                                                Foreground="Black" MaxLines="1"
+                                                RelativePanel.Below="MaxSalary" RelativePanel.RightOf="EmploymentService">
+                                        <Run Text=" |" Foreground="DimGray" FontWeight="Light" />
+                                        <Run Text="{Binding Recruiter.Name, FallbackValue=Recruiter}" />
+                                    </TextBlock>
 
-                                <Grid Grid.Row="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <TextBlock x:Name="EmploymentService" Grid.Row="0"
-                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1">
-                                        <Run Text="Using " />
-                                        <Run Foreground="DimGray" Text="{Binding EmploymentService, FallbackValue=EmploymentService}" />
+                                    <StackPanel x:Name="AppliedInfo"
+                                                Margin="32, 0, 0, 0" RelativePanel.RightOf="Position" RelativePanel.AlignTopWith="Position" Background="AliceBlue">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <TextBlock TextAlignment="Center"
+                                                        FontSize="10" FontWeight="SemiBold" 
+                                                        Foreground="Black" MaxLines="1"
+                                                        Text="APPLIED"/>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 0">
+                                            <TextBlock HorizontalAlignment="Center"
+                                                        FontSize="18" FontWeight="Bold" Margin="0, 8, 0, 8"
+                                                        Foreground="Black" MaxLines="1"
+                                                        Text="{Binding DateApplied, FallbackValue=Never, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}"/>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Margin="8, 0, 8, 0">
+                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                                FontSize="12" FontWeight="Light" Foreground="DimGray"
+                                                                Text="Service" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="1" Margin="8, 0, 8, 0">
+                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                                FontSize="12" FontWeight="Light" Foreground="DimGray"
+                                                                Text="Web" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Column="2" Margin="8, 0, 8, 0">
+                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                                FontSize="12" FontWeight="Light" Foreground="DimGray"
+                                                                Text="Email" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <TextBlock Margin="32, 0, 0, 0" FontSize="24" FontWeight="Normal"
+                                                Foreground="Black" MaxLines="1"
+                                                RelativePanel.RightOf="AppliedInfo" RelativePanel.AlignVerticalCenterWith="AppliedInfo">
+                                        <Run Text="{Binding YearsExperienceNeeded, FallbackValue=YearsExperienceNeeded}" />
+                                        <Run Text="Years Experience Needed" />
                                     </TextBlock>
-                                    <TextBlock x:Name="DatePosted" Grid.Row="1"
-                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1">
-                                        <Run Text="Date Posted: " />
-                                        <Run Foreground="DimGray" Text="{Binding DatePosted, FallbackValue=DatePosted}" />
+
+                                    <!--<TextBlock x:Name="Company"
+                                                Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
+                                                Foreground="Black" MaxLines="1"
+                                                RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                Text="{Binding Company.Name, FallbackValue=Company}"
+                                                TextAlignment="Right"
+                                                TextWrapping="WrapWholeWords" />-->
+                                    <HyperlinkButton x:Name="Company"
+                                                Margin="0, 8, 0, 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"
+                                                RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                Content="{Binding Company.Name}" NavigateUri="{Binding Company.Website}" />
+                                    <TextBlock x:Name="StreetAddress" Margin="0, -6, 0, 0"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                FontSize="14" FontWeight="Light"
+                                                Foreground="DimGray"
+                                                RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
+                                                Text="{Binding StreetAddress}"
+                                                TextAlignment="Right" />
+                                    <TextBlock x:Name="City"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                FontSize="14" FontWeight="Light"
+                                                Foreground="DimGray"
+                                                RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
+                                                TextAlignment="Right">
+                                        <Run Text="{Binding City}" /><Run Text="," />
                                     </TextBlock>
-                                    <TextBlock x:Name="Recruiter" Grid.Row="2"
-                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1">
-                                        <Run Text="Recruiter: " />
-                                        <Run Foreground="DimGray" Text="{Binding Recruiter.Name}" />
+                                    <TextBlock x:Name="State"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                FontSize="14" FontWeight="Light"
+                                                Foreground="DimGray"
+                                                RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
+                                                TextAlignment="Right">
+                                        <Run Text=""/>
+                                        <Run Text="{Binding State}" />
                                     </TextBlock>
-                                    <TextBlock x:Name="AppliedViaWebsite" Grid.Row="3"
-                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1">
-                                        <Run Text="Applied via website: " />
-                                        <Run Foreground="DimGray" Text="{Binding AppliedViaWebsite}" />
+                                    <TextBlock x:Name="ZipCode"
+                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                FontSize="14" FontWeight="Light"
+                                                Foreground="DimGray"
+                                                RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
+                                                TextAlignment="Right">
+                                        <Run Text="" />
+                                        <Run Text="{Binding ZipCode}" />
                                     </TextBlock>
-                                    <TextBlock x:Name="AppliedViaEmail" Grid.Row="4"
-                                               Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
-                                               Foreground="Black" MaxLines="1">
-                                        <Run Text="Applied via email: " />
-                                        <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
-                                    </TextBlock>
-                                </Grid>
+                                </RelativePanel>
 
                                 <StackPanel Grid.Row="1" Grid.Column="1" MaxWidth="500" HorizontalAlignment="Stretch"  Margin="8, 16, 8, 16">
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">

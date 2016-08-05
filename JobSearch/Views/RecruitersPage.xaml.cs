@@ -27,7 +27,8 @@ namespace JobSearch.Views
                 ViewModel.AddRecruiter(
                     name: NameBox.Text,
                     email: EmailBox.Text,
-                    title: TitleBox.Text
+                    title: TitleBox.Text,
+                    notes: null
                 );
 
                 AddRecruiterForm.Visibility = Visibility.Collapsed;

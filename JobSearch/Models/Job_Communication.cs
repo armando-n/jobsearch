@@ -4,7 +4,6 @@ using SQLiteNetExtensions.Attributes;
 
 namespace JobSearch.Models
 {
-    //[Table("Job_Communications")]
     public class Job_Communication : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]

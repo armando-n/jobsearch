@@ -42,11 +42,11 @@ namespace JobSearch.Controls
             this.BorderThickness = new Thickness(1);
             this.Padding = new Thickness(16);
             ViaBox.MinWidth = 150;
-            ViaBox.Margin = stdMargin; // new Thickness(0, 0, 8, 16);
+            ViaBox.Margin = stdMargin;
             ViaBox.TextWrapping = TextWrapping.Wrap;
             ViaBox.Header = "Via";
             InterviewerBox.MinWidth = 150;
-            InterviewerBox.Margin = stdMargin; // new Thickness(8, 0, 0, 16);
+            InterviewerBox.Margin = stdMargin;
             InterviewerBox.TextWrapping = TextWrapping.Wrap;
             InterviewerBox.Header = "Interviewer";
             NotesBox.MinWidth = 250;
@@ -56,10 +56,10 @@ namespace JobSearch.Controls
             NotesBox.Header = "Notes";
             DatePicker.MinWidth = 150;
             DatePicker.Header = "Date";
-            DatePicker.Margin = stdMargin; // new Thickness(0, 0, 8, 16);
+            DatePicker.Margin = stdMargin;
             TimePicker.MinWidth = 150;
             TimePicker.Header = "Time";
-            TimePicker.Margin = stdMargin; // new Thickness(8, 0, 0, 16);
+            TimePicker.Margin = stdMargin;
             OkayButton.Click += Okay_Clicked;
             OkayButton.Content = "Add";
             OkayButton.Margin = new Thickness(8, 8, 8, 0);

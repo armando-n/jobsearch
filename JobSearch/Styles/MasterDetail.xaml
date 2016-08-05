@@ -61,7 +61,6 @@
     <DataTemplate x:Name="JobsListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
-                <!--<ColumnDefinition Width="4" />-->
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>

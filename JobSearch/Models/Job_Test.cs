@@ -4,13 +4,12 @@ using System;
 
 namespace JobSearch.Models
 {
-    //[Table("Job_Tests")]
     public class Job_Test : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
         public int TestId { get; set; }
         [NotNull]
-        public string Type { get; set; } // enum('online', 'in-person')
+        public string Type { get; set; }
         [NotNull]
         public DateTime DateAndTime { get; set; }
         [MaxLength(1000)]

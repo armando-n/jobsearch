@@ -110,24 +110,18 @@
     <Compile Include="Models\Job_Requirement.cs" />
     <Compile Include="Models\Job_Responsibility.cs" />
     <Compile Include="Models\Job_Test.cs" />
-    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Recruiter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\MessageService\MessageService.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\RecruitersPageViewModel.cs" />
     <Compile Include="ViewModels\CompaniesPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
-    <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="Views\Busy.xaml.cs">
       <DependentUpon>Busy.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RecruitersPage.xaml.cs">
       <DependentUpon>RecruitersPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DetailPage.xaml.cs">
-      <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CompaniesPage.xaml.cs">
       <DependentUpon>CompaniesPage.xaml</DependentUpon>
@@ -192,10 +186,6 @@
     <Page Include="Views\RecruitersPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\DetailPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CompaniesPage.xaml">
       <Generator>MSBuild:Compile</Generator>

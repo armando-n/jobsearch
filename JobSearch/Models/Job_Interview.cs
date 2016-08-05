@@ -4,7 +4,6 @@ using System;
 
 namespace JobSearch.Models
 {
-    //[Table("Job_Interviews")]
     public class Job_Interview : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]

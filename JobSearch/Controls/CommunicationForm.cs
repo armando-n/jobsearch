@@ -56,10 +56,10 @@ namespace JobSearch.Controls
             DescriptionBox.Header = "Description";
             DatePicker.MinWidth = 150;
             DatePicker.Header = "Date";
-            DatePicker.Margin = stdMargin; // new Thickness(0, 0, 8, 16);
+            DatePicker.Margin = stdMargin;
             TimePicker.MinWidth = 150;
             TimePicker.Header = "Time";
-            TimePicker.Margin = stdMargin; // new Thickness(8, 0, 0, 16);
+            TimePicker.Margin = stdMargin;
             OkayButton.Click += Okay_Clicked;
             OkayButton.Content = "Add";
             OkayButton.Margin = new Thickness(8, 8, 8, 0);

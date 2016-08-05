@@ -4,9 +4,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using JobSearch.Views;
 using Template10.Services.NavigationService;
-using Template10.Common;
 using Template10.Mvvm;
 using JobSearch.Models;
 
@@ -20,7 +18,6 @@ namespace JobSearch.ViewModels
         {
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
-            //Value = "Designtime value";
         }
 
         private static MainPageViewModel _instance;
@@ -34,9 +31,6 @@ namespace JobSearch.ViewModels
             }
             set { _instance = value; }
         }
-
-        //string _Value = "Gas";
-        //public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -107,9 +101,6 @@ namespace JobSearch.ViewModels
             get { return _communications; }
             set { Set(ref _communications, value); }
         }
-
-        //public DelegateCommand SwitchToControlCommand =
-        //    new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(MainPage))); // was originally MasterDetailsPage
 
         private Job _selected = default(Job);
         public object Selected
@@ -282,18 +273,6 @@ namespace JobSearch.ViewModels
         //    args.Cancel = false;
         //    await Task.CompletedTask;
         //}
-
-        //public void GotoDetailsPage() =>
-        //    NavigationService.Navigate(typeof(Views.DetailPage), Value);
-
-        //public void GotoSettings() =>
-        //    NavigationService.Navigate(typeof(Views.SettingsPage), 0);
-
-        //public void GotoPrivacy() =>
-        //    NavigationService.Navigate(typeof(Views.SettingsPage), 1);
-
-        //public void GotoAbout() =>
-        //    NavigationService.Navigate(typeof(Views.SettingsPage), 2);
 
     }
 }

@@ -52,10 +52,6 @@ namespace JobSearch.Controls
             cancelButton.Click += Cancel_Clicked;
             cancelButton.Content = CancelButtonText;
             cancelButton.Margin = buttonMargin;
-            //EventTriggerBehavior eventTriggerBehavior = new EventTriggerBehavior();
-            //eventTriggerBehavior.EventName = "Click";
-            //eventTriggerBehavior.Actions.Add(new CloseFlyoutAction());
-            //Interaction.GetBehaviors(okayButton).Add(eventTriggerBehavior);
 
             textBox.SetValue(RelativePanel.AlignTopWithPanelProperty, true);
             textBox.SetValue(RelativePanel.AlignLeftWithPanelProperty, true);
@@ -91,84 +87,5 @@ namespace JobSearch.Controls
             this.Hide();
         }
 
-        //private string FindSiblingTextBox(DependencyObject obj)
-        //{
-        //    DependencyObject objParent = VisualTreeHelper.GetParent(obj);
-
-        //    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(objParent); i++)
-        //    {
-        //        DependencyObject child = VisualTreeHelper.GetChild(objParent, i);
-        //        if (child != null && child is TextBox)
-        //        {
-        //            TextBox tbox = child as TextBox;
-        //            string tboxText = tbox.Text;
-        //            tbox.Text = "";
-        //            return tboxText;
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
-        //private string FindDescendantTextBox(DependencyObject obj, int level = 0)
-        //{
-        //    if (obj == null)
-        //        return null;
-
-        //    for (int i = 0; i < level; i++)
-        //        System.Diagnostics.Debug.Write("    ");
-        //    System.Diagnostics.Debug.Write(obj.GetType().ToString() + ": " + (obj as FrameworkElement).Name + "\n");
-
-        //    for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-        //    {
-        //        DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-        //        //if (child != null && child is Button && (child as Button).Name == "RequirementFlyoutButton")
-        //        //{
-        //        //    System.Diagnostics.Debug.Write("REQUIREMENT FLYOUT BUTTON FOUND!!!!!");
-        //        //    Flyout flyout = (child as Button).Flyout as Flyout;
-        //        //    string result = FindDescendantTextBox(flyout.Content);
-        //        //    if (result != null)
-        //        //        return result;
-        //        //}
-        //        if (child != null && child is TextBox/* && (child as TextBox).Name == "RequirementBox"*/)
-        //        {
-        //            TextBox tbox = child as TextBox;
-        //            string tboxText = tbox.Text;
-        //            tbox.Text = "";
-        //            return tboxText;
-        //        }
-        //        else
-        //        {
-        //            string result = FindDescendantTextBox(child, level + 1);
-        //            if (result != null)
-        //                return result;
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
-        // The XAML below is what the contructor above creates; however, the CloseFlyoutAction is no longer necessary (I can hide flyout directly)
-        //<Button.Flyout>
-        //    <Flyout x:Name="RequirementFlyout">
-        //        <StackPanel>
-        //            <TextBox x:Name="RequirementBox" MinWidth="250" MinHeight="75" TextWrapping="Wrap">
-        //                <Interactivity:Interaction.Behaviors>
-        //                    <Behaviors:KeyBehavior Key = "Enter" >
-        //                        < Core:CallMethodAction MethodName = "AddRequirement_Entered" TargetObject="{Binding ElementName=JobsPage}" />
-        //                    </Behaviors:KeyBehavior>
-        //                </Interactivity:Interaction.Behaviors>
-        //            </TextBox>
-        //            <Button x:Name="AddRequirementButton" Click="AddRequirement_Clicked">
-        //                <Interactivity:Interaction.Behaviors>
-        //                    <Core:EventTriggerBehavior EventName = "Click" >
-        //                        < Behaviors:CloseFlyoutAction />
-        //                    </Core:EventTriggerBehavior>
-        //                </Interactivity:Interaction.Behaviors>
-        //                Add
-        //            </Button>
-        //        </StackPanel>
-        //    </Flyout>
-        //</Button.Flyout>
     }
 }

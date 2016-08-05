@@ -1,15 +1,9 @@
-//using System;
-//using JobSearch.ViewModels;
 using System;
-using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
-using System.Windows;
 using Windows.UI.Xaml.Controls.Primitives;
 using JobSearch.Controls;
-//using Windows.UI.Xaml.Navigation;
-//using System.Collections.ObjectModel;
 
 namespace JobSearch.Views
 {

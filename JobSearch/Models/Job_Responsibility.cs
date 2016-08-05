@@ -3,7 +3,6 @@ using SQLiteNetExtensions.Attributes;
 
 namespace JobSearch.Models
 {
-    //[Table("Job_Responsibilities")]
     public class Job_Responsibility : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]

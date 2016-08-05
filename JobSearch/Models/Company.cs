@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 namespace JobSearch.Models
 {
-    //[Table("Companies")]
     public class Company : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
@@ -29,7 +28,6 @@ namespace JobSearch.Models
         public string City { get; set; }
         [MaxLength(2)][NotNull]
         public string State { get; set; }
-        //[RegularExpression(@"^\d{5}$")]
         public int? ZipCode { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]

@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 
 namespace JobSearch.Models
 {
-    //[Table("Jobs")]
     public class Job : Template10.Mvvm.BindableBase
     {
         [PrimaryKey, AutoIncrement]
@@ -30,7 +29,6 @@ namespace JobSearch.Models
         public string City { get; set; }
         [NotNull]
         public string State { get; set; }
-        //[RegularExpression(@"^\d{5}$")]
         public int? ZipCode { get; set; }
         [MaxLength(100)][NotNull]
         public string Area { get; set; }

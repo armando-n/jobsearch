@@ -4,8 +4,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
-using JobSearch.Views;
-using Template10.Common;
 using Template10.Mvvm;
 using JobSearch.Models;
 
@@ -37,9 +35,6 @@ namespace JobSearch.ViewModels
             }
             set { Set(ref _recruiters, value); }
         }
-
-        //public DelegateCommand SwitchToControlCommand =
-        //    new DelegateCommand(() => BootStrapper.Current.NavigationService.Navigate(typeof(RecruitersPage))); // was originally MasterDetailsPage
 
         Recruiter _selected = default(Recruiter);
         public object Selected

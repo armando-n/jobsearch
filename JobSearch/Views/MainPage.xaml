@@ -222,11 +222,12 @@
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition />
                                     <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MinWidth="250"/>
                                     <ColumnDefinition MinWidth="250" />
-                                    <ColumnDefinition MinWidth="300" Width="Auto" />
+                                    <ColumnDefinition MinWidth="250" />
+                                    <ColumnDefinition MinWidth="300" />
                                 </Grid.ColumnDefinitions>
 
                                 <RelativePanel Grid.ColumnSpan="3" Padding="16">
@@ -289,7 +290,6 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                         <RowDefinition />
-                                        <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <TextBlock x:Name="EmploymentService" Grid.Row="0"
                                                Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
@@ -321,119 +321,118 @@
                                         <Run Text="Applied via email: " />
                                         <Run Foreground="DimGray" Text="{Binding AppliedViaEmail}" />
                                     </TextBlock>
-                                    <StackPanel Grid.Row="5" Margin="0, 16, 8, 16">
-                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                            <RelativePanel>
-                                                <TextBlock x:Name="TestsBlock"
-                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                            Foreground="Black" MaxLines="1"
-                                                            Text="Tests" VerticalAlignment="Top" />
-                                                <Button Margin="8"
-                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestPopup">
-                                                    <SymbolIcon Symbol="Add" />
-                                                </Button>
-                                                <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
-                                                    <myControls:TestForm MethodName="AddTest" />
-                                                </Popup>
-                                            </RelativePanel>
-                                        </Border>
-                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                            <ListView x:Name="TestsList"
-                                                        IsItemClickEnabled="False" MaxHeight="150"
-                                                        ItemTemplate="{StaticResource TestsListItemTemplate}"
-                                                        ItemContainerStyle="{StaticResource StretchList}"
-                                                        ItemsSource="{Binding Tests}">
-                                            </ListView>
-                                        </Border>
-                                    </StackPanel>
                                 </Grid>
 
-                                <Grid Grid.Row="1" Grid.Column="1" MaxWidth="500">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-
-                                    <RelativePanel Grid.Row="0">
-                                        <TextBlock x:Name="InterviewsBlock"
-                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                                    Foreground="Black" MaxLines="1"
-                                                    Text="Interviews" VerticalAlignment="Top" />
-                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="InterviewsBlock" Click="ShowInterviewPopup">
-                                            <SymbolIcon Symbol="Add" />
-                                        </Button>
-                                        <Popup x:Name="InterviewPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-150">
-                                            <myControls:InterviewForm MethodName="AddInterview" />
-                                        </Popup>
-                                    </RelativePanel>
-                                    <ListView Grid.Row="1"
-                                               x:Name="InterviewsList"
-                                               IsItemClickEnabled="False"
-                                               ItemTemplate="{StaticResource InterviewsListItemTemplate}"
-                                               ItemsSource="{Binding Interviews, FallbackValue=None}">
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                    </ListView>
-                                    <StackPanel Grid.Row="2" HorizontalAlignment="Stretch">
+                                <StackPanel Grid.Row="1" Grid.Column="1" MaxWidth="500" HorizontalAlignment="Stretch"  Margin="8, 16, 8, 16">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
                                         <TextBlock
-                                                   Margin="8, 24, 8, 0" FontSize="14" FontWeight="Normal"
-                                                   Foreground="Black" MaxLines="1"
-                                                   Text="Notes" />
+                                                       Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                       Foreground="Black" MaxLines="1"
+                                                       Text="Notes" VerticalAlignment="Top" />
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
                                         <TextBlock x:Name="Notes" TextWrapping="Wrap"
-                                                   Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
-                                                   Foreground="Black"
-                                                   Text="{Binding Notes}"
-                                                   TextAlignment="Left">
+                                                       Margin="8" FontSize="16" FontWeight="Normal"
+                                                       Foreground="Black" TextAlignment="Left"
+                                                       Text="{Binding Notes}">
                                             <TextBlock.Transitions>
                                                 <TransitionCollection>
                                                     <ContentThemeTransition />
                                                 </TransitionCollection>
                                             </TextBlock.Transitions>
                                         </TextBlock>
-                                    </StackPanel>
-                                </Grid>
+                                    </Border>
+                                </StackPanel>
 
-                                <Grid Grid.Row="1" Grid.Column="2" MaxWidth="400">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Margin="8, 16, 16, 16">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                        <RelativePanel>
+                                            <TextBlock x:Name="CommunicationsBlock"
+                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                        Margin="8, 12, 0, 8" FontSize="18" FontWeight="Bold"
+                                                        Foreground="Black" MaxLines="1"
+                                                        Text="Communications" VerticalAlignment="Top" />
+                                            <Button Margin="8"
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowCommunicationPopup">
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                            <Popup x:Name="CommunicationPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-85">
+                                                <myControls:CommunicationForm MethodName="AddCommunication" />
+                                            </Popup>
+                                        </RelativePanel>
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                        <ListView x:Name="CommunicationsList"
+                                                    IsItemClickEnabled="False" MaxHeight="650"
+                                                    ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
+                                                    ItemContainerStyle="{StaticResource StretchList}"
+                                                    ItemsSource="{Binding Communications, FallbackValue=None}">
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                        </ListView>
+                                    </Border>
+                                </StackPanel>
 
-                                    <RelativePanel Grid.Row="0">
-                                        <TextBlock x:Name="CommunicationsBlock"
-                                                    RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                    Margin="8, 32, 8, 0" FontSize="14" FontWeight="Normal"
-                                                    Foreground="Black" MaxLines="1"
-                                                    Text="Communications" VerticalAlignment="Top" />
-                                        <Button RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignBottomWith="CommunicationsBlock" Click="ShowCommunicationPopup">
-                                            <SymbolIcon Symbol="Add" />
-                                        </Button>
-                                        <Popup x:Name="CommunicationPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-85">
-                                            <myControls:CommunicationForm MethodName="AddCommunication" />
-                                        </Popup>
-                                    </RelativePanel>
-                                    <ListView x:Name="CommunicationsList"
-                                               Grid.Row="1"
-                                               IsItemClickEnabled="False"
-                                               ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
-                                               ItemsSource="{Binding Communications, FallbackValue=None}">
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                        <x:String>Sample</x:String>
-                                    </ListView>
-                                </Grid>
+                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0, 16, 8, 16">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                        <RelativePanel>
+                                            <TextBlock x:Name="TestsBlock"
+                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                            Foreground="Black" MaxLines="1"
+                                                            Text="Tests" VerticalAlignment="Top" />
+                                            <Button Margin="8"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestPopup">
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                            <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
+                                                <myControls:TestForm MethodName="AddTest" />
+                                            </Popup>
+                                        </RelativePanel>
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                        <ListView x:Name="TestsList"
+                                                        IsItemClickEnabled="False" MaxHeight="150"
+                                                        ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                                        ItemContainerStyle="{StaticResource StretchList}"
+                                                        ItemsSource="{Binding Tests}">
+                                        </ListView>
+                                    </Border>
+                                </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0, 16, 8, 16" MaxWidth="500">
+                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="8, 16, 8, 16" MaxWidth="500">
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                        <RelativePanel>
+                                            <TextBlock x:Name="InterviewsBlock"
+                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                            Foreground="Black" MaxLines="1"
+                                                            Text="Interviews" VerticalAlignment="Top" />
+                                            <Button Margin="8"
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowInterviewPopup">
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                            <Popup x:Name="InterviewPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-150">
+                                                <myControls:InterviewForm MethodName="AddInterview" />
+                                            </Popup>
+                                        </RelativePanel>
+                                    </Border>
+                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                        <ListView x:Name="InterviewsList"
+                                                    MinWidth="200" MaxHeight="450"
+                                                    IsItemClickEnabled="False"
+                                                    ItemTemplate="{StaticResource InterviewsListItemTemplate}"
+                                                    ItemContainerStyle="{StaticResource StretchList}"
+                                                    ItemsSource="{Binding Interviews, FallbackValue=None}">
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                            <x:String>Sample</x:String>
+                                        </ListView>
+                                    </Border>
+                                </StackPanel>
+
+                                <StackPanel Grid.Row="3" Grid.Column="0" Margin="0, 16, 8, 16" MaxWidth="500">
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
                                         <RelativePanel>
                                             <TextBlock x:Name="RequirementsBlock"
@@ -463,7 +462,7 @@
                                     </Border>
                                 </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="8, 16, 8, 16" MaxWidth="500">
+                                <StackPanel Grid.Row="3" Grid.Column="1" Margin="8, 16, 8, 16" MaxWidth="500">
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
                                         <RelativePanel>
                                             <TextBlock x:Name="ResponsibilitiesBlock"

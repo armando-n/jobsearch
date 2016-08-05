@@ -123,23 +123,33 @@
     </DataTemplate>
 
     <DataTemplate x:Name="InterviewsListItemTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-
-
-            <TextBlock Grid.Column="0"
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
-                               Text="{Binding Via}"/>
-            <TextBlock Grid.Column="2"
-                               Margin="8, 8, 8, 8" FontSize="14" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
-                               Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:D\}}" />
-        </Grid>
+        <RelativePanel>
+            <TextBlock x:Name="InterviewVia"
+                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                        Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
+                        Foreground="Black" MaxLines="1"
+                        Text="{Binding Via}"/>
+            <TextBlock x:Name="InterviewDate"
+                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                        Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
+                        Foreground="Black" MaxLines="1"
+                        Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}" />
+            <TextBlock x:Name="InterviewInterviewer"
+                        RelativePanel.Below="InterviewVia" RelativePanel.AlignLeftWith="InterviewVia"
+                        Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
+                        Foreground="Black" MaxLines="1"
+                        Text="{Binding Interviewer}"/>
+            <TextBlock x:Name="InterviewTime"
+                        RelativePanel.Below="InterviewDate" RelativePanel.AlignRightWith="InterviewDate"
+                        Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
+                        Foreground="Black" MaxLines="1"
+                        Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:t\}}" />
+            <TextBlock x:Name="InterviewNotes"
+                        RelativePanel.Below="InterviewInterviewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                        Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                        Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
+                        Text="{Binding Notes}"/>
+        </RelativePanel>
     </DataTemplate>
 
     <DataTemplate x:Name="CommunicationsListItemTemplate">
@@ -182,7 +192,7 @@
                                Text="Subject" />
             <TextBlock Grid.Row="1" Grid.Column="2"
                                Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
+                               Foreground="Black" MaxLines="1" TextTrimming="CharacterEllipsis"
                                Text="{Binding Subject}"/>
             <TextBlock Grid.Row="0" Grid.Column="3"
                                Margin="8,8,16,0" HorizontalAlignment="Left"

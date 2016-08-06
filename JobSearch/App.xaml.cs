@@ -10,6 +10,8 @@ using Windows.UI.Xaml.Data;
 using JobSearch.Views;
 using System.IO;
 using JobSearch.Models;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace JobSearch
 {
@@ -42,6 +44,7 @@ namespace JobSearch
             {
                 DisableBackButtonWhenModal = true,
                 Content = new Views.Shell(service),
+                ModalBackground = new SolidColorBrush(Color.FromArgb(150, 0, 0, 0))
             };
         }
 

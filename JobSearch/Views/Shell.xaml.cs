@@ -5,6 +5,7 @@ using Template10.Controls;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Template10.Common;
 
 namespace JobSearch.Views
 {
@@ -35,8 +36,8 @@ namespace JobSearch.Views
 
             if (currentPage.Equals(typeof(MainPage)))
             {
-                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
-                MainPage.Instance.ToggleAddJobForm();
+                BootStrapper.Current.ModalContent = new AddJobModal();
+                BootStrapper.Current.ModalDialog.IsModal = true;
             }
             else if (currentPage.Equals(typeof(CompaniesPage)))
             {

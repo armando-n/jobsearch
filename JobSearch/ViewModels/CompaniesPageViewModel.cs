@@ -15,7 +15,20 @@ namespace JobSearch.ViewModels
 
         public CompaniesPageViewModel()
         {
+            _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
+        }
+
+        private static CompaniesPageViewModel _instance;
+        public static CompaniesPageViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new CompaniesPageViewModel();
+                return _instance;
+            }
+            set { _instance = value; }
         }
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
@@ -29,10 +42,7 @@ namespace JobSearch.ViewModels
         private ObservableCollection<Company> _companies;
         public ObservableCollection<Company> Companies
         {
-            get
-            {
-                return _companies;
-            }
+            get { return _companies; }
             set { Set(ref _companies, value); }
         }
 

@@ -41,8 +41,8 @@ namespace JobSearch.Views
             }
             else if (currentPage.Equals(typeof(CompaniesPage)))
             {
-                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
-                CompaniesPage.Instance.ToggleAddCompanyForm();
+                BootStrapper.Current.ModalContent = new AddCompanyModal();
+                BootStrapper.Current.ModalDialog.IsModal = true;
             }
 
             else if (currentPage.Equals(typeof(RecruitersPage)))

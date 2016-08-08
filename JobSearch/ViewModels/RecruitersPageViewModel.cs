@@ -15,7 +15,20 @@ namespace JobSearch.ViewModels
 
         public RecruitersPageViewModel()
         {
+            _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
+        }
+
+        private static RecruitersPageViewModel _instance;
+        public static RecruitersPageViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new RecruitersPageViewModel();
+                return _instance;
+            }
+            set { _instance = value; }
         }
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)

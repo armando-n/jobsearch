@@ -35,28 +35,15 @@ namespace JobSearch.Views
             Type currentPage = MyHamburgerMenu.NavigationService.Content.GetType();
 
             if (currentPage.Equals(typeof(MainPage)))
-            {
                 BootStrapper.Current.ModalContent = new AddJobModal();
-                BootStrapper.Current.ModalDialog.IsModal = true;
-            }
             else if (currentPage.Equals(typeof(CompaniesPage)))
-            {
                 BootStrapper.Current.ModalContent = new AddCompanyModal();
-                BootStrapper.Current.ModalDialog.IsModal = true;
-            }
-
             else if (currentPage.Equals(typeof(RecruitersPage)))
-            {
-                AddSymbol.Symbol = (AddSymbol.Symbol == Symbol.Add) ? Symbol.Remove : Symbol.Add;
-                RecruitersPage.Instance.ToggleAddRecruiterForm();
-            }
-            
+                BootStrapper.Current.ModalContent = new AddRecruiterModal();
+
+            BootStrapper.Current.ModalDialog.IsModal = true;
         }
 
-        private void NavButton_Tapped(object sender, RoutedEventArgs e)
-        {
-            AddSymbol.Symbol = Symbol.Add;
-        }
     }
 }
 

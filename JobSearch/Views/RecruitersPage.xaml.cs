@@ -15,36 +15,7 @@ namespace JobSearch.Views
             Instance = this;
         }
 
-        public void ToggleAddRecruiterForm()
-        {
-            AddRecruiterForm.Visibility = (AddRecruiterForm.Visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
-        }
+        public void SelectLast() => RecruitersList.SelectedIndex = ViewModel.RecruiterCount() - 1;
 
-        private void AddRecruiter_Clicked(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ViewModel.AddRecruiter(
-                    name: NameBox.Text,
-                    email: EmailBox.Text,
-                    title: TitleBox.Text,
-                    notes: null
-                );
-
-                AddRecruiterForm.Visibility = Visibility.Collapsed;
-                RecruitersList.SelectedIndex = ViewModel.RecruiterCount() - 1;
-            }
-            catch (ArgumentNullException ex)
-            {
-
-            }
-        }
-
-        private void FillForm_Clicked(object sender, RoutedEventArgs e)
-        {
-            NameBox.Text = "Robin Sherbatzky";
-            EmailBox.Text = "robin@himym.com";
-            TitleBox.Text = "Queen Bee";
-        }
     }
 }

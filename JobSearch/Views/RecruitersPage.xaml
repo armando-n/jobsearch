@@ -75,7 +75,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="LeftColumn" Width="320" />
             <ColumnDefinition x:Name="RightColumn" Width="*" />
@@ -108,39 +107,6 @@
                     Label="Switch" />-->
             </CommandBar.PrimaryCommands>
         </CommandBar>
-
-        <StackPanel Name="AddRecruiterForm" Grid.ColumnSpan="2" Grid.Row="1" Background="LightGray" Visibility="Collapsed">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <!--<RowDefinition />-->
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                    <TextBlock Text="Name" />
-                    <TextBox x:Name="NameBox" MinWidth="150" />
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                    <TextBlock Text="Email" />
-                    <TextBox x:Name="EmailBox" MinWidth="150" />
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                    <TextBlock Text="Title" />
-                    <TextBox x:Name="TitleBox" MinWidth="150" />
-                </StackPanel>
-                <!--<StackPanel Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="8" MinWidth="300">
-                    <TextBlock Text="Notes" />
-                    <TextBox x:Name="NotesBox" MinWidth="150" MinHeight="50"/>
-                </StackPanel>-->
-            </Grid>
-            <Button Click="AddRecruiter_Clicked" HorizontalAlignment="Right">Add</Button>
-            <Button HorizontalAlignment="Right" Click="FillForm_Clicked">Fill Form</Button>
-        </StackPanel>
 
         <ListView
             x:Name="RecruitersList"

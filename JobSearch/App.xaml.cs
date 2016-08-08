@@ -42,9 +42,9 @@ namespace JobSearch
             var service = NavigationServiceFactory(BackButton.Attach, ExistingContent.Exclude);
             return new ModalDialog
             {
-                DisableBackButtonWhenModal = true,
                 Content = new Views.Shell(service),
-                ModalBackground = new SolidColorBrush(Color.FromArgb(150, 0, 0, 0))
+                ModalBackground = new SolidColorBrush(Color.FromArgb(150, 0, 0, 0)),
+                CanBackButtonDismiss = true
             };
         }
 

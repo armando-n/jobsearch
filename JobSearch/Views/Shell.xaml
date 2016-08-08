@@ -63,21 +63,21 @@
                 </Button>
             </c:HamburgerButtonInfo>
 
-            <c:HamburgerButtonInfo x:Name="JobsButton" PageType="views:MainPage" Checked="NavButton_Tapped">
+            <c:HamburgerButtonInfo x:Name="JobsButton" PageType="views:MainPage">
                 <StackPanel Orientation="Horizontal">
                         <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="Page" />
                         <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Jobs" />
                     </StackPanel>
             </c:HamburgerButtonInfo>
 
-            <c:HamburgerButtonInfo x:Name="CompaniesButton" PageType="views:CompaniesPage" Checked="NavButton_Tapped">
+            <c:HamburgerButtonInfo x:Name="CompaniesButton" PageType="views:CompaniesPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="World" />
                     <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Companies" />
                 </StackPanel>
             </c:HamburgerButtonInfo>
 
-            <c:HamburgerButtonInfo x:Name="RecruitersButton" PageType="views:RecruitersPage" Checked="NavButton_Tapped">
+            <c:HamburgerButtonInfo x:Name="RecruitersButton" PageType="views:RecruitersPage">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Style="{StaticResource ButtonSymbolIcon}" Symbol="People" />
                     <TextBlock Style="{StaticResource ButtonTextBlock}" Text="Recruiters" />

@@ -19,7 +19,7 @@ namespace JobSearch.Models
         [MaxLength(5000)][NotNull]
         public string Description { get; set; }
         [NotNull]
-        public DateTime DateAndTime { get; set; }
+        public DateTime? DateAndTime { get; set; }
         [Default(false, 1)]
         public bool ResponseExpected { get; set; }
 

@@ -97,9 +97,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CommunicationForm.cs" />
-    <Compile Include="Controls\InterviewForm.cs" />
-    <Compile Include="Controls\TestForm.cs" />
     <Compile Include="Controls\InputFlyout.cs" />
     <Compile Include="DebugTraceListener.cs" />
     <Compile Include="Models\Company.cs" />
@@ -117,6 +114,18 @@
     <Compile Include="ViewModels\CompaniesPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Views\AddCommunicationModal.xaml.cs">
+      <DependentUpon>AddCommunicationModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InputModal.xaml.cs">
+      <DependentUpon>InputModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddInterviewModal.xaml.cs">
+      <DependentUpon>AddInterviewModal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddTestModal.xaml.cs">
+      <DependentUpon>AddTestModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddRecruiterModal.xaml.cs">
       <DependentUpon>AddRecruiterModal.xaml</DependentUpon>
     </Compile>
@@ -185,6 +194,22 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\MasterDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddCommunicationModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\InputModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddInterviewModal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddTestModal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

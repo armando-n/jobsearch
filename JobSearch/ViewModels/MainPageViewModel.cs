@@ -166,7 +166,6 @@ namespace JobSearch.ViewModels
                 };
 
                 db.AddJobRequirement(newRequirement, currentJob.JobId);
-                //currentJob.Requirements.Add(newRequirement);
                 Requirements.Add(newRequirement);
                 RaisePropertyChanged(nameof(Jobs));
             }
@@ -197,7 +196,7 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public void AddTest(string type, DateTime date, TimeSpan time, string notes)
+        public void AddTest(string type, DateTime? date, TimeSpan time, string notes)
         {
             try
             {
@@ -206,7 +205,7 @@ namespace JobSearch.ViewModels
                 Job_Test newTest = new Job_Test()
                 {
                     Type = String.IsNullOrWhiteSpace(type) ? null : type,
-                    DateAndTime = date.Add(time),
+                    DateAndTime = date?.Add(time),
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes
                 };
 
@@ -214,11 +213,13 @@ namespace JobSearch.ViewModels
                 Tests.Add(newTest);
                 RaisePropertyChanged(nameof(Jobs));
             }
-            // note that exceptions must be caught here because the calling method code is not accessible
-            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new test");
+            }
         }
 
-        public void AddInterview(string via, string interviewer, DateTime date, TimeSpan time, string notes)
+        public void AddInterview(string via, string interviewer, DateTime? date, TimeSpan time, string notes)
         {
             try
             {
@@ -228,7 +229,7 @@ namespace JobSearch.ViewModels
                 {
                     Via = String.IsNullOrWhiteSpace(via) ? null : via,
                     Interviewer = String.IsNullOrWhiteSpace(interviewer) ? null : interviewer,
-                    DateAndTime = date.Add(time),
+                    DateAndTime = date?.Add(time),
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes
                 };
 
@@ -236,11 +237,13 @@ namespace JobSearch.ViewModels
                 Interviews.Add(newInterview);
                 RaisePropertyChanged(nameof(Jobs));
             }
-            // note that exceptions must be caught here because the calling method code is not accessible
-            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new interview");
+            }
         }
 
-        public void AddCommunication(string to, string from, string subject, string via, DateTime date, TimeSpan time, string description)
+        public void AddCommunication(string to, string from, string subject, string via, DateTime? date, TimeSpan time, string description)
         {
             try
             {
@@ -252,7 +255,7 @@ namespace JobSearch.ViewModels
                     From = String.IsNullOrWhiteSpace(from) ? null : from,
                     Subject = String.IsNullOrWhiteSpace(subject) ? null : subject,
                     Via = String.IsNullOrWhiteSpace(via) ? null : via,
-                    DateAndTime = date.Add(time),
+                    DateAndTime = date?.Add(time),
                     Description = String.IsNullOrWhiteSpace(description) ? null : description
                 };
 
@@ -260,8 +263,20 @@ namespace JobSearch.ViewModels
                 Communications.Add(newCommunication);
                 RaisePropertyChanged(nameof(Jobs));
             }
-            // note that exceptions must be caught here because the calling method code is not accessible
-            catch (SQLite.Net.NotNullConstraintViolationException ex) { System.Diagnostics.Debug.Write(ex.Message); }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the new communication");
+            }
+        }
+
+        public void SetNotes(string notes)
+        {
+            try {
+                db.SetJobNotes(notes, (Selected as Job).JobId);
+            }
+            catch (SQLite.Net.NotNullConstraintViolationException ex) {
+                throw new ArgumentNullException("Required fields were omitted for the new job requirement. " + ex.Message);
+            }
         }
 
         public int JobCount()

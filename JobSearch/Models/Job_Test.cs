@@ -11,7 +11,7 @@ namespace JobSearch.Models
         [NotNull]
         public string Type { get; set; }
         [NotNull]
-        public DateTime DateAndTime { get; set; }
+        public DateTime? DateAndTime { get; set; }
         [MaxLength(1000)]
         public string Notes { get; set; }
 

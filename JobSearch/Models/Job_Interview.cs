@@ -11,7 +11,7 @@ namespace JobSearch.Models
         [NotNull]
         public string Via { get; set; }
         [NotNull]
-        public DateTime DateAndTime { get; set; }
+        public DateTime? DateAndTime { get; set; }
         [MaxLength(100)]
         public string Interviewer { get; set; }
         [MaxLength(1000)]

@@ -190,6 +190,15 @@ namespace JobSearch.Services.DatabaseService
             getConnection().UpdateWithChildren(job);
         }
 
+        public void SetJobNotes(string notes, int jobId)
+        {
+            Job job;
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Notes = notes;
+            getConnection().Update(job);
+        }
+
         private SQLite.Net.SQLiteConnection getConnection()
         {
             if (connection == null)

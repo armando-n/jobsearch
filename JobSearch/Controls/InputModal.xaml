@@ -1,0 +1,50 @@
+<UserControl x:Class="JobSearch.Controls.InputModal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:JobSearch.Controls"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="using:JobSearch.ViewModels"
+             xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:Behaviors="using:Template10.Behaviors"
+             xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+             d:DesignHeight="500" d:DesignWidth="600"
+             mc:Ignorable="d"
+             x:Name="ThisInputModal">
+
+    <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+
+            <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0">
+                <TextBlock x:Name="TitleBlock" Margin="8"
+                        FontSize="24" Foreground="DimGray" />
+            </Border>
+
+            <RelativePanel Margin="10">
+                <TextBox x:Name="InputBox"
+                            MinWidth="300" MinHeight="100" MaxHeight="200" Margin="8" MaxLength="1000"
+                            RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                            TextWrapping="Wrap">
+                    <Interactivity:Interaction.Behaviors>
+                        <Behaviors:KeyBehavior Key="Enter">
+                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisInputModal}" />
+                        </Behaviors:KeyBehavior>
+                        <Core:EventTriggerBehavior>
+                            <Behaviors:FocusAction />
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </TextBox>
+
+                <Button Content="Okay" Margin="8"
+                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="Cancel"
+                            Click="Okay_Clicked" />
+                <Button x:Name="Cancel" Content="Cancel" Margin="8"
+                            RelativePanel.Below="InputBox" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                            Click="Cancel_Clicked" />
+            </RelativePanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>
+

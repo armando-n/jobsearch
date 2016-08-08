@@ -1,0 +1,62 @@
+<UserControl x:Class="JobSearch.Views.AddTestModal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:JobSearch.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="using:JobSearch.ViewModels"
+             xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:Behaviors="using:Template10.Behaviors"
+             xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+             d:DesignHeight="500" d:DesignWidth="600"
+             mc:Ignorable="d"
+             x:Name="ThisAddTestModal">
+
+    <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+            HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel>
+
+            <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0">
+                <TextBlock Margin="8"
+                        FontSize="24" Foreground="DimGray"
+                        Text="Add Test" />
+            </Border>
+
+            <RelativePanel Margin="10">
+                <TextBox x:Name="TypeBox" Header="Type"
+                            Margin="8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=TypeBox, Path=ActualWidth}"
+                            RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+                    <Interactivity:Interaction.Behaviors>
+                        <Behaviors:KeyBehavior Key="Enter">
+                            <Core:CallMethodAction MethodName="AddTest_Clicked" TargetObject="{Binding ElementName=ThisAddTestModal}" />
+                        </Behaviors:KeyBehavior>
+                        <Core:EventTriggerBehavior>
+                            <Behaviors:FocusAction />
+                        </Core:EventTriggerBehavior>
+                    </Interactivity:Interaction.Behaviors>
+                </TextBox>
+                <CalendarDatePicker x:Name="DateBox"
+                            MinWidth="150" Margin="8" HorizontalAlignment="Stretch"
+                            RelativePanel.RightOf="TypeBox" RelativePanel.AlignTopWithPanel="True"
+                            Header="Date" />
+                <TimePicker x:Name="TimeBox"
+                            MinWidth="150" Margin="8"
+                            RelativePanel.RightOf="DateBox" RelativePanel.AlignRightWithPanel="True"
+                            Header="Time" />
+                <TextBox x:Name="NotesBox" Header="Notes"
+                            MinWidth="150" MinHeight="100" MaxHeight="150" Margin="8" MaxLength="1000"
+                            RelativePanel.Below="DateBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWith="DateBox"
+                            TextWrapping="Wrap" AcceptsReturn="True" />
+
+                <Button Content="Okay" Margin="8"
+                            RelativePanel.LeftOf="Cancel" RelativePanel.AlignBottomWithPanel="True"
+                            Click="Okay_Clicked" />
+                <Button x:Name="Cancel" Content="Cancel" Margin="8"
+                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                            Click="Cancel_Clicked" />
+            </RelativePanel>
+        </StackPanel>
+    </Border>
+
+</UserControl>
+

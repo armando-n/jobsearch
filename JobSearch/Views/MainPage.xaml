@@ -310,11 +310,8 @@
                                                         Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
                                                         Foreground="Black" MaxLines="1"
                                                         Text="Requirements" VerticalAlignment="Top" />
-                                            <Button Margin="8"
+                                            <Button Margin="8" Click="ShowRequirementsModal"
                                                         RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                                                <Button.Flyout>
-                                                    <myControls:InputFlyout MethodName="AddRequirement" />
-                                                </Button.Flyout>
                                                 <SymbolIcon Symbol="Add" />
                                             </Button>
                                         </RelativePanel>
@@ -340,11 +337,8 @@
                                                        Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
                                                        Foreground="Black" MaxLines="1"
                                                        Text="Responsibilities" />
-                                            <Button Margin="8"
+                                            <Button Margin="8" Click="ShowResponsibilitiesModal"
                                                         RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                                                <Button.Flyout>
-                                                    <myControls:InputFlyout MethodName="AddResponsibility" />
-                                                </Button.Flyout>
                                                 <SymbolIcon Symbol="Add" />
                                             </Button>
                                         </RelativePanel>
@@ -371,12 +365,9 @@
                                                             Foreground="Black" MaxLines="1"
                                                             Text="Interviews" VerticalAlignment="Top" />
                                             <Button Margin="8"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowInterviewPopup">
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowInterviewModal">
                                                 <SymbolIcon Symbol="Add" />
                                             </Button>
-                                            <Popup x:Name="InterviewPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-150">
-                                                <myControls:InterviewForm MethodName="AddInterview" />
-                                            </Popup>
                                         </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
@@ -402,12 +393,9 @@
                                                             Foreground="Black" MaxLines="1"
                                                             Text="Tests" VerticalAlignment="Top" />
                                             <Button Margin="8"
-                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestPopup">
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestModal">
                                                 <SymbolIcon Symbol="Add" />
                                             </Button>
-                                            <Popup x:Name="TestPopup" IsLightDismissEnabled="True" VerticalOffset="-212" HorizontalOffset="50">
-                                                <myControls:TestForm MethodName="AddTest" />
-                                            </Popup>
                                         </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
@@ -429,17 +417,14 @@
                                                         Foreground="Black" MaxLines="1"
                                                         Text="Communications" VerticalAlignment="Top" />
                                             <Button Margin="8"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowCommunicationPopup">
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowCommunicationModal">
                                                 <SymbolIcon Symbol="Add" />
                                             </Button>
-                                            <Popup x:Name="CommunicationPopup" IsLightDismissEnabled="True" VerticalOffset="60" HorizontalOffset="-85">
-                                                <myControls:CommunicationForm MethodName="AddCommunication" />
-                                            </Popup>
                                         </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
                                         <ListView x:Name="CommunicationsList"
-                                                    IsItemClickEnabled="False" MaxHeight="500"
+                                                    IsItemClickEnabled="False" MaxHeight="250"
                                                     ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
                                                     ItemContainerStyle="{StaticResource StretchList}"
                                                     ItemsSource="{Binding Communications, FallbackValue=None}">
@@ -452,10 +437,17 @@
 
                                 <StackPanel Grid.Row="2" Grid.Column="2" MaxWidth="500" HorizontalAlignment="Stretch"  Margin="8, 16, 16, 16">
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <TextBlock
-                                                       Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                       Foreground="Black" MaxLines="1"
-                                                       Text="Notes" VerticalAlignment="Top" />
+                                        <RelativePanel>
+                                            <TextBlock x:Name="NotesBlock"
+                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                        Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                        Foreground="Black" MaxLines="1"
+                                                        Text="Notes" VerticalAlignment="Top" />
+                                            <Button Margin="8"
+                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowNotesModal">
+                                                <SymbolIcon Symbol="Add" />
+                                            </Button>
+                                        </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
                                         <TextBlock x:Name="Notes" TextWrapping="Wrap"

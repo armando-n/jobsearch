@@ -34,8 +34,18 @@ namespace JobSearch.Models
         public int? ZipCode { get; set; }
         [MaxLength(100)][NotNull]
         public string Area { get; set; }
+        
+        private string _notes;
         [MaxLength(1000)]
-        public string Notes { get; set; }
+        public string Notes
+        {
+            get { return _notes; }
+            set
+            {
+                Set(ref _notes, value);
+                RaisePropertyChanged(Notes);
+            }
+        }
         public int? YearsExperienceNeeded { get; set; }
         [Default(false, 1)]
         public bool Active { get; set; }

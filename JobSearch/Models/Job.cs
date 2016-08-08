@@ -20,6 +20,8 @@ namespace JobSearch.Models
         [MaxLength(200)]
         public string EmploymentServiceJobLink { get; set; }
         [Default(false, 0)]
+        public bool AppliedViaService { get; set; }
+        [Default(false, 0)]
         public bool AppliedViaWebsite { get; set; }
         [Default(false, 0)]
         public bool AppliedViaEmail { get; set; }

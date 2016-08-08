@@ -32,6 +32,7 @@ namespace JobSearch.Views
                     yearsExperienceNeeded: (YearsExperienceNeededBox.Text.Trim().Length > 0) ? int.Parse(YearsExperienceNeededBox.Text) as int? : null,
                     employmentService: EmploymentServiceBox.Text,
                     employmentServiceJobLink: EmploymentServiceJobLinkBox.Text,
+                    appliedViaService: AppliedViaServiceBox.IsChecked,
                     appliedViaWebsite: AppliedViaWebsiteBox.IsChecked,
                     appliedViaEmail: AppliedViaEmailBox.IsChecked,
                     datePosted: DatePostedBox.Date?.Date,
@@ -53,13 +54,37 @@ namespace JobSearch.Views
 
         private void CancelJob_Clicked(object sender, RoutedEventArgs e) => BootStrapper.Current.ModalDialog.IsModal = false;
 
-        private void CheckBox_Checked(object sender, RoutedEventArgs e) => AppliedArea.Visibility = Visibility.Visible;
+        private void AppliedBox_Checked(object sender, RoutedEventArgs e)
+        {
+            AppliedArea.Visibility = Visibility.Visible;
+            if (NotesBox.Visibility == Visibility.Collapsed)
+                CancelJob.SetValue(RelativePanel.BelowProperty, AppliedArea);
+        }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e) => AppliedArea.Visibility = Visibility.Collapsed;
+        private void AppliedBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AppliedArea.Visibility = Visibility.Collapsed;
+            AppliedViaServiceBox.IsChecked = false;
+            AppliedViaWebsiteBox.IsChecked = false;
+            AppliedViaEmailBox.IsChecked = false;
+            if (CancelJob.GetValue(RelativePanel.BelowProperty) == AppliedArea)
+                CancelJob.ClearValue(RelativePanel.BelowProperty);
+        }
 
-        private void NotesBox_Checked(object sender, RoutedEventArgs e) => NotesBox.Visibility = Visibility.Visible;
+        private void NotesBox_Checked(object sender, RoutedEventArgs e)
+        {
+            NotesBox.Visibility = Visibility.Visible;
+            if (AppliedArea.Visibility == Visibility.Visible)
+                CancelJob.ClearValue(RelativePanel.BelowProperty);
+        }
 
-        private void NotesBox_Unchecked(object sender, RoutedEventArgs e) => NotesBox.Visibility = Visibility.Collapsed;
+        private void NotesBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            NotesBox.Visibility = Visibility.Collapsed;
+            NotesBox.Text = "";
+            if (AppliedArea.Visibility == Visibility.Visible)
+                CancelJob.SetValue(RelativePanel.BelowProperty, AppliedArea);
+        }
     }
 }
 

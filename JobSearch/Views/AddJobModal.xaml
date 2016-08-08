@@ -8,7 +8,7 @@
              xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:Behaviors="using:Template10.Behaviors"
              xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
-             d:DesignHeight="300" d:DesignWidth="400"
+             d:DesignHeight="700" d:DesignWidth="575"
              mc:Ignorable="d"
              x:Name="ThisAddJobModal">
 
@@ -167,32 +167,36 @@
                 <CheckBox x:Name="FlagBox" Content="Flag"
                             MinWidth="30" Margin="8, 0, 8, 8"
                             RelativePanel.RightOf="ActiveBox" />
-                <CheckBox x:Name="AppliedBox" Content="Applied" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"
+                <CheckBox x:Name="AppliedBox" Content="Applied" Checked="AppliedBox_Checked" Unchecked="AppliedBox_Unchecked"
                             MinWidth="30" Margin="8, 0, 8, 8"
                             RelativePanel.RightOf="FlagBox" />
                 <CheckBox x:Name="NotesCheckBox" Content="Notes" Checked="NotesBox_Checked" Unchecked="NotesBox_Unchecked"
                             MinWidth="30" Margin="8, 0, 8, 8"
                             RelativePanel.RightOf="AppliedBox" />
 
-                <Border x:Name="AppliedArea" Visibility="Collapsed"
-                            BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2" Margin="8"
+                <!--<Border x:Name="AppliedArea" Visibility="Collapsed"
+                            BorderBrush="#FFCCCCCC" BorderThickness="0" Background="#FFF2F2F2" Margin="8"
+                            RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">-->
+                <RelativePanel x:Name="AppliedArea" Visibility="Collapsed"
                             RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
-                    <RelativePanel>
-                        <CalendarDatePicker x:Name="DateAppliedBox"
-                                    MinWidth="100" Margin="8"
-                                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                                    Header="Date Applied" />
-                        <TextBlock x:Name="AppliedViaBlock" Margin="8"
-                                    RelativePanel.RightOf="DateAppliedBox" RelativePanel.AlignTopWithPanel="True"
-                                    Text="Applied Via" />
-                        <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
-                                    MinWidth="30" Margin="8, 0, 8, 8"
-                                    RelativePanel.Below="AppliedViaBlock" RelativePanel.AlignLeftWith="AppliedViaBlock" />
-                        <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
-                                    MinWidth="30" Margin="8, 0, 8, 8"
-                                    RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaWebsiteBox" />
-                    </RelativePanel>
-                </Border>
+                    <CalendarDatePicker x:Name="DateAppliedBox"
+                                MinWidth="150" Margin="8"
+                                RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                                Header="Date Applied" />
+                    <TextBlock x:Name="AppliedViaBlock" Margin="8"
+                                RelativePanel.RightOf="DateAppliedBox"
+                                Text="Applied Via" />
+                    <CheckBox x:Name="AppliedViaServiceBox" Content="Service"
+                                MinWidth="30" Margin="8, 0, 8, 8"
+                                RelativePanel.Below="AppliedViaBlock" RelativePanel.AlignLeftWith="AppliedViaBlock" />
+                    <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
+                                MinWidth="30" Margin="8, 0, 8, 8"
+                                RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaServiceBox" />
+                    <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
+                                MinWidth="30" Margin="8, 0, 8, 8"
+                                RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaWebsiteBox" />
+                </RelativePanel>
+                <!--</Border>-->
 
                 <TextBox x:Name="NotesBox" Visibility="Collapsed" Header="Notes"
                             MinWidth="100" MinHeight="100" MaxHeight="150" Margin="8, 4, 8, 8" MaxLength="1000"

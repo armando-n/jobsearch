@@ -115,7 +115,7 @@ namespace JobSearch.ViewModels
 
         public void AddJob(string position, int? minSalary, int? maxSalary, string company, string recruiter, string notes
                 , int? yearsExperienceNeeded, string employmentService, string employmentServiceJobLink
-                , bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
+                , bool? appliedViaService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
                 , string streetAddress, string city, string state, int? zipCode, string area, bool? active, bool? flagged)
         {
             try
@@ -130,6 +130,7 @@ namespace JobSearch.ViewModels
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
                     EmploymentService = String.IsNullOrWhiteSpace(employmentService) ? null : employmentService,
                     EmploymentServiceJobLink = String.IsNullOrWhiteSpace(employmentServiceJobLink) ? null : employmentServiceJobLink,
+                    AppliedViaService = appliedViaService ?? false,
                     AppliedViaWebsite = appliedViaWebsite ?? false,
                     AppliedViaEmail = appliedViaEmail ?? false,
                     DatePosted = datePosted,

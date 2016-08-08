@@ -70,7 +70,7 @@ namespace JobSearch.ViewModels
                     Size = String.IsNullOrWhiteSpace(size) ? null : size,
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
                     Website = String.IsNullOrWhiteSpace(website) ? null : website,
-                    Linkedin = String.IsNullOrWhiteSpace(linkedIn) ? null : linkedIn,
+                    LinkedIn = String.IsNullOrWhiteSpace(linkedIn) ? null : linkedIn,
                     Glassdoor = String.IsNullOrWhiteSpace(glassdoor) ? null : glassdoor,
                     StreetAddress = String.IsNullOrWhiteSpace(streetAddress) ? null : streetAddress,
                     City = String.IsNullOrWhiteSpace(city) ? null : city,

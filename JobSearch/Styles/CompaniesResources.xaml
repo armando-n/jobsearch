@@ -130,7 +130,7 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <HyperlinkButton Grid.Row="0"
-                                   Content="Link" NavigateUri="{Binding Linkedin}" />
+                                   Content="Link" NavigateUri="{Binding LinkedIn}" />
                     <!--<TextBlock x:Name="EmploymentService" Grid.Row="0"
                                    Margin="0, 16, 16, 16" FontSize="14" FontWeight="Normal"
                                    Foreground="Black" MaxLines="1">

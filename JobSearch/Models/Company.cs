@@ -19,7 +19,7 @@ namespace JobSearch.Models
         [MaxLength(255)]
         public string Website { get; set; }
         [MaxLength(255)]
-        public string Linkedin { get; set; }
+        public string LinkedIn { get; set; }
         [MaxLength(255)]
         public string Glassdoor { get; set; }
         [MaxLength(100)]

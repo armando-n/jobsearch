@@ -445,12 +445,12 @@
                                                         Text="Notes" VerticalAlignment="Top" />
                                             <Button Margin="8"
                                                         RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowNotesModal">
-                                                <SymbolIcon Symbol="Add" />
+                                                <SymbolIcon Symbol="Edit" />
                                             </Button>
                                         </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <TextBlock x:Name="Notes" TextWrapping="Wrap"
+                                        <TextBlock x:Name="Notes" TextWrapping="Wrap" IsTextSelectionEnabled="True"
                                                        Margin="8" FontSize="16" FontWeight="Normal"
                                                        Foreground="Black" TextAlignment="Left"
                                                        Text="{Binding Notes}">

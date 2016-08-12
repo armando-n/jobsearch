@@ -236,7 +236,7 @@ namespace JobSearch.Services.DatabaseService
                 City = "Houston",
                 State = "TX",
                 ZipCode = 77074,
-                Jobs = new List<Job>()
+                Jobs = new ObservableCollection<Job>()
             };
             Company ghgCorporation = new Company()
             {
@@ -251,7 +251,7 @@ namespace JobSearch.Services.DatabaseService
                 City = "Webster",
                 State = "TX",
                 ZipCode = 77598,
-                Jobs = new List<Job>()
+                Jobs = new ObservableCollection<Job>()
             };
             Company cyberCoders = new Company()
             {
@@ -265,7 +265,7 @@ namespace JobSearch.Services.DatabaseService
                 City = "Irving",
                 State = "CA",
                 ZipCode = 92618,
-                Jobs = new List<Job>()
+                Jobs = new ObservableCollection<Job>()
             };
             Company quadriviumSystems = new Company()
             {
@@ -274,7 +274,7 @@ namespace JobSearch.Services.DatabaseService
                 Website = "http://www.quadriviumsystems.com/",
                 City = "Houston",
                 State = "TX",
-                Jobs = new List<Job>()
+                Jobs = new ObservableCollection<Job>()
             };
             Company poeticSystems = new Company()
             {
@@ -289,7 +289,7 @@ namespace JobSearch.Services.DatabaseService
                 City = "Houston",
                 State = "TX",
                 ZipCode = 77057,
-                Jobs = new List<Job>()
+                Jobs = new ObservableCollection<Job>()
             };
 
             getConnection().Insert(weston);

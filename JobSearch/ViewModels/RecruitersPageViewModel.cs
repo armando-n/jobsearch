@@ -34,7 +34,7 @@ namespace JobSearch.ViewModels
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             Recruiters = new ObservableCollection<Recruiter>(db.Recruiters);
-            Selected = Recruiters?.First();
+            Selected = (Recruiters.Count > 0) ? Recruiters.First() : null;
 
             return Task.CompletedTask;
         }
@@ -70,6 +70,7 @@ namespace JobSearch.ViewModels
                     Email = String.IsNullOrWhiteSpace(email) ? null : email,
                     Title = String.IsNullOrWhiteSpace(title) ? null : title,
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
+                    Jobs = new ObservableCollection<Job>()
                 };
 
                 db.AddRecruiter(newRecruiter);

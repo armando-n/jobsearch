@@ -17,7 +17,7 @@ namespace JobSearch.Models
         public DateTime? DateApplied { get; set; }
         [MaxLength(100)]
         public string EmploymentService { get; set; }
-        [MaxLength(200)]
+        [MaxLength(1000)]
         public string EmploymentServiceJobLink { get; set; }
         [Default(false, 0)]
         public bool AppliedViaService { get; set; }

@@ -1,6 +1,7 @@
 ﻿using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace JobSearch.Models
 {
@@ -18,9 +19,9 @@ namespace JobSearch.Models
         public string Notes { get; set; }
         [MaxLength(255)]
         public string Website { get; set; }
-        [MaxLength(255)]
+        [MaxLength(1000)]
         public string LinkedIn { get; set; }
-        [MaxLength(255)]
+        [MaxLength(1000)]
         public string Glassdoor { get; set; }
         [MaxLength(100)]
         public string StreetAddress { get; set; }
@@ -31,6 +32,6 @@ namespace JobSearch.Models
         public int? ZipCode { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
-        public List<Job> Jobs { get; set; }
+        public ObservableCollection<Job> Jobs { get; set; }
     }
 }

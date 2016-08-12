@@ -34,7 +34,7 @@ namespace JobSearch.ViewModels
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             Companies = new ObservableCollection<Company>(db.Companies);
-            Selected = Companies?.First();
+            Selected = (Companies.Count > 0) ? Companies.First() : null;
 
             return Task.CompletedTask;
         }
@@ -75,7 +75,8 @@ namespace JobSearch.ViewModels
                     StreetAddress = String.IsNullOrWhiteSpace(streetAddress) ? null : streetAddress,
                     City = String.IsNullOrWhiteSpace(city) ? null : city,
                     State = String.IsNullOrWhiteSpace(state) ? null : state,
-                    ZipCode = zipCode
+                    ZipCode = zipCode,
+                    Jobs = new ObservableCollection<Job>()
                 };
 
                 db.AddCompany(newCompany);

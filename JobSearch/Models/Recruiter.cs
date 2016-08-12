@@ -1,6 +1,7 @@
 ﻿using SQLite.Net.Attributes;
 using SQLiteNetExtensions.Attributes;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace JobSearch.Models
 {
@@ -18,6 +19,6 @@ namespace JobSearch.Models
         public string Notes { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeRead)]
-        public List<Job> Jobs { get; set; }
+        public ObservableCollection<Job> Jobs { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace JobSearch.ViewModels
             //await Task.CompletedTask;
 
             Jobs = new ObservableCollection<Job>(db.Jobs);
-            Selected = Jobs?.First();
+            Selected = (Jobs.Count > 0) ? Jobs.First() : null;
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
             Tests = new ObservableCollection<Job_Test>(db.Tests);
@@ -141,7 +141,12 @@ namespace JobSearch.ViewModels
                     ZipCode = zipCode,
                     Area = String.IsNullOrWhiteSpace(area) ? null : area,
                     Active = active ?? true,
-                    Flagged = flagged ?? false
+                    Flagged = flagged ?? false,
+                    Communications = new ObservableCollection<Job_Communication>(),
+                    Interviews = new ObservableCollection<Job_Interview>(),
+                    Requirements = new ObservableCollection<Job_Requirement>(),
+                    Responsibilities = new ObservableCollection<Job_Responsibility>(),
+                    Tests = new ObservableCollection<Models.Job_Test>()
                 };
 
                 db.AddJob(newJob, company, recruiter);

@@ -84,11 +84,9 @@
         <CommandBar Grid.ColumnSpan="2" Background="LightGray">
             <CommandBar.Content>
                 <StackPanel Orientation="Horizontal">
-                    <AppBarButton
-                    x:Name="BackButton"
-                    Icon="Back"
-                    IsEnabled="False"
-                    Visibility="Collapsed">
+                    <AppBarButton x:Name="BackButton"
+                                Icon="Back" IsEnabled="False"
+                                Visibility="Collapsed">
                         <Interactivity:Interaction.Behaviors>
                             <Core:EventTriggerBehavior EventName="Click">
                                 <Core:GoToStateAction StateName="ListVisualState" />
@@ -102,10 +100,10 @@
                 </StackPanel>
             </CommandBar.Content>
             <CommandBar.PrimaryCommands>
-                <!--<AppBarButton
-                    Command="{x:Bind ViewModel.SwitchToControlCommand}"
-                    Icon="Switch"
-                    Label="Switch" />-->
+                <AppBarButton
+                            Command="{x:Bind EnterSelectionMode}"
+                            Icon="Bullets"
+                            Label="Selection Mode" ToolTipService.ToolTip="Selection Mode" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
@@ -117,7 +115,8 @@
             ItemContainerStyle="{StaticResource JobsListItemContainerStyle}"
             ItemTemplate="{StaticResource JobsListItemTemplate}"
             ItemsSource="{x:Bind ViewModel.Jobs}"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}">
+            SelectedItem="{x:Bind ViewModel.Selected, Mode=TwoWay}"
+            SelectionChanged="JobSelection_Changed" IsMultiSelectCheckBoxEnabled="True">
             <Interactivity:Interaction.Behaviors>
                 <Core:EventTriggerBehavior EventName="ItemClick">
                     <Core:GoToStateAction StateName="DetailVisualState" />
@@ -317,9 +316,9 @@
                                         </RelativePanel>
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView x:Name="RequirementsList"
+                                        <ListView Name="RequirementsList"
                                                    MinWidth="200" MaxHeight="250"
-                                                   IsItemClickEnabled="False"
+                                                   IsItemClickEnabled="False" IsMultiSelectCheckBoxEnabled="True"
                                                    ItemTemplate="{StaticResource RequirementsListItemTemplate}"
                                                    ItemsSource="{Binding Requirements, FallbackValue=None}">
                                             <x:String>Sample</x:String>

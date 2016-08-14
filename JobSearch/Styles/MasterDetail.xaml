@@ -209,7 +209,7 @@
         </Grid>
     </DataTemplate>
 
-    <DataTemplate x:Name="RequirementsListItemTemplate">
+    <!--<DataTemplate x:Name="RequirementsListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -221,7 +221,7 @@
                         Foreground="Black" TextWrapping="Wrap"
                         Text="{Binding Requirement}"/>
         </Grid>
-    </DataTemplate>
+    </DataTemplate>-->
 
     <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
         <Grid>

@@ -180,6 +180,24 @@ namespace JobSearch.ViewModels
             }
         }
 
+        public void EditRequirement(string newRequirement, int requirementId)
+        {
+            Job currentJob = Selected as Job;
+            Job_Requirement jobReq = currentJob.Requirements.Where(rqrmt => rqrmt.RequirementId == requirementId).Single();
+            jobReq.Requirement = String.IsNullOrWhiteSpace(newRequirement) ? null : newRequirement;
+
+            db.Update(jobReq);
+        }
+
+        public void DeleteRequirement(int requirementId)
+        {
+            Job currentJob = Selected as Job;
+            Job_Requirement jobReq = currentJob.Requirements.Where(rqrmt => rqrmt.RequirementId == requirementId).Single();
+
+            db.DeleteJobRequirement(jobReq, currentJob.JobId);
+            Requirements.Remove(jobReq);
+        }
+
         public void AddResponsibility(string responsibility)
         {
             try

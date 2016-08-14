@@ -317,10 +317,14 @@
                                     </Border>
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
                                         <ListView Name="RequirementsList"
-                                                   MinWidth="200" MaxHeight="250"
+                                                   MinWidth="200" MaxHeight="250" Padding="0"
                                                    IsItemClickEnabled="False" IsMultiSelectCheckBoxEnabled="True"
-                                                   ItemTemplate="{StaticResource RequirementsListItemTemplate}"
-                                                   ItemsSource="{Binding Requirements, FallbackValue=None}">
+                                                   ItemsSource="{Binding Requirements, FallbackValue=None}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:Name="RequirementsListItemTemplate">
+                                                    <myControls:InputItem JobRequirement="{Binding}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>

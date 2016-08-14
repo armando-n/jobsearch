@@ -15,6 +15,7 @@ namespace JobSearch.Controls
         public string MethodName { get; set; }
         public string InputName { get; set; }
         public string InitialText { get; set; }
+        public object Target { get; internal set; }
 
         private MainPageViewModel ViewModel;
 
@@ -39,7 +40,10 @@ namespace JobSearch.Controls
 
             try
             {
-                ViewModel.GetType().GetMethod(MethodName).Invoke(ViewModel, new[] { InputBox.Text });
+                if (Target != null)
+                    Target.GetType().GetMethod(MethodName).Invoke(Target, new[] { InputBox.Text });
+                else
+                    ViewModel.GetType().GetMethod(MethodName).Invoke(ViewModel, new[] { InputBox.Text });
                 BootStrapper.Current.ModalDialog.IsModal = false;
             }
             catch (ArgumentNullException ex) { System.Diagnostics.Debug.Write(ex.Message); }

@@ -219,6 +219,24 @@ namespace JobSearch.ViewModels
             }
         }
 
+        public void EditResponsibility(string newResponsibility, int responsibilityId)
+        {
+            Job currentJob = Selected as Job;
+            Job_Responsibility jobResp = currentJob.Responsibilities.Where(resp => resp.ResponsibilityId == responsibilityId).Single();
+            jobResp.Responsibility = String.IsNullOrWhiteSpace(newResponsibility) ? null : newResponsibility;
+
+            db.Update(jobResp);
+        }
+
+        public void DeleteResponsibility(int responsibilityId)
+        {
+            Job currentJob = Selected as Job;
+            Job_Responsibility jobResp = currentJob.Responsibilities.Where(resp => resp.ResponsibilityId == responsibilityId).Single();
+
+            db.DeleteJobResponsibility(jobResp, currentJob.JobId);
+            Responsibilities.Remove(jobResp);
+        }
+
         public void AddTest(string type, DateTime? date, TimeSpan time, string notes)
         {
             try

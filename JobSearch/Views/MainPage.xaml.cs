@@ -6,6 +6,7 @@ using JobSearch.Controls;
 using Template10.Common;
 using Template10.Mvvm;
 using System.Collections.Generic;
+using JobSearch.Controls.ListViewItems;
 
 namespace JobSearch.Views
 {
@@ -52,8 +53,10 @@ namespace JobSearch.Views
                     if (child != null && child is ListViewItem)
                     {
                         ListViewItem lvi = (child as ListViewItem);
-                        if (lvi.ContentTemplateRoot is InputItem)
-                            (lvi.ContentTemplateRoot as InputItem).ParentLVI = lvi;
+                        if (lvi.ContentTemplateRoot is RequirementItem)
+                            (lvi.ContentTemplateRoot as RequirementItem).ParentLVI = lvi;
+                        else if (lvi.ContentTemplateRoot is ResponsibilityItem)
+                            (lvi.ContentTemplateRoot as ResponsibilityItem).ParentLVI = lvi;
                     }
                     else
                         FindListViewItems(child);

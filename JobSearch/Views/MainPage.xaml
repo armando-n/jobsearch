@@ -10,6 +10,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:viewModels="using:JobSearch.ViewModels"
       xmlns:myControls="using:JobSearch.Controls"
+      xmlns:itemControls="using:JobSearch.Controls.ListViewItems"
       x:Name="JobsPage"
       Background="White"
       RequestedTheme="Light"
@@ -322,7 +323,7 @@
                                                    ItemsSource="{Binding Requirements, FallbackValue=None}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
                                             <ListView.ItemTemplate>
                                                 <DataTemplate x:Name="RequirementsListItemTemplate">
-                                                    <myControls:InputItem JobRequirement="{Binding}" />
+                                                    <itemControls:RequirementItem Model="{Binding}" />
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                             <x:String>Sample</x:String>
@@ -350,8 +351,12 @@
                                         <ListView x:Name="ResponsibilitiesList"
                                                    MinWidth="200" MaxHeight="250"
                                                    IsItemClickEnabled="False"
-                                                   ItemTemplate="{StaticResource ResponsibilitiesListItemTemplate}"
                                                    ItemsSource="{Binding Responsibilities, FallbackValue=None}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
+                                                    <itemControls:ResponsibilityItem Model="{Binding}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>

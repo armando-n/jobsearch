@@ -1,8 +1,8 @@
-<UserControl x:Class="JobSearch.Controls.InputItem"
+<UserControl x:Class="JobSearch.Controls.ListViewItems.RequirementItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="using:JobSearch.Controls"
+             xmlns:local="using:JobSearch.Controls.ListViewItems"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="using:JobSearch.ViewModels"
              xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
@@ -10,7 +10,7 @@
              xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
              d:DesignHeight="500" d:DesignWidth="600"
              mc:Ignorable="d"
-             x:Name="ThisInputItem">
+             x:Name="ThisRequirementItem">
 
     <RelativePanel Margin="0" Background="Transparent"
                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
@@ -20,28 +20,20 @@
         <TextBlock RelativePanel.RightOf="Bullet" RelativePanel.AlignTopWithPanel="True"
                     Margin="8, 8, 12, 8" FontSize="16" FontWeight="Normal"
                     Foreground="Black" TextWrapping="Wrap"
-                    Text="{Binding JobRequirement.Requirement, Mode=TwoWay}"/>
+                    Text="{Binding Model.Requirement, Mode=TwoWay}" />
         
         <Border Name="EditIcon"
                     Background="AliceBlue" BorderBrush="Black" BorderThickness="1"
-                    Visibility="Collapsed" PointerPressed="EditRequirement_Clicked"
+                    Visibility="Collapsed" PointerPressed="Edit_Clicked"
                     PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited"
                     RelativePanel.LeftOf="DeleteIcon" RelativePanel.AlignTopWithPanel="True">
             <Viewbox Width="18" Height="18" Margin="4">
                 <SymbolIcon Symbol="Edit" />
             </Viewbox>
         </Border>
-        <!--<Border Name="FlagIcon"
-                    Background="AliceBlue" BorderBrush="Black"  BorderThickness="1"
-                    Visibility="Collapsed"
-                    RelativePanel.LeftOf="DeleteIcon" RelativePanel.AlignTopWithPanel="True">
-            <Viewbox Width="18" Height="18" Margin="4">
-                <SymbolIcon Symbol="Flag" PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited" />
-            </Viewbox>
-        </Border>-->
         <Border Name="DeleteIcon" Margin="0, 0, 12, 0"
                     Background="AliceBlue" BorderBrush="Black" BorderThickness="1"
-                    Visibility="Collapsed" PointerPressed="DeleteRequirement_Clicked"
+                    Visibility="Collapsed" PointerPressed="Delete_Clicked"
                     PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited"
                     RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
             <Viewbox Width="18" Height="18" Margin="4">

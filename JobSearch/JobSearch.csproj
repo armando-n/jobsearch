@@ -98,8 +98,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputFlyout.cs" />
-    <Compile Include="Controls\InputItem.xaml.cs">
-      <DependentUpon>InputItem.xaml</DependentUpon>
+    <Compile Include="Controls\ListViewItems\ResponsibilityItem.xaml.cs">
+      <DependentUpon>ResponsibilityItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListViewItems\RequirementItem.xaml.cs">
+      <DependentUpon>RequirementItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="DebugTraceListener.cs" />
     <Compile Include="Models\Company.cs" />
@@ -183,7 +186,11 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\InputItem.xaml">
+    <Page Include="Controls\ListViewItems\ResponsibilityItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\ListViewItems\RequirementItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

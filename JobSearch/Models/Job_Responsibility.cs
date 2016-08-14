@@ -7,8 +7,14 @@ namespace JobSearch.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ResponsibilityId { get; set; }
+
+        private string _responsibility;
         [MaxLength(511)][NotNull]
-        public string Responsibility { get; set; }
+        public string Responsibility
+        {
+            get { return _responsibility; }
+            set { Set(ref _responsibility, value); }
+        }
 
         [ForeignKey(typeof(Job))][NotNull]
         public int JobId { get; set; }

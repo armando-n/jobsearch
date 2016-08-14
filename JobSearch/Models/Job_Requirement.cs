@@ -13,11 +13,7 @@ namespace JobSearch.Models
         public string Requirement
         {
             get { return _requirement; }
-            set
-            {
-                Set(ref _requirement, value);
-                RaisePropertyChanged(Requirement);
-            }
+            set { Set(ref _requirement, value); }
         }
 
         [ForeignKey(typeof(Job))][NotNull]

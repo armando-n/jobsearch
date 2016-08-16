@@ -117,19 +117,33 @@
                             TextChanged="JobSearch_TextChanged"
                             QuerySubmitted="JobSearch_QuerySubmitted" />
             <Button x:Name="SearchByButton" VerticalAlignment="Stretch"
+                    RelativePanel.LeftOf="SortByButton"
+                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignBottomWithPanel="True">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Search by:" Margin="-25, 0, 0, 0" />
+                        <MenuFlyoutSeparator />
+                        <ToggleMenuFlyoutItem Text="Company" IsChecked="{Binding SearchByCompany, Mode=TwoWay}"/>
+                        <ToggleMenuFlyoutItem Text="Recruiter" IsChecked="{Binding SearchByRecruiter, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Position" IsChecked="{Binding SearchByPosition, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Area" IsChecked="{Binding SearchByArea, Mode=TwoWay}" />
+                    </MenuFlyout>
+                </Button.Flyout>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" />
+            </Button>
+            <Button x:Name="SortByButton" VerticalAlignment="Stretch"
                     RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignBottomWithPanel="True">
                 <Button.Flyout>
                     <MenuFlyout>
-                        <MenuFlyoutItem Text="Search by:" HorizontalAlignment="Left" Margin="-25, 0, 0, 0" />
+                        <MenuFlyoutItem Text="Sort by:" />
                         <MenuFlyoutSeparator />
-                        <ToggleMenuFlyoutItem Text="Company" HorizontalAlignment="Left" IsChecked="{Binding SearchByCompany, Mode=TwoWay}"/>
-                        <ToggleMenuFlyoutItem Text="Recruiter" HorizontalAlignment="Left" IsChecked="{Binding SearchByRecruiter, Mode=TwoWay}" />
-                        <ToggleMenuFlyoutItem Text="Position" HorizontalAlignment="Left" IsChecked="{Binding SearchByPosition, Mode=TwoWay}" />
-                        <ToggleMenuFlyoutItem Text="Area" HorizontalAlignment="Left" IsChecked="{Binding SearchByArea, Mode=TwoWay}" />
+                        <MenuFlyoutItem Text="Position" Click="SortByPosition_Clicked" />
+                        <MenuFlyoutItem Text="Date Applied" Click="SortByDateApplied_Clicked" />
+                        <MenuFlyoutItem Text="Date Posted" Click="SortByDatePosted_Clicked" />
                     </MenuFlyout>
                 </Button.Flyout>
-                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" />
+                <SymbolIcon Symbol="Sort" />
             </Button>
         </RelativePanel>
 

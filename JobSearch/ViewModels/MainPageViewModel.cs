@@ -20,6 +20,14 @@ namespace JobSearch.ViewModels
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
 
+            Jobs = new ObservableCollection<Job>(db.Jobs.OrderByDescending(job => job.DateApplied));
+            Selected = (Jobs.Count > 0) ? Jobs.First() : null;
+            Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
+            Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
+            Tests = new ObservableCollection<Job_Test>(db.Tests);
+            Interviews = new ObservableCollection<Job_Interview>(db.Interviews);
+            Communications = new ObservableCollection<Job_Communication>(db.Communications);
+
             _searchByCompany = true;
             _searchByRecruiter = false;
             _searchByPosition = false;
@@ -45,14 +53,6 @@ namespace JobSearch.ViewModels
             //    Value = suspensionState[nameof(Value)]?.ToString();
             //}
             //await Task.CompletedTask;
-
-            Jobs = new ObservableCollection<Job>(db.Jobs);
-            Selected = (Jobs.Count > 0) ? Jobs.First() : null;
-            Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
-            Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
-            Tests = new ObservableCollection<Job_Test>(db.Tests);
-            Interviews = new ObservableCollection<Job_Interview>(db.Interviews);
-            Communications = new ObservableCollection<Job_Communication>(db.Communications);
 
             return Task.CompletedTask;
         }
@@ -395,6 +395,27 @@ namespace JobSearch.ViewModels
 
             Jobs.Clear();
             foreach (Job job in matchingJobs)
+                Jobs.Add(job);
+        }
+
+        public void SortByPosition()
+        {
+            Jobs.Clear();
+            foreach (Job job in db.Jobs.OrderBy(job => job.Position))
+                Jobs.Add(job);
+        }
+
+        public void SortByDateApplied()
+        {
+            Jobs.Clear();
+            foreach (Job job in db.Jobs.OrderByDescending(job => job.DateApplied))
+                Jobs.Add(job);
+        }
+
+        public void SortByDatePosted()
+        {
+            Jobs.Clear();
+            foreach (Job job in db.Jobs.OrderByDescending(job => job.DatePosted))
                 Jobs.Add(job);
         }
 

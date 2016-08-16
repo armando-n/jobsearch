@@ -183,7 +183,7 @@ namespace JobSearch.Views
                 if (string.IsNullOrEmpty(JobSearch.Text))
                 {
                     ViewModel.Filter(string.Empty);
-                    JobSearch.ItemsSource = null; // ViewModel.Search(string.Empty);
+                    JobSearch.ItemsSource = null;
                 }
                 else
                     JobSearch.ItemsSource = ViewModel.Search(JobSearch.Text);
@@ -192,6 +192,15 @@ namespace JobSearch.Views
 
         private void JobSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
             => ViewModel.Filter(JobSearch.Text);
+
+        private void SortByPosition_Clicked(object sender, RoutedEventArgs e)
+            => ViewModel.SortByPosition();
+
+        private void SortByDateApplied_Clicked(object sender, RoutedEventArgs e)
+            => ViewModel.SortByDateApplied();
+
+        private void SortByDatePosted_Clicked(object sender, RoutedEventArgs e)
+            => ViewModel.SortByDatePosted();
 
     }
 }

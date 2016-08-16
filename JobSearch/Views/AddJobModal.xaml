@@ -100,7 +100,7 @@
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
                     <TextBox x:Name="EmploymentServiceJobLinkBox" Header="Service URL"
-                                MinWidth="100" Margin="8" MaxLength="200" MaxWidth="{Binding ElementName=EmploymentServiceJobLinkBox, Path=ActualWidth}"
+                                MinWidth="100" Margin="8" MaxLength="1000" MaxWidth="{Binding ElementName=EmploymentServiceJobLinkBox, Path=ActualWidth}"
                                 RelativePanel.Below="EmploymentServiceBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">

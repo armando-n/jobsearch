@@ -54,9 +54,9 @@
                         </Behaviors:KeyBehavior>
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
-                
-                <TextBox x:Name="WebsiteBox"
-                            MinWidth="150" Margin="18, 8, 18, 8" Header="Website" MaxWidth="{Binding ElementName=WebsiteBox, Path=ActualWidth}"
+
+                <TextBox x:Name="WebsiteBox" Header="Website"
+                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="255" MaxWidth="{Binding ElementName=WebsiteBox, Path=ActualWidth}"
                             RelativePanel.RightOf="NameBox" RelativePanel.AlignTopWithPanel="True">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
@@ -65,7 +65,7 @@
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
                 <TextBox x:Name="LinkedInBox" Header="LinkedIn"
-                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="100" MaxWidth="{Binding ElementName=LinkedInBox, Path=ActualWidth}"
+                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="1000" MaxWidth="{Binding ElementName=LinkedInBox, Path=ActualWidth}"
                             RelativePanel.Below="WebsiteBox" RelativePanel.RightOf="DomainBox">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
@@ -74,7 +74,7 @@
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
                 <TextBox x:Name="GlassdoorBox" Header="Glassdoor"
-                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="200" MaxWidth="{Binding ElementName=GlassdoorBox, Path=ActualWidth}"
+                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="1000" MaxWidth="{Binding ElementName=GlassdoorBox, Path=ActualWidth}"
                             RelativePanel.Below="LinkedInBox" RelativePanel.RightOf="SizeBox">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">

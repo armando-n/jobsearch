@@ -12,12 +12,18 @@ namespace JobSearch.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        public enum ModelTypes { Company, Recruiter, Position, Area };
         Services.DatabaseService.DatabaseService db;
 
         public MainPageViewModel()
         {
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
+
+            _searchByCompany = true;
+            _searchByRecruiter = false;
+            _searchByPosition = false;
+            _searchByArea = false;
         }
 
         private static MainPageViewModel _instance;
@@ -59,6 +65,34 @@ namespace JobSearch.ViewModels
         //    }
         //    await Task.CompletedTask;
         //}
+
+        private bool _searchByCompany;
+        public bool SearchByCompany
+        {
+            get { return _searchByCompany; }
+            set { Set(ref _searchByCompany, value); }
+        }
+
+        private bool _searchByRecruiter;
+        public bool SearchByRecruiter
+        {
+            get { return _searchByRecruiter; }
+            set { Set(ref _searchByRecruiter, value); }
+        }
+
+        private bool _searchByPosition;
+        public bool SearchByPosition
+        {
+            get { return _searchByPosition; }
+            set { Set(ref _searchByPosition, value); }
+        }
+
+        private bool _searchByArea;
+        public bool SearchByArea
+        {
+            get { return _searchByArea; }
+            set { Set(ref _searchByArea, value); }
+        }
 
         private ObservableCollection<Job> _jobs;
         public ObservableCollection<Job> Jobs
@@ -320,10 +354,55 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public int JobCount()
+        public IEnumerable<SearchResult> Search(string searchText)
         {
-            return Jobs.Count();
+            ISet<SearchResult> result = new HashSet<SearchResult>();
+
+            if (SearchByCompany)
+                foreach (Company company in db.Companies.Where(company => company.Name.ToLower().Contains(searchText.ToLower())))
+                    result.Add(new SearchResult(company.Name, MainPageViewModel.ModelTypes.Company));
+            if (SearchByRecruiter)
+                foreach (Recruiter recruiter in db.Recruiters.Where(recruiter => recruiter.Name.ToLower().Contains(searchText.ToLower())))
+                    result.Add(new SearchResult(recruiter.Name, MainPageViewModel.ModelTypes.Recruiter));
+            if (SearchByPosition)
+                foreach (Job job in db.Jobs.Where(job => job.Position.ToLower().Contains(searchText.ToLower())))
+                    result.Add(new SearchResult(job.Position, MainPageViewModel.ModelTypes.Position));
+            if (SearchByArea)
+                foreach (Job job in db.Jobs.Where(job => job.Area.ToLower().Contains(searchText.ToLower())))
+                    result.Add(new SearchResult(job.Area, MainPageViewModel.ModelTypes.Area));
+
+            return result;
         }
+
+        public void Filter(string filterText)
+        {
+            ISet<Job> matchingJobs = new HashSet<Job>();
+            string lowerFilterText = filterText.ToLower();
+
+            if (string.IsNullOrEmpty(filterText))
+                matchingJobs.UnionWith(db.Jobs);
+            else
+            {
+                if (SearchByCompany)
+                    matchingJobs.UnionWith(db.Jobs.Where(job => job.Company.Name.ToLower().Contains(lowerFilterText)));
+                if (SearchByRecruiter)
+                    matchingJobs.UnionWith(db.Jobs.Where(job => job.Recruiter?.Name.ToLower().Contains(lowerFilterText) ?? false));
+                if (SearchByPosition)
+                    matchingJobs.UnionWith(db.Jobs.Where(job => job.Position.ToLower().Contains(lowerFilterText)));
+                if (SearchByArea)
+                    matchingJobs.UnionWith(db.Jobs.Where(job => job.Area.ToLower().Contains(lowerFilterText)));
+            }
+
+            Jobs.Clear();
+            foreach (Job job in matchingJobs)
+                Jobs.Add(job);
+        }
+
+        public void Select(object job)
+            => Selected = job as Job;
+
+        public int JobCount()
+            => Jobs.Count();
 
         //public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
         //{
@@ -331,6 +410,30 @@ namespace JobSearch.ViewModels
         //    await Task.CompletedTask;
         //}
 
+    }
+
+    public class SearchResult
+    {
+        public string Result { get; set; }
+        public MainPageViewModel.ModelTypes ModelType { get; set; }
+
+        public SearchResult(string result, MainPageViewModel.ModelTypes modelType)
+        {
+            Result = result;
+            ModelType = modelType;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || !(obj is SearchResult))
+                return false;
+
+            SearchResult other = obj as SearchResult;
+            return Result.Equals(other.Result) && ModelType.Equals(other.ModelType);
+        }
+
+        public override int GetHashCode()
+            => Result.GetHashCode() + ModelType.GetHashCode();
     }
 }
 

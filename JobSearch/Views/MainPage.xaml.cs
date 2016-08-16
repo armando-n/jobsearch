@@ -176,47 +176,22 @@ namespace JobSearch.Views
             FindListViews(contentControl);
         }
 
-        //private void ListItem_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    ((sender as ListViewItem).ContentTemplateRoot as InputItem).ToggleIcons(Visibility.Visible);
-        //    //ToggleIcons((sender as ListViewItem).ContentTemplateRoot, Visibility.Visible);
-        //    //System.Diagnostics.Debug.Write($"Pointer Entered: {sender.GetType().ToString()}\n");
-        //}
+        private void JobSearch_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                if (string.IsNullOrEmpty(JobSearch.Text))
+                {
+                    ViewModel.Filter(string.Empty);
+                    JobSearch.ItemsSource = null; // ViewModel.Search(string.Empty);
+                }
+                else
+                    JobSearch.ItemsSource = ViewModel.Search(JobSearch.Text);
+            }
+        }
 
-        //private void ListItem_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    ((sender as ListViewItem).ContentTemplateRoot as InputItem).ToggleIcons(Visibility.Collapsed);
-        //    //ToggleIcons((sender as ListViewItem).ContentTemplateRoot, Visibility.Collapsed);
-        //    //System.Diagnostics.Debug.Write($"Pointer Exited: {sender.GetType().ToString()}\n");
-        //}
+        private void JobSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+            => ViewModel.Filter(JobSearch.Text);
 
-        //private void ToggleIcons(DependencyObject obj, Visibility visibility)
-        //{
-        //    if (obj != null)
-        //    {
-        //        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-        //        {
-        //            DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-        //            if (child != null && child is Border && (child as Border).Child is Viewbox)
-        //                (child as Border).Visibility = visibility;
-        //            ToggleIcons(child, visibility);
-        //        }
-        //    }
-        //}
-
-        //private void Icon_PointerEntered(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    (sender as SymbolIcon).Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-        //}
-
-        //private void Icon_PointerExited(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-        //    (sender as SymbolIcon).Foreground = new SolidColorBrush(Windows.UI.Colors.Black);
-        //}
-
-        //private void EditRequirement_Clicked(object sender, Windows.UI.Xaml.Input.PointerRoutedEventArgs e)
-        //{
-            
-        //}
     }
 }

@@ -74,6 +74,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -108,9 +109,33 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
+        <RelativePanel Grid.Row="1" Grid.Column="0">
+            <AutoSuggestBox x:Name="JobSearch"
+                            RelativePanel.LeftOf="SearchByButton" RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                            PlaceholderText="Search" QueryIcon="Find"
+                            DisplayMemberPath="Result" TextMemberPath="Result"
+                            TextChanged="JobSearch_TextChanged"
+                            QuerySubmitted="JobSearch_QuerySubmitted" />
+            <Button x:Name="SearchByButton" VerticalAlignment="Stretch"
+                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignBottomWithPanel="True">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Search by:" HorizontalAlignment="Left" Margin="-25, 0, 0, 0" />
+                        <MenuFlyoutSeparator />
+                        <ToggleMenuFlyoutItem Text="Company" HorizontalAlignment="Left" IsChecked="{Binding SearchByCompany, Mode=TwoWay}"/>
+                        <ToggleMenuFlyoutItem Text="Recruiter" HorizontalAlignment="Left" IsChecked="{Binding SearchByRecruiter, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Position" HorizontalAlignment="Left" IsChecked="{Binding SearchByPosition, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Area" HorizontalAlignment="Left" IsChecked="{Binding SearchByArea, Mode=TwoWay}" />
+                    </MenuFlyout>
+                </Button.Flyout>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE70D;" />
+            </Button>
+        </RelativePanel>
+
         <ListView
             x:Name="JobsList"
-            Grid.Row="1"
+            Grid.Row="2"
             Grid.Column="0"
             IsItemClickEnabled="False"
             ItemContainerStyle="{StaticResource JobsListItemContainerStyle}"
@@ -130,7 +155,7 @@
 
         <RelativePanel
             x:Name="JobDetail"
-            Grid.Row="1"
+            Grid.Row="1" Grid.RowSpan="2"
             Grid.Column="1"
             MinWidth="300">
             <ContentControl

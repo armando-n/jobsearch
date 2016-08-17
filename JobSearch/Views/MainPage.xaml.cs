@@ -7,6 +7,7 @@ using Template10.Common;
 using Template10.Mvvm;
 using System.Collections.Generic;
 using JobSearch.Controls.ListViewItems;
+using JobSearch.ViewModels;
 
 namespace JobSearch.Views
 {
@@ -193,7 +194,12 @@ namespace JobSearch.Views
         }
 
         private void JobSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
-            => ViewModel.Filter(JobSearch.Text);
+        {
+            if (args.ChosenSuggestion != null)
+                ViewModel.Filter((args.ChosenSuggestion as SearchResult).Result);
+            else
+                ViewModel.Filter(JobSearch.Text);
+        }
 
         private void SortByPosition_Clicked(object sender, RoutedEventArgs e)
             => ViewModel.SortByPosition();

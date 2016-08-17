@@ -14,10 +14,6 @@ namespace JobSearch.Controls.ListViewItems
 {
     public sealed partial class InterviewItem : UserControl
     {
-        public string Title { get; set; }
-        public string MethodName { get; set; }
-        public string InputName { get; set; }
-        public string InitialText { get; set; }
         private MainPageViewModel ViewModel;
 
         private ListViewItem _parentLVI;

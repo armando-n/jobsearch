@@ -99,6 +99,9 @@
                         </Interactivity:Interaction.Behaviors>
                     </AppBarButton>
                     <TextBlock Text="Jobs" Style="{StaticResource TitleTextBlockStyle}" Margin="8,8,0,0" />
+                    <TextBlock Style="{StaticResource TitleTextBlockStyle}" Margin="16, 8, 0, 0">
+                        <Run Text="(" /><Run Text="{Binding Jobs.Count}" /><Run Text=")" />
+                    </TextBlock>
                 </StackPanel>
             </CommandBar.Content>
             <CommandBar.PrimaryCommands>

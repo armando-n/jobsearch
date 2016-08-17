@@ -226,6 +226,18 @@ namespace JobSearch.Services.DatabaseService
             getConnection().UpdateWithChildren(job);
         }
 
+        public void DeleteJobCommunication(Job_Communication jobCommunication, int jobId)
+        {
+            Job job;
+
+            getConnection().Delete(jobCommunication);
+            Communications.Remove(jobCommunication);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Communications.Remove(jobCommunication);
+            getConnection().UpdateWithChildren(job);
+        }
+
         public void SetJobNotes(string notes, int jobId)
         {
             Job job;
@@ -238,6 +250,7 @@ namespace JobSearch.Services.DatabaseService
         public void Update(Job_Requirement jobRequirement) => getConnection().Update(jobRequirement);
         public void Update(Job_Responsibility jobResponsibility) => getConnection().Update(jobResponsibility);
         public void Update(Job_Interview jobInterview) => getConnection().Update(jobInterview);
+        public void Update(Job_Communication jobCommunication) => getConnection().Update(jobCommunication);
 
         private SQLite.Net.SQLiteConnection getConnection()
         {

@@ -61,6 +61,8 @@ namespace JobSearch.Views
                             (lvi.ContentTemplateRoot as ResponsibilityItem).ParentLVI = lvi;
                         else if (lvi.ContentTemplateRoot is InterviewItem)
                             (lvi.ContentTemplateRoot as InterviewItem).ParentLVI = lvi;
+                        else if (lvi.ContentTemplateRoot is CommunicationItem)
+                            (lvi.ContentTemplateRoot as CommunicationItem).ParentLVI = lvi;
                     }
                     else
                         FindListViewItems(child);
@@ -135,7 +137,7 @@ namespace JobSearch.Views
 
         private void ShowCommunicationModal(object sender, RoutedEventArgs e)
         {
-            BootStrapper.Current.ModalContent = new AddCommunicationModal();
+            BootStrapper.Current.ModalContent = new CommunicationModal();
             BootStrapper.Current.ModalDialog.IsModal = true;
         }
 

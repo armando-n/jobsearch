@@ -1,4 +1,4 @@
-<UserControl x:Class="JobSearch.Views.AddCommunicationModal"
+<UserControl x:Class="JobSearch.Views.CommunicationModal"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,26 +10,26 @@
              xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
              d:DesignHeight="500" d:DesignWidth="600"
              mc:Ignorable="d"
-             x:Name="ThisAddCommunicationModal">
+             x:Name="ThisCommunicationModal">
 
-    <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Border x:Name="OuterBorder" BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            MaxWidth="{Binding ElementName=OuterBorder, Path=ActualWidth}">
         <StackPanel>
 
             <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0"
                             RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
-                <TextBlock Margin="8"
-                        FontSize="24" Foreground="DimGray"
-                        Text="Add Communication" />
+                <TextBlock x:Name="TitleBlock" Margin="8"
+                        FontSize="24" Foreground="DimGray" />
             </Border>
 
             <RelativePanel Margin="10">
                 <TextBox x:Name="FromBox" Header="From"
-                            Margin="8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=FromBox, Path=ActualWidth}"
+                            Margin="8" Width="150" MaxLength="100" MaxWidth="{Binding ElementName=FromBox, Path=ActualWidth}"
                             RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCommunication_Clicked" TargetObject="{Binding ElementName=ThisAddCommunicationModal}" />
+                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisCommunicationModal}" />
                         </Behaviors:KeyBehavior>
                         <Core:EventTriggerBehavior>
                             <Behaviors:FocusAction />
@@ -37,29 +37,29 @@
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
                 <TextBox x:Name="ToBox"
-                            MinWidth="150" Margin="8" Header="To" MaxWidth="{Binding ElementName=ToBox, Path=ActualWidth}"
+                            Width="150" Margin="8" Header="To" MaxWidth="{Binding ElementName=ToBox, Path=ActualWidth}"
                             RelativePanel.RightOf="FromBox" RelativePanel.AlignRightWithPanel="True">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCommunication_Clicked" TargetObject="{Binding ElementName=ThisAddCommunicationModal}" />
+                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisCommunicationModal}" />
                         </Behaviors:KeyBehavior>
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
                 <TextBox x:Name="SubjectBox"
-                            MinWidth="150" Margin="8" Header="Subject" MaxWidth="{Binding ElementName=SubjectBox, Path=ActualWidth}"
+                            Width="150" Margin="8" Header="Subject" MaxWidth="{Binding ElementName=SubjectBox, Path=ActualWidth}"
                             RelativePanel.Below="FromBox" RelativePanel.AlignLeftWithPanel="True">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCommunication_Clicked" TargetObject="{Binding ElementName=ThisAddCommunicationModal}" />
+                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisCommunicationModal}" />
                         </Behaviors:KeyBehavior>
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
-                <TextBox x:Name="ViaBox"
-                            MinWidth="150" Margin="8" Header="Via" MaxWidth="{Binding ElementName=ViaBox, Path=ActualWidth}"
+                <TextBox x:Name="ViaBox" Header="Via"
+                            Width="150" Margin="8" MaxWidth="{Binding ElementName=ViaBox, Path=ActualWidth}"
                             RelativePanel.Below="FromBox" RelativePanel.RightOf="SubjectBox" RelativePanel.AlignRightWithPanel="True">
                     <Interactivity:Interaction.Behaviors>
                         <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCommunication_Clicked" TargetObject="{Binding ElementName=ThisAddCommunicationModal}" />
+                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisCommunicationModal}" />
                         </Behaviors:KeyBehavior>
                     </Interactivity:Interaction.Behaviors>
                 </TextBox>
@@ -72,7 +72,8 @@
                             RelativePanel.Below="ViaBox" RelativePanel.RightOf="DateBox" RelativePanel.AlignRightWithPanel="True"
                             Header="Time" />
                 <TextBox x:Name="DescriptionBox" Header="Description"
-                            MinWidth="150" MinHeight="100" MaxHeight="150" Margin="8" MaxLength="1000"
+                            MinWidth="150" MinHeight="100" MaxWidth="316" MaxHeight="150"
+                            Margin="8" MaxLength="1000"
                             RelativePanel.Below="DateBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                             TextWrapping="Wrap" AcceptsReturn="True">
                 </TextBox>

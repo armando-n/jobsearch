@@ -98,6 +98,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputFlyout.cs" />
+    <Compile Include="Controls\ListViewItems\CommunicationItem.xaml.cs">
+      <DependentUpon>CommunicationItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ListViewItems\InterviewItem.xaml.cs">
       <DependentUpon>InterviewItem.xaml</DependentUpon>
     </Compile>
@@ -123,8 +126,8 @@
     <Compile Include="ViewModels\CompaniesPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
-    <Compile Include="Views\AddCommunicationModal.xaml.cs">
-      <DependentUpon>AddCommunicationModal.xaml</DependentUpon>
+    <Compile Include="Views\CommunicationModal.xaml.cs">
+      <DependentUpon>CommunicationModal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputModal.xaml.cs">
       <DependentUpon>InputModal.xaml</DependentUpon>
@@ -189,6 +192,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ListViewItems\CommunicationItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ListViewItems\InterviewItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -218,7 +225,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddCommunicationModal.xaml">
+    <Page Include="Views\CommunicationModal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

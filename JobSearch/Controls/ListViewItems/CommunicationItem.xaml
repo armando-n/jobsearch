@@ -1,0 +1,87 @@
+<UserControl x:Class="JobSearch.Controls.ListViewItems.CommunicationItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:JobSearch.Controls.ListViewItems"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="using:JobSearch.ViewModels"
+             xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:Behaviors="using:Template10.Behaviors"
+             xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+             d:DesignHeight="500" d:DesignWidth="600"
+             mc:Ignorable="d"
+             x:Name="ThisCommunicationItem">
+
+    <RelativePanel>
+        <TextBlock x:Name="FromLabelBlock"
+                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                    Margin="8,8,16,0" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" FontSize="12"
+                    FontWeight="Light" Foreground="DimGray"
+                    Text="From" />
+        <TextBlock x:Name="FromBlock"
+                    RelativePanel.Below="FromLabelBlock" RelativePanel.AlignLeftWith="FromLabelBlock"
+                    Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" MaxLines="1"
+                    Text="{Binding Model.From}"/>
+        <TextBlock x:Name="ToLabelBlock"
+                    RelativePanel.AlignLeftWith="ToBlock" RelativePanel.AlignTopWithPanel="True"
+                    Margin="8,8,16,0" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" FontSize="12"
+                    FontWeight="Light" Foreground="DimGray"
+                    Text="To" />
+        <TextBlock x:Name="ToBlock"
+                    RelativePanel.RightOf="FromBlock" RelativePanel.Above="DescriptionBlock"
+                    Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" MaxLines="1"
+                    Text="{Binding Model.To}"/>
+        <TextBlock x:Name="SubjectLabelBlock"
+                    RelativePanel.AlignLeftWith="SubjectBlock" RelativePanel.AlignTopWithPanel="True"
+                    Margin="8,8,16,0" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" FontSize="12"
+                    FontWeight="Light" Foreground="DimGray"
+                    Text="Subject" />
+        <TextBlock x:Name="SubjectBlock"
+                    RelativePanel.RightOf="ToBlock" RelativePanel.Above="DescriptionBlock"
+                    Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" MaxLines="1" MaxWidth="175" TextTrimming="CharacterEllipsis"
+                    Text="{Binding Model.Subject}"/>
+        <TextBlock x:Name="DateLabelBlock"
+                    RelativePanel.AlignLeftWith="DateBlock" RelativePanel.AlignTopWithPanel="True"
+                    Margin="8,8,16,0" HorizontalAlignment="Left"
+                    VerticalAlignment="Top" FontSize="12"
+                    FontWeight="Light" Foreground="DimGray"
+                    Text="Date" />
+        <TextBlock x:Name="DateBlock"
+                    RelativePanel.AlignRightWithPanel="True" RelativePanel.Above="DescriptionBlock"
+                    Margin="8, 0, 16, 0" FontSize="14" FontWeight="Normal"
+                    Foreground="Black" MaxLines="1"
+                    Text="{Binding Model.DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
+        <TextBlock x:Name="DescriptionBlock"
+                    RelativePanel.Below="FromBlock" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                    Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
+                    Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
+                    Text="{Binding Model.Description}"/>
+
+        <Border Name="EditIcon"
+                    Background="AliceBlue" BorderBrush="Black" BorderThickness="1"
+                    Visibility="Collapsed" PointerPressed="Edit_Clicked"
+                    PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited"
+                    RelativePanel.LeftOf="DeleteIcon" RelativePanel.AlignTopWithPanel="True">
+            <Viewbox Width="18" Height="18" Margin="4">
+                <SymbolIcon Symbol="Edit" />
+            </Viewbox>
+        </Border>
+        <Border Name="DeleteIcon" Margin="0, 0, 12, 0"
+                    Background="AliceBlue" BorderBrush="Black" BorderThickness="1"
+                    Visibility="Collapsed" PointerPressed="Delete_Clicked"
+                    PointerEntered="Icon_PointerEntered" PointerExited="Icon_PointerExited"
+                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+            <Viewbox Width="18" Height="18" Margin="4">
+                <SymbolIcon Symbol="Delete" />
+            </Viewbox>
+        </Border>
+    </RelativePanel>
+
+</UserControl>
+

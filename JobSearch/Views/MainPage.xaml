@@ -479,9 +479,13 @@
                                     <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
                                         <ListView x:Name="CommunicationsList"
                                                     IsItemClickEnabled="False" MaxHeight="250"
-                                                    ItemTemplate="{StaticResource CommunicationsListItemTemplate}"
                                                     ItemContainerStyle="{StaticResource StretchList}"
                                                     ItemsSource="{Binding Communications, FallbackValue=None}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <itemControls:CommunicationItem Model="{Binding}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>

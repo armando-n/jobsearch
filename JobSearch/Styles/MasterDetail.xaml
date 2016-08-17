@@ -121,36 +121,6 @@
         </RelativePanel>
     </DataTemplate>
 
-    <DataTemplate x:Name="InterviewsListItemTemplate">
-        <RelativePanel>
-            <TextBlock x:Name="InterviewVia"
-                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                        Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
-                        Foreground="Black" MaxLines="1"
-                        Text="{Binding Via}"/>
-            <TextBlock x:Name="InterviewDate"
-                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                        Margin="8, 8, 8, 0" FontSize="16" FontWeight="Normal"
-                        Foreground="Black" MaxLines="1"
-                        Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:d\}}" />
-            <TextBlock x:Name="InterviewInterviewer"
-                        RelativePanel.Below="InterviewVia" RelativePanel.AlignLeftWith="InterviewVia"
-                        Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
-                        Foreground="Black" MaxLines="1"
-                        Text="{Binding Interviewer}"/>
-            <TextBlock x:Name="InterviewTime"
-                        RelativePanel.Below="InterviewDate" RelativePanel.AlignRightWith="InterviewDate"
-                        Margin="8, 0, 8, 0" FontSize="14" FontWeight="Normal"
-                        Foreground="Black" MaxLines="1"
-                        Text="{Binding DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:t\}}" />
-            <TextBlock x:Name="InterviewNotes"
-                        RelativePanel.Below="InterviewInterviewer" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                        Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
-                        Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
-                        Text="{Binding Notes}"/>
-        </RelativePanel>
-    </DataTemplate>
-
     <DataTemplate x:Name="CommunicationsListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -206,34 +176,6 @@
                                Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
                                Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
                                Text="{Binding Description}"/>
-        </Grid>
-    </DataTemplate>
-
-    <!--<DataTemplate x:Name="RequirementsListItemTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" VerticalAlignment="Top" Margin="0, 10, 0, 0">&#x2022;</TextBlock>
-            <TextBlock Grid.Column="1"
-                        Margin="8" FontSize="16" FontWeight="Normal"
-                        Foreground="Black" TextWrapping="Wrap"
-                        Text="{Binding Requirement}"/>
-        </Grid>
-    </DataTemplate>-->
-
-    <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" VerticalAlignment="Top" Margin="0, 10, 0, 0">&#x2022;</TextBlock>
-            <TextBlock Grid.Column="1"
-                        Margin="8" FontSize="16" FontWeight="Normal"
-                        Foreground="Black" TextWrapping="Wrap"
-                        Text="{Binding Responsibility}"/>
         </Grid>
     </DataTemplate>
 

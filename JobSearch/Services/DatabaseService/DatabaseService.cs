@@ -202,6 +202,18 @@ namespace JobSearch.Services.DatabaseService
             getConnection().UpdateWithChildren(job);
         }
 
+        public void DeleteJobInterview(Job_Interview jobInterview, int jobId)
+        {
+            Job job;
+
+            getConnection().Delete(jobInterview);
+            Interviews.Remove(jobInterview);
+
+            job = Jobs.Where(aJob => aJob.JobId == jobId).Single();
+            job.Interviews.Remove(jobInterview);
+            getConnection().UpdateWithChildren(job);
+        }
+
         public void AddJobCommunication(Job_Communication jobCommunication, int jobId)
         {
             Job job;
@@ -225,6 +237,7 @@ namespace JobSearch.Services.DatabaseService
 
         public void Update(Job_Requirement jobRequirement) => getConnection().Update(jobRequirement);
         public void Update(Job_Responsibility jobResponsibility) => getConnection().Update(jobResponsibility);
+        public void Update(Job_Interview jobInterview) => getConnection().Update(jobInterview);
 
         private SQLite.Net.SQLiteConnection getConnection()
         {

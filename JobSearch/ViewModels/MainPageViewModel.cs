@@ -318,6 +318,34 @@ namespace JobSearch.ViewModels
             }
         }
 
+        public void EditInterview(int interviewId, string via, string interviewer, DateTime? date, TimeSpan time, string notes)
+        {
+            try
+            {
+                Job currentJob = Selected as Job;
+                Job_Interview jobInterview = currentJob.Interviews.Where(interview => interview.InterviewId == interviewId).Single();
+                jobInterview.Via = via;
+                jobInterview.Interviewer = interviewer;
+                jobInterview.DateAndTime = date?.Add(time);
+                jobInterview.Notes = notes;
+
+                db.Update(jobInterview);
+            }
+            catch (SQLite.Net.NotNullConstraintViolationException ex)
+            {
+                throw new ArgumentNullException("Required fields were omitted for the edited interview");
+            }
+        }
+
+        public void DeleteInterview(int interviewId)
+        {
+            Job currentJob = Selected as Job;
+            Job_Interview jobInterview = currentJob.Interviews.Where(interview => interview.InterviewId == interviewId).Single();
+
+            db.DeleteJobInterview(jobInterview, currentJob.JobId);
+            Interviews.Remove(jobInterview);
+        }
+
         public void AddCommunication(string to, string from, string subject, string via, DateTime? date, TimeSpan time, string description)
         {
             try

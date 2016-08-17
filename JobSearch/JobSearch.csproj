@@ -98,6 +98,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\InputFlyout.cs" />
+    <Compile Include="Controls\ListViewItems\InterviewItem.xaml.cs">
+      <DependentUpon>InterviewItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ListViewItems\ResponsibilityItem.xaml.cs">
       <DependentUpon>ResponsibilityItem.xaml</DependentUpon>
     </Compile>
@@ -126,8 +129,8 @@
     <Compile Include="Controls\InputModal.xaml.cs">
       <DependentUpon>InputModal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddInterviewModal.xaml.cs">
-      <DependentUpon>AddInterviewModal.xaml</DependentUpon>
+    <Compile Include="Views\InterviewModal.xaml.cs">
+      <DependentUpon>InterviewModal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddTestModal.xaml.cs">
       <DependentUpon>AddTestModal.xaml</DependentUpon>
@@ -186,6 +189,10 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\ListViewItems\InterviewItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ListViewItems\ResponsibilityItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -219,7 +226,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AddInterviewModal.xaml">
+    <Page Include="Views\InterviewModal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

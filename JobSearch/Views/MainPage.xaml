@@ -421,9 +421,13 @@
                                         <ListView x:Name="InterviewsList"
                                                     MinWidth="200" MaxHeight="250"
                                                     IsItemClickEnabled="False"
-                                                    ItemTemplate="{StaticResource InterviewsListItemTemplate}"
                                                     ItemContainerStyle="{StaticResource StretchList}"
                                                     ItemsSource="{Binding Interviews, FallbackValue=None}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <itemControls:InterviewItem Model="{Binding}" />
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>
                                             <x:String>Sample</x:String>

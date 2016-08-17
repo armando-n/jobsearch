@@ -24,6 +24,7 @@ namespace JobSearch.Views
             Instance = this;
             ListViews = new List<ListView>();
             ItemBullets = new List<TextBlock>();
+            this.Loaded += (sender, e) => FindListViews(contentControl);
         }
 
         private void FindListViews(DependencyObject obj)

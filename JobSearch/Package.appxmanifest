@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity
-    Name="24fd607d-b45e-4a82-8ba2-b704d6b4ef5e"
-    Publisher = "CN=The Man"
-    Version = "1.0.0.0" /> 
-  <mp:PhoneIdentity PhoneProductId="24fd607d-b45e-4a82-8ba2-b704d6b4ef5e" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <Identity Name="24fd607d-b45e-4a82-8ba2-b704d6b4ef5e" Publisher="CN=The Man" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="24fd607d-b45e-4a82-8ba2-b704d6b4ef5e" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>JobSearch</DisplayName>
-    <PublisherDisplayName>The Man</PublisherDisplayName>
+    <PublisherDisplayName>Armando Navarro</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

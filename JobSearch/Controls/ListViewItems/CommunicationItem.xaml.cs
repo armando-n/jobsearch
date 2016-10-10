@@ -14,6 +14,7 @@ namespace JobSearch.Controls.ListViewItems
 {
     public sealed partial class CommunicationItem : UserControl
     {
+        private const int AdaptiveBoundaryWidth = 350;
         private MainPageViewModel ViewModel;
 
         private ListViewItem _parentLVI;
@@ -46,6 +47,15 @@ namespace JobSearch.Controls.ListViewItems
             InitializeComponent();
             (this.Content as FrameworkElement).DataContext = this;
             ViewModel = MainPageViewModel.Instance;
+            this.SizeChanged += UpdateLayout;
+        }
+
+        private void UpdateLayout(object sender, SizeChangedEventArgs e)
+        {
+            if (TopPanel.ActualWidth < AdaptiveBoundaryWidth) // TODO Make this check the current visual state as well
+                VisualStateManager.GoToState(this, "NarrowVisualState", false);
+            else
+                VisualStateManager.GoToState(this, "NormalVisualState", false);
         }
 
         private void Icon_PointerEntered(object sender, PointerRoutedEventArgs e)

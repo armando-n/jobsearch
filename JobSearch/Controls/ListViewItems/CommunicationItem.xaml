@@ -12,8 +12,135 @@
              mc:Ignorable="d"
              x:Name="ThisCommunicationItem">
 
-    <RelativePanel>
-        <TextBlock x:Name="FromLabelBlock"
+    <RelativePanel x:Name="TopPanel">
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
+                <VisualState x:Name="NarrowVisualState">
+                    <VisualState.Setters>
+                        <Setter Target="FromLabelBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="FromBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="ToLabelBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="ToLabelBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="ToBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="ToBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="SubjectLabelBlock.(Grid.Row)" Value="2" />
+                        <Setter Target="SubjectLabelBlock.(Grid.Column)" Value="0" />
+                        <Setter Target="SubjectLabelBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="SubjectBlock.(Grid.Row)" Value="3" />
+                        <Setter Target="SubjectBlock.(Grid.Column)" Value="0" />
+                        <Setter Target="SubjectBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DateLabelBlock.(Grid.Row)" Value="2" />
+                        <Setter Target="DateLabelBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="DateLabelBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DateBlock.(Grid.Row)" Value="3" />
+                        <Setter Target="DateBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="DateBlock.(Grid.ColumnSpan)" Value="2" />
+                        <Setter Target="DescriptionBlock.(Grid.Row)" Value="4" />
+
+                        <Setter Target="SubjectLabelBlock.Margin" Value="8,4,16,0" />
+                        <Setter Target="DateLabelBlock.Margin" Value="8,4,16,0" />
+
+                        <Setter Target="FirstColumn.Width" Value="*" />
+                        <Setter Target="ThirdColumn.Width" Value="Auto" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="NormalVisualState">
+                    <VisualState.Setters>
+                        <Setter Target="FromLabelBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="FromBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ToLabelBlock.(Grid.Column)" Value="1" />
+                        <Setter Target="ToLabelBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="ToBlock.(Grid.Column)" Value="1" />
+                        <Setter Target="ToBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="SubjectLabelBlock.(Grid.Row)" Value="0" />
+                        <Setter Target="SubjectLabelBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="SubjectLabelBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="SubjectBlock.(Grid.Row)" Value="1" />
+                        <Setter Target="SubjectBlock.(Grid.Column)" Value="2" />
+                        <Setter Target="SubjectBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="DateLabelBlock.(Grid.Row)" Value="0" />
+                        <Setter Target="DateLabelBlock.(Grid.Column)" Value="3" />
+                        <Setter Target="DateLabelBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="DateBlock.(Grid.Row)" Value="1" />
+                        <Setter Target="DateBlock.(Grid.Column)" Value="3" />
+                        <Setter Target="DateBlock.(Grid.ColumnSpan)" Value="1" />
+                        <Setter Target="DescriptionBlock.(Grid.Row)" Value="2" />
+
+                        <Setter Target="SubjectLabelBlock.Margin" Value="8,8,16,0" />
+                        <Setter Target="DateLabelBlock.Margin" Value="8,8,16,0" />
+
+                        <Setter Target="FirstColumn.Width" Value="Auto" />
+                        <Setter Target="ThirdColumn.Width" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+        <Grid RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="FirstColumn" Width="Auto" />
+                <ColumnDefinition x:Name="SecondColumn" Width="Auto" />
+                <ColumnDefinition x:Name="ThirdColumn" Width="*" />
+                <ColumnDefinition x:Name="FourthColumn" Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock x:Name="FromLabelBlock"
+                    Grid.Row="0" Grid.Column="0"
+                    Margin="8,8,16,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    FontSize="12" FontWeight="Light" Foreground="DimGray"
+                    Text="From" />
+            <TextBlock x:Name="FromBlock"
+                    Grid.Row="1" Grid.Column="0"
+                    Margin="8, 0, 8, 0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    FontSize="14" FontWeight="Normal" Foreground="Black" TextTrimming="CharacterEllipsis"
+                    Text="{Binding Model.From}" MaxLines="1" />
+            <TextBlock x:Name="ToLabelBlock"
+                    Grid.Row="0" Grid.Column="1"
+                    Margin="8,8,16,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    FontSize="12" FontWeight="Light" Foreground="DimGray"
+                    Text="To" />
+            <TextBlock x:Name="ToBlock"
+                    Grid.Row="1" Grid.Column="1"
+                    Margin="8, 0, 8, 0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    FontSize="14" FontWeight="Normal" Foreground="Black" TextTrimming="CharacterEllipsis"
+                    Text="{Binding Model.To}" MaxLines="1" />
+            <TextBlock x:Name="SubjectLabelBlock"
+                    Grid.Row="0" Grid.Column="2"
+                    Margin="8,8,16,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    FontSize="12" FontWeight="Light" Foreground="DimGray"
+                    Text="Subject" />
+            <TextBlock x:Name="SubjectBlock"
+                    Grid.Row="1" Grid.Column="2"
+                    Margin="8, 0, 8, 0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    FontSize="14" FontWeight="Normal" Foreground="Black"
+                    MaxWidth="175" MaxLines="1" TextTrimming="CharacterEllipsis"
+                    Text="{Binding Model.Subject}" />
+            <TextBlock x:Name="DateLabelBlock"
+                    Grid.Row="0" Grid.Column="3"
+                    Margin="8,8,16,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    FontSize="12" FontWeight="Light" Foreground="DimGray"
+                    Text="Date" />
+            <TextBlock x:Name="DateBlock"
+                    Grid.Row="1" Grid.Column="3"
+                    Margin="8, 0, 16, 0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    FontSize="14" FontWeight="Normal" Foreground="Black"
+                    MaxLines="1"
+                    Text="{Binding Model.DateAndTime, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
+            <TextBlock x:Name="DescriptionBlock"
+                    Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4"
+                    Margin="8, 0, 8, 8" MaxLines="1" TextTrimming="CharacterEllipsis"
+                    FontSize="14" FontWeight="Normal" Foreground="DarkSlateGray"
+                    Text="{Binding Model.Description}"/>
+        </Grid>
+        
+        <!--<TextBlock x:Name="FromLabelBlock"
                     RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
                     Margin="8,8,16,0" HorizontalAlignment="Left"
                     VerticalAlignment="Top" FontSize="12"
@@ -62,6 +189,11 @@
                     Margin="8, 0, 8, 8" FontSize="14" FontWeight="Normal"
                     Foreground="DarkSlateGray" MaxLines="1" TextTrimming="CharacterEllipsis"
                     Text="{Binding Model.Description}"/>
+        <TextBlock x:Name="WidthLabel"
+                    RelativePanel.Below="DescriptionBlock" RelativePanel.AlignLeftWithPanel="True"
+                    FontSize="15" FontWeight="Normal"
+                    Foreground="DarkSlateGray"
+                    Text="{Binding DescriptionBlock.ActualWidth}" />-->
 
         <Border Name="EditIcon"
                     Background="AliceBlue" BorderBrush="Black" BorderThickness="1"

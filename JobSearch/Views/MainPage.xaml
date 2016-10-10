@@ -170,159 +170,310 @@
             <x:String>Sample</x:String>
         </ListView>
 
-        <RelativePanel
-            x:Name="JobDetail"
-            Grid.Row="1" Grid.RowSpan="2"
-            Grid.Column="1"
-            MinWidth="300">
+        <RelativePanel x:Name="JobDetail" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
             <ContentControl
                 x:Name="contentControl" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                 Content="{Binding Selected}"
                 HorizontalContentAlignment="Stretch">
                 <ContentControl.ContentTemplate>
                     <DataTemplate x:Name="JobDetailTemplate">
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                        <UserControl>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                            <Grid>
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="DetailsAdaptiveVisualStateGroup">
+                                        <VisualState x:Name="DetailsVisualStateNarrow">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="{StaticResource NarrowMinWidth}" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="MiddleDetailsColumn.Width" Value="0" />
+                                                <Setter Target="RightDetailsColumn.Width" Value="0" />
+                                                
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="InterviewsPanel.(Grid.Row)" Value="3" />
+                                                <Setter Target="InterviewsPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="TestsPanel.(Grid.Row)" Value="4" />
+                                                <Setter Target="TestsPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Row)" Value="5" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="NotesPanel.(Grid.Row)" Value="6" />
+                                                <Setter Target="NotesPanel.(Grid.Column)" Value="0" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DetailsVisualStateNormal">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="900" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="MiddleDetailsColumn.Width" Value="2*" />
+                                                <Setter Target="RightDetailsColumn.Width" Value="0" />
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition MinWidth="250" />
-                                    <ColumnDefinition MinWidth="250" />
-                                    <ColumnDefinition MinWidth="300" />
-                                </Grid.ColumnDefinitions>
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Row)" Value="1" />
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Column)" Value="1" />
+                                                <Setter Target="InterviewsPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="InterviewsPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="TestsPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="TestsPanel.(Grid.Column)" Value="1" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Row)" Value="3" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="NotesPanel.(Grid.Row)" Value="3" />
+                                                <Setter Target="NotesPanel.(Grid.Column)" Value="1" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DetailsVisualStateWide">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="MiddleDetailsColumn.Width" Value="2*" />
+                                                <Setter Target="RightDetailsColumn.Width" Value="3*" />
+                                                
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="ResponsibilitiesPanel.(Grid.Column)" Value="0" />
+                                                <Setter Target="InterviewsPanel.(Grid.Row)" Value="1" />
+                                                <Setter Target="InterviewsPanel.(Grid.Column)" Value="1" />
+                                                <Setter Target="TestsPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="TestsPanel.(Grid.Column)" Value="1" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Row)" Value="1" />
+                                                <Setter Target="CommunicationsPanel.(Grid.Column)" Value="2" />
+                                                <Setter Target="NotesPanel.(Grid.Row)" Value="2" />
+                                                <Setter Target="NotesPanel.(Grid.Column)" Value="2" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    
+                                    <VisualStateGroup x:Name="DetailsHeaderVisualStateGroup">
+                                        <VisualState x:Name="DetailsHeaderExtraNarrowVisualState">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="0" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="SecondDetailsHeaderColumn.Width" Value="0" />
+                                                <Setter Target="ThirdDetailsHeaderColumn.Width" Value="0" />
+                                                <Setter Target="FourthDetailsHeaderColumn.Width" Value="0" />
 
-                                <RelativePanel Grid.ColumnSpan="3" Padding="16">
-                                    <RelativePanel x:Name="PrimaryJobInfo">
-                                        <Ellipse x:Name="CompanyLogo"
+                                                <Setter Target="PrimaryJobInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="AppliedInfo.(Grid.Row)" Value="1" />
+                                                <Setter Target="AppliedInfo.(Grid.Column)" Value="0" />
+                                                <Setter Target="AppliedInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Row)" Value="2" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Column)" Value="0" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Row)" Value="3" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Column)" Value="0" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DetailsHeaderNarrowVisualState">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="850" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="PrimaryJobInfo.(Grid.ColumnSpan)" Value="3" />
+                                                <Setter Target="AppliedInfo.(Grid.Row)" Value="0" />
+                                                <Setter Target="AppliedInfo.(Grid.Column)" Value="3" />
+                                                <Setter Target="AppliedInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Row)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Column)" Value="0" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.ColumnSpan)" Value="3" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Row)" Value="1" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Column)" Value="3" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DetailsHeaderNormalVisualState">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="1100" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="PrimaryJobInfo.(Grid.ColumnSpan)" Value="2" />
+                                                <Setter Target="AppliedInfo.(Grid.Row)" Value="0" />
+                                                <Setter Target="AppliedInfo.(Grid.Column)" Value="2" />
+                                                <Setter Target="AppliedInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Row)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Column)" Value="0" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.ColumnSpan)" Value="4" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Row)" Value="0" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Column)" Value="3" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                        <VisualState x:Name="DetailsHeaderWideVisualState">
+                                            <VisualState.StateTriggers>
+                                                <AdaptiveTrigger MinWindowWidth="{StaticResource WideMinWidth}" />
+                                            </VisualState.StateTriggers>
+                                            <VisualState.Setters>
+                                                <Setter Target="PrimaryJobInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="AppliedInfo.(Grid.Row)" Value="0" />
+                                                <Setter Target="AppliedInfo.(Grid.Column)" Value="1" />
+                                                <Setter Target="AppliedInfo.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Row)" Value="0" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.Column)" Value="2" />
+                                                <Setter Target="YearsExperienceNeeded.(Grid.ColumnSpan)" Value="1" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Row)" Value="0" />
+                                                <Setter Target="LocationAndCompanyArea.(Grid.Column)" Value="3" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+
+                                <Grid>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition x:Name="LeftDetailsColumn" Width="2*" />
+                                        <ColumnDefinition x:Name="MiddleDetailsColumn" Width="2*" />
+                                        <ColumnDefinition x:Name="RightDetailsColumn" Width="3*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Job Details Header -->
+                                    <Grid Grid.ColumnSpan="3" Padding="16">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition x:Name="FirstDetailsHeaderColumn" />
+                                            <ColumnDefinition x:Name="SecondDetailsHeaderColumn" Width="Auto" />
+                                            <ColumnDefinition x:Name="ThirdDetailsHeaderColumn" Width="*" />
+                                            <ColumnDefinition x:Name="FourthDetailsHeaderColumn" Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <RelativePanel x:Name="PrimaryJobInfo" Margin="8, 0, 8, 0"
+                                                    Grid.Row="0" Grid.Column="0">
+                                            <Ellipse x:Name="CompanyLogo"
                                                     Width="50" Height="50" Margin="0,0,16,0"
                                                     Fill="Gainsboro" />
-                                        <TextBlock x:Name="Position"
+                                            <TextBlock x:Name="Position"
                                                     FontSize="22" FontWeight="Normal"
-                                                    Foreground="Black" MaxLines="1"
+                                                    Foreground="Black" MaxLines="3" TextWrapping="Wrap"
                                                     RelativePanel.AlignTopWith="CompanyLogo" RelativePanel.RightOf="CompanyLogo"
                                                     Text="{Binding Position, FallbackValue=Position}" />
-                                        <TextBlock x:Name="Area"
+                                            <TextBlock x:Name="Area"
                                                     FontSize="14" FontWeight="SemiLight"
                                                     Foreground="Black" MaxLines="1"
                                                     RelativePanel.Below="Position" RelativePanel.RightOf="CompanyLogo">
                                             <Run Text="{Binding Area, FallbackValue=Area}" />
                                             <Run Text="Area" Foreground="DimGray" FontWeight="Light" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="DatePosted"
+                                            </TextBlock>
+                                            <TextBlock x:Name="DatePosted"
                                                     FontSize="14" FontWeight="SemiLight" Foreground="Black"
                                                     RelativePanel.Below="Position" RelativePanel.RightOf="Area">
                                             <Run Text=" | Posted" Foreground="DimGray" FontWeight="Light" />
                                             <Run Text="{Binding DatePosted, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="MinSalary"
+                                            </TextBlock>
+                                            <TextBlock x:Name="MinSalary"
                                                     FontSize="20" FontWeight="Bold"
                                                     Foreground="ForestGreen" MaxLines="1"
                                                     RelativePanel.Below="Area" RelativePanel.RightOf="CompanyLogo">
                                             <Run Text="$" /><Run Text="{Binding MinSalary, FallbackValue=MinSalary}" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="MaxSalary"
+                                            </TextBlock>
+                                            <TextBlock x:Name="MaxSalary"
                                                     FontSize="20" FontWeight="Bold"
                                                     Foreground="ForestGreen" MaxLines="1"
                                                     RelativePanel.Below="DatePosted" RelativePanel.RightOf="MinSalary">
                                             <Run Text=" -" Foreground="Black" />
                                             <Run Text="$" /><Run Text="{Binding MaxSalary, FallbackValue=MaxSalary}" />
-                                        </TextBlock>
-                                        <HyperlinkButton x:Name="EmploymentService"
+                                            </TextBlock>
+                                            <HyperlinkButton x:Name="EmploymentService"
                                                     Margin="0, -6, 0, 0" FontSize="12"
                                                     RelativePanel.Below="MinSalary" RelativePanel.RightOf="CompanyLogo"
                                                     Content="{Binding EmploymentService}" NavigateUri="{Binding EmploymentServiceJobLink}" />
-                                        <TextBlock FontSize="12"
+                                            <TextBlock FontSize="12"
                                                     Foreground="Black" MaxLines="1"
                                                     RelativePanel.Below="MaxSalary" RelativePanel.RightOf="EmploymentService">
                                             <Run Text=" |" Foreground="DimGray" FontWeight="Light" />
                                             <Run Text="{Binding Recruiter.Name, FallbackValue=Recruiter}" />
-                                        </TextBlock>
-                                    </RelativePanel>
+                                            </TextBlock>
+                                        </RelativePanel>
 
-                                    <StackPanel x:Name="AppliedInfo"
-                                                Margin="32, 0, 0, 0" RelativePanel.RightOf="PrimaryJobInfo" RelativePanel.AlignTopWith="PrimaryJobInfo" Background="AliceBlue">
-                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                            <TextBlock TextAlignment="Center"
+                                        <StackPanel x:Name="AppliedInfo" Margin="8, 0, 8, 0" Grid.Row="0" Grid.Column="1"
+                                                    VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                                <TextBlock TextAlignment="Center"
                                                         FontSize="10" FontWeight="SemiBold" 
                                                         Foreground="Black" MaxLines="1"
                                                         Text="APPLIED"/>
-                                        </Border>
-                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 0">
-                                            <TextBlock HorizontalAlignment="Center"
+                                            </Border>
+                                            <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 0">
+                                                <TextBlock HorizontalAlignment="Center"
                                                         FontSize="18" FontWeight="Bold" Margin="0, 8, 0, 8"
                                                         Foreground="Black" MaxLines="1"
                                                         Text="{Binding DateApplied, FallbackValue=Never, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}"/>
-                                        </Border>
-                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                    <ColumnDefinition />
-                                                </Grid.ColumnDefinitions>
-                                                <StackPanel Grid.Column="0" Margin="8, 0, 8, 0">
-                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
-                                                    <TextBlock HorizontalAlignment="Center"
+                                            </Border>
+                                            <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Margin="8, 0, 8, 0">
+                                                        <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                        <TextBlock HorizontalAlignment="Center"
                                                                 FontSize="12" FontWeight="Light" Foreground="DimGray"
                                                                 Text="Service" />
-                                                </StackPanel>
-                                                <StackPanel Grid.Column="1" Margin="8, 0, 8, 0">
-                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
-                                                    <TextBlock HorizontalAlignment="Center"
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1" Margin="8, 0, 8, 0">
+                                                        <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                        <TextBlock HorizontalAlignment="Center"
                                                                 FontSize="12" FontWeight="Light" Foreground="DimGray"
                                                                 Text="Web" />
-                                                </StackPanel>
-                                                <StackPanel Grid.Column="2" Margin="8, 0, 8, 0">
-                                                    <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
-                                                    <TextBlock HorizontalAlignment="Center"
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="2" Margin="8, 0, 8, 0">
+                                                        <CheckBox MinWidth="20" Margin="0" HorizontalAlignment="Center" />
+                                                        <TextBlock HorizontalAlignment="Center"
                                                                 FontSize="12" FontWeight="Light" Foreground="DimGray"
                                                                 Text="Email" />
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                    </StackPanel>
+                                                    </StackPanel>
+                                                </Grid>
+                                            </Border>
+                                        </StackPanel>
 
-                                    <TextBlock x:Name="YearsExperienceNeeded" Margin="32, 0, 0, 0" FontSize="24" FontWeight="Normal"
-                                                Foreground="Black" MaxLines="1"
-                                                RelativePanel.RightOf="AppliedInfo" RelativePanel.AlignVerticalCenterWith="AppliedInfo">
+                                        <TextBlock x:Name="YearsExperienceNeeded" Margin="8, 0, 8, 0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"
+                                                FontSize="24" FontWeight="Normal" Foreground="Black"
+                                                MaxLines="3" TextWrapping="Wrap" TextAlignment="Center">
                                         <Run Text="{Binding YearsExperienceNeeded, FallbackValue=YearsExperienceNeeded}" />
                                         <Run Text="Years Experience Needed" />
-                                    </TextBlock>
+                                        </TextBlock>
 
-                                    <RelativePanel x:Name="LocationAndCompanyArea"
-                                                   RelativePanel.RightOf="YearsExperienceNeeded" RelativePanel.AlignTopWith="PrimaryJobInfo" RelativePanel.AlignRightWithPanel="True">
-                                        <!--<TextBlock x:Name="Company"
+                                        <RelativePanel x:Name="LocationAndCompanyArea" Margin="8, 0, 0, 0" Grid.Row="0" Grid.Column="3">
+                                            <!--<TextBlock x:Name="Company"
                                                     Margin="0,8,0,0" FontSize="16" FontWeight="Bold" HorizontalAlignment="Right"
                                                     Foreground="Black" MaxLines="1"
                                                     RelativePanel.RightOf="Position" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True"
                                                     Text="{Binding Company.Name, FallbackValue=Company}"
                                                     TextAlignment="Right"
                                                     TextWrapping="WrapWholeWords" />-->
-                                        <HyperlinkButton x:Name="Company"
+                                            <HyperlinkButton x:Name="Company"
                                                     Margin="0, 8, 0, 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"
                                                     RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                                                     Content="{Binding Company.Name}" NavigateUri="{Binding Company.Website}" />
-                                        <TextBlock x:Name="StreetAddress" Margin="0, -6, 0, 0"
+                                            <TextBlock x:Name="StreetAddress" Margin="0, -6, 0, 0"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
                                                     Text="{Binding StreetAddress}"
                                                     TextAlignment="Right" />
-                                        <TextBlock x:Name="City"
+                                            <TextBlock x:Name="City"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
                                                     TextAlignment="Right">
                                             <Run Text="{Binding City}" /><Run Text="," />
-                                        </TextBlock>
-                                        <TextBlock x:Name="State"
+                                            </TextBlock>
+                                            <TextBlock x:Name="State"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
@@ -330,8 +481,8 @@
                                                     TextAlignment="Right">
                                             <Run Text=""/>
                                             <Run Text="{Binding State}" />
-                                        </TextBlock>
-                                        <TextBlock x:Name="ZipCode"
+                                            </TextBlock>
+                                            <TextBlock x:Name="ZipCode"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
@@ -339,191 +490,194 @@
                                                     TextAlignment="Right">
                                             <Run Text="" />
                                             <Run Text="{Binding ZipCode}" />
-                                        </TextBlock>
-                                    </RelativePanel>
-
-                                </RelativePanel>
-
-                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0, 16, 8, 16" MaxWidth="500">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="RequirementsBlock"
-                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                        Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                        Foreground="Black" MaxLines="1"
-                                                        Text="Requirements" VerticalAlignment="Top" />
-                                            <Button Margin="8" Click="ShowRequirementsModal"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                                                <SymbolIcon Symbol="Add" />
-                                            </Button>
+                                            </TextBlock>
                                         </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView Name="RequirementsList"
-                                                   MinWidth="200" MaxHeight="250" Padding="0"
-                                                   IsItemClickEnabled="False" IsMultiSelectCheckBoxEnabled="True"
-                                                   ItemsSource="{Binding Requirements, FallbackValue=None}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate x:Name="RequirementsListItemTemplate">
-                                                    <itemControls:RequirementItem Model="{Binding}" />
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                        </ListView>
-                                    </Border>
-                                </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0, 16, 8, 16" MaxWidth="500">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="ResponsibilitiesBlock"
-                                                       RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                       Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                       Foreground="Black" MaxLines="1"
-                                                       Text="Responsibilities" />
-                                            <Button Margin="8" Click="ShowResponsibilitiesModal"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
-                                                <SymbolIcon Symbol="Add" />
-                                            </Button>
-                                        </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView x:Name="ResponsibilitiesList"
-                                                   MinWidth="200" MaxHeight="250"
-                                                   IsItemClickEnabled="False"
-                                                   ItemsSource="{Binding Responsibilities, FallbackValue=None}">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
-                                                    <itemControls:ResponsibilityItem Model="{Binding}" />
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                        </ListView>
-                                    </Border>
-                                </StackPanel>
+                                    </Grid>
 
-                                <StackPanel Grid.Row="1" Grid.Column="1" Margin="8, 16, 8, 16" MaxWidth="500">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="InterviewsBlock"
+                                    <!-- Job Details Grid -->
+
+                                    <StackPanel x:Name="RequirementsPanel" Grid.Row="1" Grid.Column="0" Margin="0, 16, 8, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="RequirementsBlock"
                                                             RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
                                                             Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
                                                             Foreground="Black" MaxLines="1"
-                                                            Text="Interviews" VerticalAlignment="Top" />
-                                            <Button Margin="8"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowInterviewModal">
-                                                <SymbolIcon Symbol="Add" />
-                                            </Button>
-                                        </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView x:Name="InterviewsList"
-                                                    MinWidth="200" MaxHeight="250"
-                                                    IsItemClickEnabled="False"
-                                                    ItemContainerStyle="{StaticResource StretchList}"
-                                                    ItemsSource="{Binding Interviews, FallbackValue=None}">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <itemControls:InterviewItem Model="{Binding}" />
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                        </ListView>
-                                    </Border>
-                                </StackPanel>
+                                                            Text="Requirements" VerticalAlignment="Top" />
+                                                <Button Margin="8" Click="ShowRequirementsModal"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView Name="RequirementsList"
+                                                       MaxHeight="250" Padding="0"
+                                                       IsItemClickEnabled="False" IsMultiSelectCheckBoxEnabled="True"
+                                                       ItemsSource="{Binding Requirements, FallbackValue=None}" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate x:Name="RequirementsListItemTemplate">
+                                                        <itemControls:RequirementItem Model="{Binding}" />
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="1" Margin="8, 16, 8, 16">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="TestsBlock"
-                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                            Foreground="Black" MaxLines="1"
-                                                            Text="Tests" VerticalAlignment="Top" />
-                                            <Button Margin="8"
-                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestModal">
-                                                <SymbolIcon Symbol="Add" />
-                                            </Button>
-                                        </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView x:Name="TestsList"
-                                                        IsItemClickEnabled="False" MaxHeight="250"
-                                                        ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                    <StackPanel x:Name="ResponsibilitiesPanel" Grid.Row="2" Grid.Column="0" Margin="0, 16, 8, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="ResponsibilitiesBlock"
+                                                           RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                           Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                           Foreground="Black" MaxLines="1"
+                                                           Text="Responsibilities" />
+                                                <Button Margin="8" Click="ShowResponsibilitiesModal"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView x:Name="ResponsibilitiesList"
+                                                       MaxHeight="250"
+                                                       IsItemClickEnabled="False"
+                                                       ItemsSource="{Binding Responsibilities, FallbackValue=None}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate x:Name="ResponsibilitiesListItemTemplate">
+                                                        <itemControls:ResponsibilityItem Model="{Binding}" />
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel x:Name="InterviewsPanel" Grid.Row="1" Grid.Column="1" Margin="8, 16, 8, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="InterviewsBlock"
+                                                                RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                                Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                                Foreground="Black" MaxLines="1"
+                                                                Text="Interviews" VerticalAlignment="Top" />
+                                                <Button Margin="8"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowInterviewModal">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView x:Name="InterviewsList"
+                                                        MaxHeight="250"
+                                                        IsItemClickEnabled="False"
                                                         ItemContainerStyle="{StaticResource StretchList}"
-                                                        ItemsSource="{Binding Tests}">
-                                        </ListView>
-                                    </Border>
-                                </StackPanel>
+                                                        ItemsSource="{Binding Interviews, FallbackValue=None}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <itemControls:InterviewItem Model="{Binding}" />
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Row="1" Grid.Column="2" Margin="8, 16, 16, 16">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="CommunicationsBlock"
-                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                        Margin="8, 12, 0, 8" FontSize="18" FontWeight="Bold"
-                                                        Foreground="Black" MaxLines="1"
-                                                        Text="Communications" VerticalAlignment="Top" />
-                                            <Button Margin="8"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowCommunicationModal">
-                                                <SymbolIcon Symbol="Add" />
-                                            </Button>
-                                        </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <ListView x:Name="CommunicationsList"
-                                                    IsItemClickEnabled="False" MaxHeight="250"
-                                                    ItemContainerStyle="{StaticResource StretchList}"
-                                                    ItemsSource="{Binding Communications, FallbackValue=None}">
-                                            <ListView.ItemTemplate>
-                                                <DataTemplate>
-                                                    <itemControls:CommunicationItem Model="{Binding}" />
-                                                </DataTemplate>
-                                            </ListView.ItemTemplate>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                            <x:String>Sample</x:String>
-                                        </ListView>
-                                    </Border>
-                                </StackPanel>
+                                    <StackPanel x:Name="TestsPanel" Grid.Row="2" Grid.Column="1" Margin="8, 16, 8, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="TestsBlock"
+                                                                RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                                Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                                Foreground="Black" MaxLines="1"
+                                                                Text="Tests" VerticalAlignment="Top" />
+                                                <Button Margin="8"
+                                                                RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowTestModal">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView x:Name="TestsList"
+                                                            IsItemClickEnabled="False" MaxHeight="250"
+                                                            ItemTemplate="{StaticResource TestsListItemTemplate}"
+                                                            ItemContainerStyle="{StaticResource StretchList}"
+                                                            ItemsSource="{Binding Tests}">
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Row="2" Grid.Column="2" MaxWidth="500" HorizontalAlignment="Stretch"  Margin="8, 16, 16, 16">
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
-                                        <RelativePanel>
-                                            <TextBlock x:Name="NotesBlock"
-                                                        RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
-                                                        Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
-                                                        Foreground="Black" MaxLines="1"
-                                                        Text="Notes" VerticalAlignment="Top" />
-                                            <Button Margin="8"
-                                                        RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowNotesModal">
-                                                <SymbolIcon Symbol="Edit" />
-                                            </Button>
-                                        </RelativePanel>
-                                    </Border>
-                                    <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
-                                        <TextBlock x:Name="Notes" TextWrapping="Wrap" IsTextSelectionEnabled="True"
-                                                       Margin="8" FontSize="16" FontWeight="Normal"
-                                                       Foreground="Black" TextAlignment="Left"
-                                                       Text="{Binding Notes}">
-                                            <TextBlock.Transitions>
-                                                <TransitionCollection>
-                                                    <ContentThemeTransition />
-                                                </TransitionCollection>
-                                            </TextBlock.Transitions>
-                                        </TextBlock>
-                                    </Border>
-                                </StackPanel>
+                                    <StackPanel x:Name="CommunicationsPanel" Grid.Row="1" Grid.Column="2" Margin="8, 16, 16, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="CommunicationsBlock"
+                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                            Margin="8, 12, 0, 8" FontSize="18" FontWeight="Bold"
+                                                            Foreground="Black" MaxLines="1"
+                                                            Text="Communications" VerticalAlignment="Top" />
+                                                <Button Margin="8"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowCommunicationModal">
+                                                    <SymbolIcon Symbol="Add" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <ListView x:Name="CommunicationsList"
+                                                        IsItemClickEnabled="False" MaxHeight="250"
+                                                        ItemContainerStyle="{StaticResource StretchList}"
+                                                        ItemsSource="{Binding Communications, FallbackValue=None}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <itemControls:CommunicationItem Model="{Binding}" />
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                                <x:String>Sample</x:String>
+                                            </ListView>
+                                        </Border>
+                                    </StackPanel>
 
-                            </Grid>
+                                    <StackPanel x:Name="NotesPanel" Grid.Row="2" Grid.Column="2" MaxWidth="500" HorizontalAlignment="Stretch"  Margin="8, 16, 16, 16">
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
+                                            <RelativePanel>
+                                                <TextBlock x:Name="NotesBlock"
+                                                            RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True"
+                                                            Margin="8, 12, 8, 8" FontSize="18" FontWeight="Bold"
+                                                            Foreground="Black" MaxLines="1"
+                                                            Text="Notes" VerticalAlignment="Top" />
+                                                <Button Margin="8"
+                                                            RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignTopWithPanel="True" Click="ShowNotesModal">
+                                                    <SymbolIcon Symbol="Edit" />
+                                                </Button>
+                                            </RelativePanel>
+                                        </Border>
+                                        <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2, 0, 2, 2" CornerRadius="0, 0, 4, 4">
+                                            <TextBlock x:Name="Notes" TextWrapping="Wrap" IsTextSelectionEnabled="True"
+                                                           Margin="8" FontSize="16" FontWeight="Normal"
+                                                           Foreground="Black" TextAlignment="Left"
+                                                           Text="{Binding Notes}">
+                                                <TextBlock.Transitions>
+                                                    <TransitionCollection>
+                                                        <ContentThemeTransition />
+                                                    </TransitionCollection>
+                                                </TextBlock.Transitions>
+                                            </TextBlock>
+                                        </Border>
+                                    </StackPanel>
 
-                        </ScrollViewer>
+                                </Grid>
+
+                            </ScrollViewer>
+                        </UserControl>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>
             </ContentControl>

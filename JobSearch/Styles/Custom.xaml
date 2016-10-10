@@ -23,7 +23,7 @@
                 <Setter Property="AccentColor" Value="{StaticResource CustomColor}" />
                 <Setter Property="VisualStateNarrowMinWidth" Value="{StaticResource NarrowMinWidth}" />
                 <Setter Property="VisualStateNormalMinWidth" Value="{StaticResource NormalMinWidth}" />
-                <Setter Property="VisualStateWideMinWidth" Value="{StaticResource WideMinWidth}" />
+                <Setter Property="VisualStateWideMinWidth" Value="999999" />
             </Style>
 
             <Style TargetType="controls:PageHeader">

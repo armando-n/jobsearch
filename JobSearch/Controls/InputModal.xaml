@@ -22,18 +22,15 @@
             </Border>
 
             <RelativePanel Margin="10">
-                <TextBox x:Name="InputBox"
-                            MinWidth="300" MinHeight="100" MaxHeight="200" Margin="8" MaxLength="1000"
+                <TextBlock x:Name="MessageBlock" Margin="8"
                             RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                            TextWrapping="Wrap">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="Okay_Clicked" TargetObject="{Binding ElementName=ThisInputModal}" />
-                        </Behaviors:KeyBehavior>
-                        <Core:EventTriggerBehavior>
-                            <Behaviors:FocusAction />
-                        </Core:EventTriggerBehavior>
-                    </Interactivity:Interaction.Behaviors>
+                            TextWrapping="Wrap" Visibility="Collapsed" Foreground="DimGray"
+                            MaxWidth="{Binding ElementName=InputBox, Path=ActualWidth}" />
+                <TextBox x:Name="InputBox"
+                            MinWidth="300" MinHeight="100" MaxHeight="200" Margin="8"
+                            RelativePanel.Below="MessageBlock" RelativePanel.AlignLeftWithPanel="True"
+                            TextWrapping="Wrap" AcceptsReturn="True"
+                            MaxWidth="{Binding ElementName=InputBox, Path=ActualWidth}">
                 </TextBox>
 
                 <Button Content="Okay" Margin="8"

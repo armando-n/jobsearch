@@ -13,6 +13,7 @@ namespace JobSearch.Controls
     {
         public string Title { get; set; }
         public string MethodName { get; set; }
+        public string MessageText { get; set; }
         public string InputName { get; set; }
         public string InitialText { get; set; }
         public object Target { get; internal set; }
@@ -29,8 +30,11 @@ namespace JobSearch.Controls
         private void InitModal(object sender, RoutedEventArgs e)
         {
             TitleBlock.Text = Title ?? "Input";
-            InputBox.Header = InputName ?? "Input";
+            MessageBlock.Text = MessageText ?? "";
+            InputBox.Header = InputName ?? "";
             InputBox.Text = InitialText ?? "";
+            if (!String.IsNullOrWhiteSpace(MessageBlock.Text))
+                MessageBlock.Visibility = Visibility.Visible;
         }
 
         public void Okay_Clicked(object sender, RoutedEventArgs e)

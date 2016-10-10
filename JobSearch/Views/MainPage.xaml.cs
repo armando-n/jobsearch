@@ -95,7 +95,7 @@ namespace JobSearch.Views
             {
                 Title = "Add Requirement",
                 MethodName = "AddRequirement",
-                InputName = "Requirement"
+                MessageText = "You can specify multiple requirements by pressing Enter to start another requirement on a new line."
             };
             BootStrapper.Current.ModalDialog.IsModal = true;
         }
@@ -106,7 +106,7 @@ namespace JobSearch.Views
             {
                 Title = "Add Responsibility",
                 MethodName = "AddResponsibility",
-                InputName = "Responsibility"
+                MessageText = "You can specify multiple responsibilities by pressing Enter to start another responsibility on a new line."
             };
             BootStrapper.Current.ModalDialog.IsModal = true;
         }

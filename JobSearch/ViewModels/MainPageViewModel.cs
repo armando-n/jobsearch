@@ -7,11 +7,14 @@ using Windows.UI.Xaml.Navigation;
 using Template10.Services.NavigationService;
 using Template10.Mvvm;
 using JobSearch.Models;
+using System.Text.RegularExpressions;
 
 namespace JobSearch.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        private const string LIST_ITEM_LEADING_SEPARATOR = @"^\s*[-·]\s*\b";
+        private const string LIST_ITEM_SEPARATOR = @"[\n\r]+\s*[-·]?\s*\b";
         public enum ModelTypes { Company, Recruiter, Position, Area };
         Services.DatabaseService.DatabaseService db;
 
@@ -193,19 +196,27 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public void AddRequirement(string requirement)
+        public void AddRequirement(string requirements)
         {
             try
             {
                 Job currentJob = Selected as Job;
 
-                Job_Requirement newRequirement = new Job_Requirement()
+                requirements = Regex.Replace(requirements, LIST_ITEM_LEADING_SEPARATOR, "");
+                foreach (string req in Regex.Split(requirements, LIST_ITEM_SEPARATOR))
                 {
-                    Requirement = String.IsNullOrWhiteSpace(requirement) ? null : requirement
-                };
+                    if (!String.IsNullOrWhiteSpace(req))
+                    {
+                        Job_Requirement newRequirement = new Job_Requirement()
+                        {
+                            Requirement = req
+                        };
 
-                db.AddJobRequirement(newRequirement, currentJob.JobId);
-                Requirements.Add(newRequirement);
+                        db.AddJobRequirement(newRequirement, currentJob.JobId);
+                        Requirements.Add(newRequirement);
+                    }
+                }
+
                 RaisePropertyChanged(nameof(Jobs));
             }
             catch (SQLite.Net.NotNullConstraintViolationException ex)
@@ -232,19 +243,27 @@ namespace JobSearch.ViewModels
             Requirements.Remove(jobReq);
         }
 
-        public void AddResponsibility(string responsibility)
+        public void AddResponsibility(string responsibilities)
         {
             try
             {
                 Job currentJob = Selected as Job;
 
-                Job_Responsibility newResponsibility = new Job_Responsibility()
+                responsibilities = Regex.Replace(responsibilities, LIST_ITEM_LEADING_SEPARATOR, "");
+                foreach (string resp in Regex.Split(responsibilities, LIST_ITEM_SEPARATOR))
                 {
-                    Responsibility = String.IsNullOrWhiteSpace(responsibility) ? null : responsibility
-                };
+                    if (!String.IsNullOrWhiteSpace(resp))
+                    {
+                        Job_Responsibility newResponsibility = new Job_Responsibility()
+                        {
+                            Responsibility = resp
+                        };
 
-                db.AddJobResponsibility(newResponsibility, currentJob.JobId);
-                Responsibilities.Add(newResponsibility);
+                        db.AddJobResponsibility(newResponsibility, currentJob.JobId);
+                        Responsibilities.Add(newResponsibility);
+                    }
+                }
+
                 RaisePropertyChanged(nameof(Jobs));
             }
             catch (SQLite.Net.NotNullConstraintViolationException ex)

@@ -77,10 +77,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition x:Name="LeftColumn" Width="320" />
+            <ColumnDefinition x:Name="MiddleColumn" Width="320" />
             <ColumnDefinition x:Name="RightColumn" Width="*" />
         </Grid.ColumnDefinitions>
 
-        <CommandBar Grid.ColumnSpan="2" Background="LightGray">
+        <CommandBar Grid.ColumnSpan="3" Background="LightGray">
             <CommandBar.Content>
                 <StackPanel Orientation="Horizontal">
                     <AppBarButton
@@ -107,6 +108,12 @@
                     Label="Switch" />-->
             </CommandBar.PrimaryCommands>
         </CommandBar>
+        
+        <AutoSuggestBox x:Name="CompanySearch" Grid.Row="1" Grid.Column="0"
+                        PlaceholderText="Search" QueryIcon="Find"
+                        DisplayMemberPath="Name" TextMemberPath="Name"
+                        TextChanged="CompanySearch_TextChanged"
+                        QuerySubmitted="CompanySearch_QuerySubmitted" />
 
         <ListView
             x:Name="CompaniesList"
@@ -127,10 +134,30 @@
             <x:String>Sample</x:String>
         </ListView>
 
+        <ListView
+            x:Name="JobsList"
+            Grid.Row="1" Grid.RowSpan="2"
+            Grid.Column="1"
+            IsItemClickEnabled="False"
+            ItemContainerStyle="{StaticResource JobsListItemContainerStyle}"
+            ItemTemplate="{StaticResource JobsListItemTemplate}"
+            ItemsSource="{Binding Selected.Jobs}"
+            SelectedItem="{Binding SelectedJob, Mode=TwoWay}"
+            SelectionChanged="JobSelection_Changed" IsMultiSelectCheckBoxEnabled="True">
+            <Interactivity:Interaction.Behaviors>
+                <Core:EventTriggerBehavior EventName="ItemClick">
+                    <Core:GoToStateAction StateName="DetailVisualState" />
+                </Core:EventTriggerBehavior>
+            </Interactivity:Interaction.Behaviors>
+            <x:String>Sample</x:String>
+            <x:String>Sample</x:String>
+            <x:String>Sample</x:String>
+        </ListView>
+
         <RelativePanel
             x:Name="CompanyDetail"
-            Grid.Row="2"
-            Grid.Column="1"
+            Grid.Row="1" Grid.RowSpan="2"
+            Grid.Column="3"
             MinWidth="300">
             <ContentControl
                 x:Name="contentControl" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"

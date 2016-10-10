@@ -47,13 +47,24 @@ namespace JobSearch.ViewModels
         }
 
         Company _selected = default(Company);
-        public object Selected
+        public Company Selected
         {
             get { return _selected; }
             set
             {
                 var company = value as Company;
                 Set(ref _selected, company);
+            }
+        }
+
+        Job _selectedJob = default(Job);
+        public object SelectedJob
+        {
+            get { return _selectedJob; }
+            set
+            {
+                var job = value as Job;
+                Set(ref _selectedJob, job);
             }
         }
 
@@ -89,10 +100,22 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public int CompanyCount()
+        public IEnumerable<Company> Search(string searchText)
+            => db.Companies.Where(company => company.Name.ToLower().Contains(searchText.ToLower()));
+
+        public void Filter(string filterText)
         {
-            return Companies.Count();
+            IEnumerable<Company> result = db.Companies.Where(company => company.Name.ToLower().Contains(filterText.ToLower()));
+            Companies.Clear();
+            foreach (Company company in result)
+                Companies.Add(company);
         }
+
+        public void Select(object company)
+            => Selected = company as Company;
+
+        public int CompanyCount()
+            => Companies.Count();
 
     }
 }

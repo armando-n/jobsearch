@@ -27,6 +27,9 @@ namespace JobSearch.Views
             this.Loaded += (sender, e) => FindListViews(contentControl);
         }
 
+        private void SelectedUpdated(object sender, RoutedEventArgs e)
+            => ViewModel.UpdateSelected();
+
         private void FindListViews(DependencyObject obj)
         {
             if (obj != null)

@@ -247,6 +247,7 @@ namespace JobSearch.Services.DatabaseService
             getConnection().Update(job);
         }
 
+        public void Update(Job job) => getConnection().Update(job);
         public void Update(Job_Requirement jobRequirement) => getConnection().Update(jobRequirement);
         public void Update(Job_Responsibility jobResponsibility) => getConnection().Update(jobResponsibility);
         public void Update(Job_Interview jobInterview) => getConnection().Update(jobInterview);

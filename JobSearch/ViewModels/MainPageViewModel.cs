@@ -69,6 +69,8 @@ namespace JobSearch.ViewModels
         //    await Task.CompletedTask;
         //}
 
+        public void UpdateSelected() => db.Update(Selected as Job);
+
         private bool _searchByCompany;
         public bool SearchByCompany
         {

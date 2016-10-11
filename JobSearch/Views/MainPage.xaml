@@ -86,7 +86,7 @@
         <CommandBar Grid.ColumnSpan="2" Background="LightGray">
             <CommandBar.Content>
                 <StackPanel Orientation="Horizontal">
-                    <AppBarButton x:Name="BackButton"
+                    <AppBarButton x:Name="BackButton" Margin="32, 0, 0, 0"
                                 Icon="Back" IsEnabled="False"
                                 Visibility="Collapsed">
                         <Interactivity:Interaction.Behaviors>
@@ -316,7 +316,7 @@
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
 
-                                <Grid>
+                                <Grid Background="White">
 
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />

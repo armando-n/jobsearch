@@ -372,31 +372,32 @@
                                             <Run Text="{Binding DatePosted, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
                                             </TextBlock>
                                             <TextBlock x:Name="MinSalary"
-                                                    FontSize="20" FontWeight="Bold"
-                                                    Foreground="ForestGreen" MaxLines="1"
+                                                    FontSize="20" FontWeight="Bold" Foreground="ForestGreen"
+                                                    MaxLines="1" Visibility="{Binding MinSalary, Converter={StaticResource CollapsedWhenNullConverter}}"
                                                     RelativePanel.Below="Area" RelativePanel.RightOf="CompanyLogo">
-                                            <Run Text="$" /><Run Text="{Binding MinSalary, FallbackValue=MinSalary}" />
+                                            <Run Text="$" /><Run Text="{Binding MinSalary}" />
                                             </TextBlock>
                                             <TextBlock x:Name="MaxSalary"
-                                                    FontSize="20" FontWeight="Bold"
-                                                    Foreground="ForestGreen" MaxLines="1"
+                                                    FontSize="20" FontWeight="Bold" Foreground="ForestGreen"
+                                                    MaxLines="1" Visibility="{Binding MaxSalary, Converter={StaticResource CollapsedWhenNullConverter}}"
                                                     RelativePanel.Below="DatePosted" RelativePanel.RightOf="MinSalary">
                                             <Run Text=" -" Foreground="Black" />
-                                            <Run Text="$" /><Run Text="{Binding MaxSalary, FallbackValue=MaxSalary}" />
+                                            <Run Text="$" /><Run Text="{Binding MaxSalary}" />
                                             </TextBlock>
-                                            <HyperlinkButton x:Name="EmploymentService"
-                                                    Margin="0, -6, 0, 0" FontSize="12"
+                                            <HyperlinkButton x:Name="EmploymentService" Margin="0, -4, 0, 0" FontSize="12"
                                                     RelativePanel.Below="MinSalary" RelativePanel.RightOf="CompanyLogo"
-                                                    Content="{Binding EmploymentService}" NavigateUri="{Binding EmploymentServiceJobLink}" />
-                                            <TextBlock FontSize="12"
-                                                    Foreground="Black" MaxLines="1"
-                                                    RelativePanel.Below="MaxSalary" RelativePanel.RightOf="EmploymentService">
-                                            <Run Text=" |" Foreground="DimGray" FontWeight="Light" />
+                                                    Content="{Binding EmploymentService}" NavigateUri="{Binding EmploymentServiceJobLink}"
+                                                    Visibility="{Binding EmploymentService, Converter={StaticResource CollapsedWhenNullConverter}}"/>
+                                            <TextBlock Margin="0, 3, 0, 0"
+                                                    FontSize="12" Foreground="Black" MaxLines="1"
+                                                    Visibility="{Binding Recruiter, Converter={StaticResource CollapsedWhenNullConverter}}"
+                                                    RelativePanel.Below="MinSalary" RelativePanel.RightOf="EmploymentService">
+                                            <!--<Run Text=" |" Foreground="DimGray" FontWeight="Light" />-->
                                             <Run Text="{Binding Recruiter.Name, FallbackValue=Recruiter}" />
                                             </TextBlock>
                                         </RelativePanel>
 
-                                        <StackPanel x:Name="AppliedInfo" Margin="8, 0, 8, 0" Grid.Row="0" Grid.Column="1"
+                                        <StackPanel x:Name="AppliedInfo" Margin="8" Grid.Row="0" Grid.Column="1"
                                                     VerticalAlignment="Center" HorizontalAlignment="Center">
                                             <Border Background="AliceBlue" BorderBrush="SteelBlue" BorderThickness="2" CornerRadius="4, 4, 0, 0">
                                                 <TextBlock TextAlignment="Center"
@@ -447,8 +448,9 @@
 
                                         <TextBlock x:Name="YearsExperienceNeeded" Margin="8, 0, 8, 0" Grid.Row="0" Grid.Column="2" VerticalAlignment="Center"
                                                 FontSize="24" FontWeight="Normal" Foreground="Black"
-                                                MaxLines="3" TextWrapping="Wrap" TextAlignment="Center">
-                                        <Run Text="{Binding YearsExperienceNeeded, FallbackValue=YearsExperienceNeeded}" />
+                                                MaxLines="3" TextWrapping="Wrap" TextAlignment="Center"
+                                                Visibility="{Binding YearsExperienceNeeded, Converter={StaticResource CollapsedWhenNullConverter}}">
+                                        <Run Text="{Binding YearsExperienceNeeded}" />
                                         <Run Text="Years Experience Needed" />
                                         </TextBlock>
 
@@ -461,22 +463,22 @@
                                                     TextAlignment="Right"
                                                     TextWrapping="WrapWholeWords" />-->
                                             <HyperlinkButton x:Name="Company"
-                                                    Margin="0, 8, 0, 0" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"
+                                                    Margin="0, 8, 0, -6" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right"
                                                     RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignRightWithPanel="True"
                                                     Content="{Binding Company.Name}" NavigateUri="{Binding Company.Website}" />
-                                            <TextBlock x:Name="StreetAddress" Margin="0, -6, 0, 0"
+                                            <TextBlock x:Name="StreetAddress"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="Company" RelativePanel.AlignRightWith="Company"
                                                     Text="{Binding StreetAddress}"
-                                                    TextAlignment="Right" />
+                                                    TextAlignment="Right" Visibility="{Binding StreetAddress, Converter={StaticResource CollapsedWhenNullConverter}}" />
                                             <TextBlock x:Name="City"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="State"
-                                                    TextAlignment="Right">
+                                                    TextAlignment="Right" Visibility="{Binding City, Converter={StaticResource CollapsedWhenNullConverter}}">
                                             <Run Text="{Binding City}" /><Run Text="," />
                                             </TextBlock>
                                             <TextBlock x:Name="State"
@@ -485,15 +487,14 @@
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="StreetAddress" RelativePanel.LeftOf="ZipCode"
                                                     TextAlignment="Right">
-                                            <Run Text=""/>
-                                            <Run Text="{Binding State}" />
+                                            <Run Text=" "/><Run Text="{Binding State}" />
                                             </TextBlock>
                                             <TextBlock x:Name="ZipCode"
                                                     HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                     FontSize="14" FontWeight="Light"
                                                     Foreground="DimGray"
                                                     RelativePanel.Below="StreetAddress" RelativePanel.AlignRightWith="Company"
-                                                    TextAlignment="Right">
+                                                    TextAlignment="Right" Visibility="{Binding ZipCode, Converter={StaticResource CollapsedWhenNullConverter}}">
                                             <Run Text="" />
                                             <Run Text="{Binding ZipCode}" />
                                             </TextBlock>

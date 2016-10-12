@@ -13,6 +13,7 @@ namespace JobSearch.Models
         public string Position { get; set; }
         public int? MinSalary { get; set; }
         public int? MaxSalary { get; set; }
+        //public bool IsSalaryEstimate { get; set; }
         public DateTime? DatePosted { get; set; }
         public DateTime? DateApplied { get; set; }
         [MaxLength(100)]
@@ -49,8 +50,14 @@ namespace JobSearch.Models
         public int? YearsExperienceNeeded { get; set; }
         [Default(false, 1)]
         public bool Active { get; set; }
+
+        private bool _flagged;
         [Default(false, 0)]
-        public bool Flagged { get; set; }
+        public bool Flagged
+        {
+            get { return _flagged; }
+            set { Set(ref _flagged, value); }
+        }
 
         [ForeignKey(typeof(Company))][NotNull]
         public int CompanyId { get; set; }

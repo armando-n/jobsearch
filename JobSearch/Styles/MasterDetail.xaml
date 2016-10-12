@@ -75,10 +75,16 @@
             </Grid.ColumnDefinitions>
             <!--<Rectangle Fill="SteelBlue" Visibility="{Binding IsRead, Converter={StaticResource VisibleWhenFalseConverter}}" />-->
             <StackPanel Grid.Column="0">
-                <TextBlock x:Name="Position" Margin="8,0,0,0"
-                               FontSize="16" FontWeight="Normal"
-                               Foreground="Black" MaxLines="1"
-                               Text="{Binding Position, FallbackValue=Position}" />
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Width="16" Height="16" Margin="8, 4, 0, 0"
+                            Visibility="{Binding Flagged, Converter={StaticResource CollapsedWhenFalseConverter}}">
+                        <SymbolIcon Symbol="Flag" Foreground="Red" />
+                    </Viewbox>
+                    <TextBlock x:Name="Position" Margin="8,0,0,0"
+                            FontSize="16" FontWeight="Normal"
+                            Foreground="Black" MaxLines="1"
+                            Text="{Binding Position, FallbackValue=Position}" />
+                </StackPanel>
                 <TextBlock x:Name="Company" Margin="8,0,0,0"
                                FontSize="14" FontWeight="Normal"
                                Foreground="{StaticResource CustomColorBrush}" MaxLines="1"

@@ -8,6 +8,7 @@ using Template10.Mvvm;
 using System.Collections.Generic;
 using JobSearch.Controls.ListViewItems;
 using JobSearch.ViewModels;
+using Windows.UI;
 
 namespace JobSearch.Views
 {
@@ -144,6 +145,38 @@ namespace JobSearch.Views
             BootStrapper.Current.ModalDialog.IsModal = true;
         }
 
+        private DelegateCommand _flagSelection;
+        public DelegateCommand FlagSelection
+            => _flagSelection ?? (_flagSelection = new DelegateCommand(() =>
+            {
+                if (FlagButton.Label.Equals("Flag Job"))
+                {
+                    ViewModel.FlagSelection(true);
+                    SetFlagButton(false);
+                }
+                else
+                {
+                    ViewModel.FlagSelection(false);
+                    SetFlagButton(true);
+                }
+            }, () => true));
+
+        private void SetFlagButton(bool? flagged)
+        {
+            if (flagged ?? true)
+            {
+                FlagButton.Foreground = new SolidColorBrush(Colors.Black);
+                FlagButton.Label = "Flag Job";
+                ToolTipService.SetToolTip(FlagButton, "Flag Selected Job");
+            }
+            else
+            {
+                FlagButton.Foreground = new SolidColorBrush(Colors.Red);
+                FlagButton.Label = "Unflag Job";
+                ToolTipService.SetToolTip(FlagButton, "Unflag Selected Job");
+            }
+        }
+
         private DelegateCommand _enterSelectionMode;
         public DelegateCommand EnterSelectionMode
             => _enterSelectionMode ?? (_enterSelectionMode = new DelegateCommand(() =>
@@ -183,6 +216,13 @@ namespace JobSearch.Views
             ListViews.Clear();
             ItemBullets.Clear();
             FindListViews(contentControl);
+
+            SetFlagButton(! ViewModel.IsSelectionFlagged());
+
+            if (ViewModel.Selected == null)
+                FlagButton.Visibility = Visibility.Collapsed;
+            else
+                FlagButton.Visibility = Visibility.Visible;
         }
 
         private void JobSearch_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

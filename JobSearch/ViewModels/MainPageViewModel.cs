@@ -152,6 +152,15 @@ namespace JobSearch.ViewModels
             }
         }
 
+        public void FlagSelection(bool flagged)
+        {
+            _selected.Flagged = flagged;
+            db.Update(_selected);
+        }
+
+        public bool? IsSelectionFlagged()
+            => _selected?.Flagged;
+
         public void AddJob(string position, int? minSalary, int? maxSalary, string company, string recruiter, string notes
                 , int? yearsExperienceNeeded, string employmentService, string employmentServiceJobLink
                 , bool? appliedViaService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied

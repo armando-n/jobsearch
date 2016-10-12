@@ -105,6 +105,8 @@
                 </StackPanel>
             </CommandBar.Content>
             <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="FlagButton" Command="{x:Bind FlagSelection}" Icon="Flag"
+                            Label="Flag Job" ToolTipService.ToolTip="Flag Selected Job" />
                 <AppBarButton
                             Command="{x:Bind EnterSelectionMode}"
                             Icon="Bullets"

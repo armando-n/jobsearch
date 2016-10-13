@@ -38,18 +38,20 @@
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <TextBox x:Name="CompanyBox"
-                                MinWidth="100" Margin="8" Header="Company" MaxWidth="{Binding ElementName=CompanyBox, Path=ActualWidth}"
-                                RelativePanel.Below="PositionBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <AutoSuggestBox x:Name="CompanySuggestBox" Header="Company"
+                                MinWidth="100" Margin="8" MaxWidth="{Binding ElementName=CompanyBox, Path=ActualWidth}"
+                                RelativePanel.Below="PositionBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                                DisplayMemberPath="Name" TextMemberPath="Name"
+                                TextChanged="Company_TextChanged">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
-                    </TextBox>
+                    </AutoSuggestBox>
                     <TextBox x:Name="MinSalaryBox"
                                 MinWidth="50" Margin="8" Header="Min Salary" MaxWidth="{Binding ElementName=MinSalaryBox, Path=ActualWidth}"
-                                RelativePanel.Below="CompanyBox" RelativePanel.AlignLeftWithPanel="True">
+                                RelativePanel.Below="CompanySuggestBox" RelativePanel.AlignLeftWithPanel="True">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
@@ -58,7 +60,7 @@
                     </TextBox>
                     <TextBox x:Name="MaxSalaryBox"
                                 MinWidth="50" Margin="8" Header="Max Salary" MaxWidth="{Binding ElementName=MinSalaryBox, Path=ActualWidth}"
-                                RelativePanel.Below="CompanyBox" RelativePanel.RightOf="MinSalaryBox" RelativePanel.AlignRightWithPanel="True">
+                                RelativePanel.Below="CompanySuggestBox" RelativePanel.RightOf="MinSalaryBox" RelativePanel.AlignRightWithPanel="True">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />

@@ -259,20 +259,20 @@ namespace JobSearch.Views
             {
                 if (string.IsNullOrEmpty(JobSearch.Text))
                 {
-                    ViewModel.Filter(string.Empty);
+                    ViewModel.FilterJobs(string.Empty);
                     JobSearch.ItemsSource = null;
                 }
                 else
-                    JobSearch.ItemsSource = ViewModel.Search(JobSearch.Text);
+                    JobSearch.ItemsSource = ViewModel.SearchJobs(JobSearch.Text);
             }
         }
 
         private void JobSearch_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
-                ViewModel.Filter((args.ChosenSuggestion as SearchResult).Result);
+                ViewModel.FilterJobs((args.ChosenSuggestion as SearchResult).Result);
             else
-                ViewModel.Filter(JobSearch.Text);
+                ViewModel.FilterJobs(JobSearch.Text);
         }
 
         private void SortByPosition_Clicked(object sender, RoutedEventArgs e)

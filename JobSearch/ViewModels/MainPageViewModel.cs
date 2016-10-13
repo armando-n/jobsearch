@@ -450,7 +450,7 @@ namespace JobSearch.ViewModels
             }
         }
 
-        public IEnumerable<SearchResult> Search(string searchText)
+        public IEnumerable<SearchResult> SearchJobs(string searchText)
         {
             ISet<SearchResult> result = new HashSet<SearchResult>();
 
@@ -470,7 +470,7 @@ namespace JobSearch.ViewModels
             return result;
         }
 
-        public void Filter(string filterText)
+        public void FilterJobs(string filterText)
         {
             ISet<Job> matchingJobs = new HashSet<Job>();
             string lowerFilterText = filterText.ToLower();
@@ -492,6 +492,15 @@ namespace JobSearch.ViewModels
             Jobs.Clear();
             foreach (Job job in matchingJobs)
                 Jobs.Add(job);
+        }
+
+        public IEnumerable<Company> SearchCompanies(string searchText)
+        {
+            ISet<Company> result = new HashSet<Company>();
+            foreach (Company company in db.Companies.Where(cmpny => cmpny.Name.ToLower().Contains(searchText.ToLower())))
+                result.Add(company);
+
+            return result;
         }
 
         public void SortByPosition()

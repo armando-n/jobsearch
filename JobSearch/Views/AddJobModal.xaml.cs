@@ -26,7 +26,7 @@ namespace JobSearch.Views
                     position: PositionBox.Text,
                     minSalary: (MinSalaryBox.Text.Trim().Length > 0) ? int.Parse(MinSalaryBox.Text) as int? : null,
                     maxSalary: (MaxSalaryBox.Text.Trim().Length > 0) ? int.Parse(MaxSalaryBox.Text) as int? : null,
-                    company: CompanyBox.Text,
+                    company: CompanySuggestBox.Text,
                     recruiter: RecruiterBox.Text,
                     notes: NotesBox.Text,
                     yearsExperienceNeeded: (YearsExperienceNeededBox.Text.Trim().Length > 0) ? int.Parse(YearsExperienceNeededBox.Text) as int? : null,
@@ -53,6 +53,17 @@ namespace JobSearch.Views
         }
 
         private void CancelJob_Clicked(object sender, RoutedEventArgs e) => BootStrapper.Current.ModalDialog.IsModal = false;
+
+        private void Company_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                if (string.IsNullOrEmpty(CompanySuggestBox.Text))
+                    CompanySuggestBox.ItemsSource = null;
+                else
+                    CompanySuggestBox.ItemsSource = ViewModel.SearchCompanies(CompanySuggestBox.Text);
+            }
+        }
 
         private void AppliedBox_Checked(object sender, RoutedEventArgs e)
         {

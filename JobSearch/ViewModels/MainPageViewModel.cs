@@ -161,8 +161,8 @@ namespace JobSearch.ViewModels
         public bool? IsSelectionFlagged()
             => _selected?.Flagged;
 
-        public void AddJob(string position, int? minSalary, int? maxSalary, string company, string recruiter, string notes
-                , int? yearsExperienceNeeded, string employmentService, string employmentServiceJobLink
+        public void AddJob(string position, int? minSalary, int? maxSalary, bool? isSalaryEstimate, string company, string recruiter
+                , string notes, int? yearsExperienceNeeded, string employmentService, string employmentServiceJobLink
                 , bool? appliedViaService, bool? appliedViaWebsite, bool? appliedViaEmail, DateTime? datePosted, DateTime? dateApplied
                 , string streetAddress, string city, string state, int? zipCode, string area, bool? active, bool? flagged)
         {
@@ -173,8 +173,8 @@ namespace JobSearch.ViewModels
                     Position = String.IsNullOrWhiteSpace(position) ? null : position,
                     MinSalary = minSalary,
                     MaxSalary = maxSalary,
+                    IsSalaryEstimate = isSalaryEstimate ?? false,
                     YearsExperienceNeeded = yearsExperienceNeeded,
-
                     Notes = String.IsNullOrWhiteSpace(notes) ? null : notes,
                     EmploymentService = String.IsNullOrWhiteSpace(employmentService) ? null : employmentService,
                     EmploymentServiceJobLink = String.IsNullOrWhiteSpace(employmentServiceJobLink) ? null : employmentServiceJobLink,

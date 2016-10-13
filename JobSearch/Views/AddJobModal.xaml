@@ -67,9 +67,12 @@
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
+                    <CheckBox x:Name="IsSalaryEstimateBox" Content="Estimated salary"
+                                MinWidth="30" Margin="8, 8, 8, 0"
+                                RelativePanel.Below="MaxSalaryBox" RelativePanel.AlignLeftWithPanel="True" />
                     <TextBox x:Name="YearsExperienceNeededBox"
                                 MinWidth="50" Margin="8" Header="Years Experience Needed" MaxLength="2"
-                                RelativePanel.Below="MaxSalaryBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                                RelativePanel.Below="IsSalaryEstimateBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />

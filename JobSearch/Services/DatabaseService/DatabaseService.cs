@@ -389,6 +389,7 @@ namespace JobSearch.Services.DatabaseService
                 Notes = "still waiting to hear about IQ test results",
                 MinSalary = 50000,
                 MaxSalary = 75000,
+                IsSalaryEstimate = false,
                 EmploymentServiceJobLink = "http://monster.com",
                 Area = "Unknown",
                 YearsExperienceNeeded = 0,

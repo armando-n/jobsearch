@@ -376,17 +376,16 @@
                                             <Run Text="{Binding DatePosted, Mode=OneWay, Converter={StaticResource StringFormatConverter}, ConverterParameter=\{0:m\}}" />
                                             </TextBlock>
                                             <TextBlock x:Name="MinSalary"
-                                                    FontSize="20" FontWeight="Bold" Foreground="ForestGreen"
+                                                    FontSize="20" FontWeight="Bold" Foreground="{Binding IsSalaryEstimate, Converter={StaticResource YellowWhenTrue}}"
                                                     MaxLines="1" Visibility="{Binding MinSalary, Converter={StaticResource CollapsedWhenNullConverter}}"
                                                     RelativePanel.Below="Area" RelativePanel.RightOf="CompanyLogo">
                                             <Run Text="$" /><Run Text="{Binding MinSalary}" />
                                             </TextBlock>
                                             <TextBlock x:Name="MaxSalary"
-                                                    FontSize="20" FontWeight="Bold" Foreground="ForestGreen"
+                                                    FontSize="20" FontWeight="Bold" Foreground="{Binding IsSalaryEstimate, Converter={StaticResource YellowWhenTrue}}"
                                                     MaxLines="1" Visibility="{Binding MaxSalary, Converter={StaticResource CollapsedWhenNullConverter}}"
                                                     RelativePanel.Below="DatePosted" RelativePanel.RightOf="MinSalary">
-                                            <Run Text=" -" Foreground="Black" />
-                                            <Run Text="$" /><Run Text="{Binding MaxSalary}" />
+                                            <Run Text=" - $" /><Run Text="{Binding MaxSalary}" />
                                             </TextBlock>
                                             <HyperlinkButton x:Name="EmploymentService" Margin="0, -4, 0, 0" FontSize="12"
                                                     RelativePanel.Below="MinSalary" RelativePanel.RightOf="CompanyLogo"

@@ -26,6 +26,7 @@ namespace JobSearch.Views
                     position: PositionBox.Text,
                     minSalary: (MinSalaryBox.Text.Trim().Length > 0) ? int.Parse(MinSalaryBox.Text) as int? : null,
                     maxSalary: (MaxSalaryBox.Text.Trim().Length > 0) ? int.Parse(MaxSalaryBox.Text) as int? : null,
+                    isSalaryEstimate: IsSalaryEstimateBox.IsChecked,
                     company: CompanySuggestBox.Text,
                     recruiter: RecruiterBox.Text,
                     notes: NotesBox.Text,

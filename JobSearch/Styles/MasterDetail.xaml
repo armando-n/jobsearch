@@ -63,6 +63,18 @@
         </c:ValueWhenConverter.Otherwise>
     </c:ValueWhenConverter>
 
+    <c:ValueWhenConverter x:Name="YellowWhenTrue">
+        <c:ValueWhenConverter.When>
+            <x:Boolean>True</x:Boolean>
+        </c:ValueWhenConverter.When>
+        <c:ValueWhenConverter.Value>
+            <SolidColorBrush Color="#A7C100" />
+        </c:ValueWhenConverter.Value>
+        <c:ValueWhenConverter.Otherwise>
+            <SolidColorBrush Color="#0DB701" />
+        </c:ValueWhenConverter.Otherwise>
+    </c:ValueWhenConverter>
+
     <Style x:Key="StretchList" TargetType="ListViewItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>

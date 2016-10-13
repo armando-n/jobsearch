@@ -13,7 +13,8 @@ namespace JobSearch.Models
         public string Position { get; set; }
         public int? MinSalary { get; set; }
         public int? MaxSalary { get; set; }
-        //public bool IsSalaryEstimate { get; set; }
+        [Default(false, 0)]
+        public bool IsSalaryEstimate { get; set; }
         public DateTime? DatePosted { get; set; }
         public DateTime? DateApplied { get; set; }
         [MaxLength(100)]

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using JobSearch.Controls.ListViewItems;
 using JobSearch.ViewModels;
 using Windows.UI;
+using Windows.UI.Popups;
 
 namespace JobSearch.Views
 {
@@ -145,6 +146,27 @@ namespace JobSearch.Views
             BootStrapper.Current.ModalDialog.IsModal = true;
         }
 
+        private DelegateCommand _deleteSelection;
+        public DelegateCommand DeleteSelection
+            => _deleteSelection ?? (_deleteSelection = new DelegateCommand(
+                () => ShowDeleteConfirmationDialog(), () => true));
+
+        private async void ShowDeleteConfirmationDialog()
+        {
+            var dialog = new MessageDialog("Are you sure you want to delete the selected job?");
+            dialog.Commands.Add(new UICommand("Yes", new UICommandInvokedHandler(this.ConfirmationHandler)));
+            dialog.Commands.Add(new UICommand("No", new UICommandInvokedHandler(this.ConfirmationHandler)));
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 1;
+            await dialog.ShowAsync();
+        }
+
+        private void ConfirmationHandler(IUICommand command)
+        {
+            if (command.Label == "Yes")
+                ViewModel.DeleteSelectedJob();
+        }
+
         private DelegateCommand _flagSelection;
         public DelegateCommand FlagSelection
             => _flagSelection ?? (_flagSelection = new DelegateCommand(() =>
@@ -220,9 +242,15 @@ namespace JobSearch.Views
             SetFlagButton(! ViewModel.IsSelectionFlagged());
 
             if (ViewModel.Selected == null)
+            {
+                DeleteButton.Visibility = Visibility.Collapsed;
                 FlagButton.Visibility = Visibility.Collapsed;
+            }   
             else
+            {
+                DeleteButton.Visibility = Visibility.Visible;
                 FlagButton.Visibility = Visibility.Visible;
+            }
         }
 
         private void JobSearch_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

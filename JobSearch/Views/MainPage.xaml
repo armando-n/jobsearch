@@ -107,6 +107,8 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Name="FlagButton" Command="{x:Bind FlagSelection}" Icon="Flag"
                             Label="Flag Job" ToolTipService.ToolTip="Flag Selected Job" />
+                <AppBarButton x:Name="DeleteButton" Command="{x:Bind DeleteSelection}" Icon="Delete"
+                            Label="Delete Job" ToolTipService.ToolTip="Delete Selected Job" />
                 <AppBarButton
                             Command="{x:Bind EnterSelectionMode}"
                             Icon="Bullets"

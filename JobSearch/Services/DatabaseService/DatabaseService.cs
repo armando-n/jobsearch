@@ -118,6 +118,12 @@ namespace JobSearch.Services.DatabaseService
             }
         }
 
+        public void DeleteJob(Job job)
+        {
+            getConnection().Delete(job);
+            Jobs.Remove(job);
+        }
+
         public void AddCompany(Company company)
         {
             getConnection().Insert(company);

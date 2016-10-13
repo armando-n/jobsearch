@@ -207,6 +207,14 @@ namespace JobSearch.ViewModels
             }
         }
 
+        public void DeleteSelectedJob()
+        {
+            Job currentJob = Selected as Job;
+            db.DeleteJob(currentJob);
+            Jobs.Remove(currentJob);
+            Selected = null;
+        }
+
         public void AddRequirement(string requirements)
         {
             try

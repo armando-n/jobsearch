@@ -12,129 +12,132 @@
              mc:Ignorable="d"
              x:Name="ThisAddCompanyModal">
 
-    <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel>
+    <ScrollViewer>
+        <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
 
-            <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0"
-                            RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
-                <TextBlock Margin="8"
-                        FontSize="24" Foreground="DimGray"
-                        Text="Add Company" />
-            </Border>
+                <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0">
+                    <TextBlock Margin="8" FontSize="24" Foreground="DimGray"
+                                Text="Add Company" />
+                </Border>
 
-            <RelativePanel Margin="10">
-                <TextBox x:Name="NameBox" Header="Name"
-                            Margin="8, 8, 18, 8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=NameBox, Path=ActualWidth}"
-                            RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                        <Core:EventTriggerBehavior>
-                            <Behaviors:FocusAction />
-                        </Core:EventTriggerBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="DomainBox"
-                            MinWidth="150" Margin="8, 8, 18, 8" Header="Domain" MaxWidth="{Binding ElementName=DomainBox, Path=ActualWidth}"
-                            RelativePanel.Below="NameBox" RelativePanel.AlignLeftWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="SizeBox"
-                            MinWidth="150" Margin="8, 8, 18, 8" Header="Size" MaxWidth="{Binding ElementName=SizeBox, Path=ActualWidth}"
-                            RelativePanel.Below="DomainBox" RelativePanel.AlignLeftWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
+                <Grid Margin="10" MinWidth="400" MaxWidth="450">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <TextBox x:Name="WebsiteBox" Header="Website"
-                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="255" MaxWidth="{Binding ElementName=WebsiteBox, Path=ActualWidth}"
-                            RelativePanel.RightOf="NameBox" RelativePanel.AlignTopWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="LinkedInBox" Header="LinkedIn"
-                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="1000" MaxWidth="{Binding ElementName=LinkedInBox, Path=ActualWidth}"
-                            RelativePanel.Below="WebsiteBox" RelativePanel.RightOf="DomainBox">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="GlassdoorBox" Header="Glassdoor"
-                            MinWidth="150" Margin="18, 8, 18, 8" MaxLength="1000" MaxWidth="{Binding ElementName=GlassdoorBox, Path=ActualWidth}"
-                            RelativePanel.Below="LinkedInBox" RelativePanel.RightOf="SizeBox">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
+                    <TextBox x:Name="NameBox" Margin="8" Header="Name" MaxLength="100"
+                                Grid.Row="0" Grid.Column="0" MaxWidth="{Binding ElementName=NameBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                            <Core:EventTriggerBehavior>
+                                <Behaviors:FocusAction />
+                            </Core:EventTriggerBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="DomainBox" Margin="8" Header="Domain"
+                                Grid.Row="0" Grid.Column="1" MaxWidth="{Binding ElementName=DomainBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="SizeBox" Margin="8" Header="Size"
+                                Grid.Row="1" Grid.Column="0" MaxWidth="{Binding ElementName=SizeBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="WebsiteBox" Margin="8" Header="Website" MaxLength="255"
+                                Grid.Row="1" Grid.Column="1" MaxWidth="{Binding ElementName=WebsiteBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="LinkedInBox" Margin="8" Header="LinkedIn"
+                                Grid.Row="2" Grid.Column="0" MaxLength="1000" MaxWidth="{Binding ElementName=LinkedInBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="GlassdoorBox" Margin="8" Header="Glassdoor"
+                                Grid.Row="2" Grid.Column="1" MaxLength="1000" MaxWidth="{Binding ElementName=GlassdoorBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
                 
-                <TextBox x:Name="StreetAddressBox" Header="Street Address"
-                            Margin="18, 8, 8, 8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=StreetAddressBox, Path=ActualWidth}"
-                            RelativePanel.AlignTopWithPanel="True" RelativePanel.RightOf="WebsiteBox" RelativePanel.AlignRightWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="CityBox" Header="City"
-                            Margin="18, 8, 8, 8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}"
-                            RelativePanel.Below="StreetAddressBox" RelativePanel.RightOf="LinkedInBox" RelativePanel.AlignRightWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="StateBox"
-                            MinWidth="40" Margin="18, 8, 8, 8" Header="State" MaxLength="2"
-                            RelativePanel.Below="CityBox" RelativePanel.RightOf="GlassdoorBox">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
-                <TextBox x:Name="ZipCodeBox"
-                            MinWidth="50" Margin="18, 8, 8, 8" Header="Zip Code" MaxLength="5"
-                            RelativePanel.Below="CityBox" RelativePanel.RightOf="StateBox" RelativePanel.AlignRightWithPanel="True">
-                    <Interactivity:Interaction.Behaviors>
-                        <Behaviors:KeyBehavior Key="Enter">
-                            <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
-                        </Behaviors:KeyBehavior>
-                    </Interactivity:Interaction.Behaviors>
-                </TextBox>
+                    <TextBox x:Name="StreetAddressBox" Margin="8" Header="Street Address"
+                                Grid.Row="3" Grid.Column="0" MaxLength="100" MaxWidth="{Binding ElementName=StreetAddressBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="CityBox" Header="City" Margin="8"
+                                Grid.Row="3" Grid.Column="1"  MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="StateBox" Margin="8" Header="State" MaxLength="2"
+                                Grid.Row="4" Grid.Column="0">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
+                    <TextBox x:Name="ZipCodeBox" Margin="8" Header="Zip Code" MaxLength="5"
+                                Grid.Row="4" Grid.Column="1">
+                        <Interactivity:Interaction.Behaviors>
+                            <Behaviors:KeyBehavior Key="Enter">
+                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                            </Behaviors:KeyBehavior>
+                        </Interactivity:Interaction.Behaviors>
+                    </TextBox>
 
-                <TextBox x:Name="NotesBox" Header="Notes"
-                            MinWidth="150" MinHeight="100" MaxHeight="150" Margin="8" MaxLength="1000"
-                            RelativePanel.Below="SizeBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWith="GlassdoorBox"
-                            TextWrapping="Wrap" AcceptsReturn="True">
-                </TextBox>
+                    <TextBox x:Name="NotesBox" Margin="8" Header="Notes" MinHeight="100" MaxHeight="150" MaxLength="1000"
+                                Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                                TextWrapping="Wrap" AcceptsReturn="True">
+                    </TextBox>
 
-                <Button Content="Okay" Margin="8"
-                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="CancelJob"
-                            Click="AddCompany_Clicked" />
-                <Button x:Name="CancelJob" Content="Cancel" Margin="8"
-                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                            Click="CancelCompany_Clicked" />
-            </RelativePanel>
-        </StackPanel>
-    </Border>
+                    <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button Content="Okay" Margin="8"
+                                    Click="AddCompany_Clicked" />
+                        <Button x:Name="CancelJob" Content="Cancel" Margin="8"
+                                    Click="CancelCompany_Clicked" />
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
 
 </UserControl>
 

@@ -87,7 +87,7 @@ namespace JobSearch.Views
         private void ConfirmationHandler(IUICommand command)
         {
             if (command.Label == "Continue")
-                BootStrapper.Current.ModalContent = new AddCompanyModal(this);
+                BootStrapper.Current.ModalContent = new AddCompanyModal(this, CompanySuggestBox.Text);
         }
 
         private void AppliedBox_Checked(object sender, RoutedEventArgs e)

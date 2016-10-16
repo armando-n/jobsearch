@@ -12,12 +12,25 @@ namespace JobSearch.Views
     {
         private CompaniesPageViewModel ViewModel;
         private AddJobModal CallingModal;
+        private string CompanyName;
 
-        public AddCompanyModal(AddJobModal callingModal = null)
+        public AddCompanyModal(AddJobModal callingModal = null, string companyName = null)
         {
             InitializeComponent();
             this.DataContext = ViewModel = CompaniesPageViewModel.Instance;
             this.CallingModal = callingModal;
+            this.CompanyName = companyName;
+            this.NameBox.GotFocus += ModalFinishedLoading;
+        }
+
+        public void ModalFinishedLoading(object sender, RoutedEventArgs e)
+        {
+            if (CompanyName != null)
+            {
+                NameBox.Text = CompanyName;
+                DomainBox.Focus(FocusState.Programmatic);
+                CompanyName = null;
+            }
         }
 
         public void AddCompany(object sender, RoutedEventArgs e)

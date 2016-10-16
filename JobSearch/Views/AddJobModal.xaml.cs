@@ -80,14 +80,13 @@ namespace JobSearch.Views
             AppliedViaWebsiteBox.IsChecked = false;
             AppliedViaEmailBox.IsChecked = false;
             if (CancelJob.GetValue(RelativePanel.BelowProperty) == AppliedArea)
-                CancelJob.ClearValue(RelativePanel.BelowProperty);
+                CancelJob.SetValue(RelativePanel.BelowProperty, ActiveBox);
         }
 
         private void NotesBox_Checked(object sender, RoutedEventArgs e)
         {
             NotesBox.Visibility = Visibility.Visible;
-            if (AppliedArea.Visibility == Visibility.Visible)
-                CancelJob.ClearValue(RelativePanel.BelowProperty);
+            CancelJob.SetValue(RelativePanel.BelowProperty, NotesBox);
         }
 
         private void NotesBox_Unchecked(object sender, RoutedEventArgs e)

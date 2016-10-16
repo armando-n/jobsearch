@@ -12,23 +12,43 @@
              mc:Ignorable="d"
              x:Name="ThisAddJobModal">
 
-    <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
-            HorizontalAlignment="Center" VerticalAlignment="Center">
-        <StackPanel>
+    <ScrollViewer>
+        <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
 
-            <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0"
-                            RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
-                <TextBlock MinWidth="100" Margin="8"
-                        FontSize="24" Foreground="DimGray"
-                        Text="Add Job" />
-            </Border>
+                <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0">
+                    <TextBlock MinWidth="100" Margin="8" FontSize="24" Foreground="DimGray"
+                            Text="Add Job" />
+                </Border>
 
-            <StackPanel Orientation="Horizontal">
+                <Grid Margin="10" MinWidth="400" MaxWidth="450">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
 
-                <RelativePanel Margin="10">
-                    <TextBox x:Name="PositionBox" Header="Position"
-                                Margin="8" MinWidth="100" MaxLength="100" MaxWidth="{Binding ElementName=PositionBox, Path=ActualWidth}"
-                                RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <!-- Job Information -->
+                    <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="0, 8, 8, 0"
+                                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Margin="8" FontSize="18" Foreground="DimGray"
+                                    Text="Position Information" />
+                    </Border>
+                    <TextBox x:Name="PositionBox" Header="Position" Margin="8"
+                                    Grid.Row="1" Grid.Column="0" MaxWidth="{Binding ElementName=PositionBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
@@ -38,186 +58,190 @@
                             </Core:EventTriggerBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <AutoSuggestBox x:Name="CompanySuggestBox" Header="Company"
-                                MinWidth="100" Margin="8" MaxWidth="{Binding ElementName=CompanyBox, Path=ActualWidth}"
-                                RelativePanel.Below="PositionBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                                DisplayMemberPath="Name" TextMemberPath="Name"
-                                TextChanged="Company_TextChanged">
+                    <AutoSuggestBox x:Name="CompanySuggestBox" Header="Company" Margin="8"
+                                    Grid.Row="1" Grid.Column="1" MaxWidth="{Binding ElementName=CompanySuggestBox, Path=ActualWidth}"
+                                    DisplayMemberPath="Name" TextMemberPath="Name"
+                                    TextChanged="Company_TextChanged">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </AutoSuggestBox>
-                    <TextBox x:Name="MinSalaryBox"
-                                MinWidth="50" Margin="8" Header="Min Salary" MaxWidth="{Binding ElementName=MinSalaryBox, Path=ActualWidth}"
-                                RelativePanel.Below="CompanySuggestBox" RelativePanel.AlignLeftWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                    <TextBox x:Name="MaxSalaryBox"
-                                MinWidth="50" Margin="8" Header="Max Salary" MaxWidth="{Binding ElementName=MinSalaryBox, Path=ActualWidth}"
-                                RelativePanel.Below="CompanySuggestBox" RelativePanel.RightOf="MinSalaryBox" RelativePanel.AlignRightWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                    <CheckBox x:Name="IsSalaryEstimateBox" Content="Estimated salary"
-                                MinWidth="30" Margin="8, 8, 8, 0"
-                                RelativePanel.Below="MaxSalaryBox" RelativePanel.AlignLeftWithPanel="True" />
-                    <TextBox x:Name="YearsExperienceNeededBox"
-                                MinWidth="50" Margin="8" Header="Years Experience Needed" MaxLength="2"
-                                RelativePanel.Below="IsSalaryEstimateBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                </RelativePanel>
+                    <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="YearsExperienceNeededBox" Header="Yrs Experience" Margin="8" MaxLength="2"
+                                    Grid.Column="0" MaxWidth="{Binding ElementName=YearsExperienceNeededBox, Path=ActualWidth}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBox x:Name="MinSalaryBox" Header="Min Salary" Margin="8" HorizontalAlignment="Stretch"
+                                    Grid.Column="1" MaxWidth="{Binding ElementName=MinSalaryBox, Path=ActualWidth}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBox x:Name="MaxSalaryBox" Header="Max Salary" Margin="8" HorizontalAlignment="Stretch"
+                                    Grid.Column="2" MaxWidth="{Binding ElementName=MaxSalaryBox, Path=ActualWidth}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                    </Grid>
+                    <CheckBox x:Name="IsSalaryEstimateBox" Content="Estimated salary" Margin="8, 8, 8, 0" MinWidth="30"
+                                Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" />
 
-                <RelativePanel Margin="10">
-                    <CalendarDatePicker x:Name="DatePostedBox"
-                                MinWidth="100" Margin="8" HorizontalAlignment="Stretch"
-                                RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                                Header="Date Posted" />
-                    <TextBox x:Name="RecruiterBox"
-                                MinWidth="100" Margin="8" Header="Recruiter" MaxWidth="{Binding ElementName=RecruiterBox, Path=ActualWidth}"
-                                RelativePanel.Below="DatePostedBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <!-- Job Posting Information -->
+                    <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="0, 8, 8, 0"
+                                Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Margin="8" FontSize="18" Foreground="DimGray"
+                                    Text="Job Posting Information" />
+                    </Border>
+                    <CalendarDatePicker x:Name="DatePostedBox" Margin="8" Header="Date Posted"
+                                Grid.Row="5" Grid.Column="0" HorizontalAlignment="Stretch" />
+                    <TextBox x:Name="RecruiterBox" Margin="8" Header="Recruiter"
+                                Grid.Row="5" Grid.Column="1" MaxWidth="{Binding ElementName=RecruiterBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <TextBox x:Name="EmploymentServiceBox" Header="Employment Service"
-                                MinWidth="100" Margin="8" MaxLength="100" MaxWidth="{Binding ElementName=EmploymentServiceBox, Path=ActualWidth}"
-                                RelativePanel.Below="RecruiterBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBox x:Name="EmploymentServiceBox" Margin="8" Header="Employment Service" MaxLength="100"
+                                Grid.Row="6" Grid.Column="0" MaxWidth="{Binding ElementName=EmploymentServiceBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <TextBox x:Name="EmploymentServiceJobLinkBox" Header="Service URL"
-                                MinWidth="100" Margin="8" MaxLength="1000" MaxWidth="{Binding ElementName=EmploymentServiceJobLinkBox, Path=ActualWidth}"
-                                RelativePanel.Below="EmploymentServiceBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBox x:Name="EmploymentServiceJobLinkBox" Margin="8" Header="Service URL" MaxLength="1000"
+                                Grid.Row="6" Grid.Column="1" MaxWidth="{Binding ElementName=EmploymentServiceJobLinkBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                </RelativePanel>
 
-                <RelativePanel Margin="10">
-                    <TextBox x:Name="AreaBox" Header="Area"
-                                Margin="8" MinWidth="100" MaxLength="100" MaxWidth="{Binding ElementName=AreaBox, Path=ActualWidth}"
-                                RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <!-- Location Information -->
+                    <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="0, 8, 8, 0"
+                                Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock Margin="8" FontSize="18" Foreground="DimGray"
+                                    Text="Location Information" />
+                    </Border>
+                    <TextBox x:Name="StreetAddressBox" Margin="8" Header="Street Address" MaxLength="100"
+                                Grid.Row="8" Grid.Column="0" MaxWidth="{Binding ElementName=StreetAddressBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <TextBox x:Name="StreetAddressBox" Header="Street Address"
-                                Margin="8" MinWidth="150" MaxLength="100" MaxWidth="{Binding ElementName=StreetAddressBox, Path=ActualWidth}"
-                                RelativePanel.Below="AreaBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
+                    <TextBox x:Name="CityBox" Margin="8" Header="City"
+                                Grid.Row="8" Grid.Column="1" MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
-                    <TextBox x:Name="CityBox" Header="City"
-                                Margin="8" MinWidth="100" MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}"
-                                RelativePanel.Below="StreetAddressBox" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                    <TextBox x:Name="StateBox"
-                                MinWidth="40" Margin="8" Header="State" MaxLength="2"
-                                RelativePanel.Below="CityBox" RelativePanel.AlignLeftWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                    <TextBox x:Name="ZipCodeBox"
-                                MinWidth="50" Margin="8" Header="Zip Code" MaxLength="5"
-                                RelativePanel.Below="CityBox" RelativePanel.RightOf="StateBox" RelativePanel.AlignRightWithPanel="True">
-                        <Interactivity:Interaction.Behaviors>
-                            <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
-                            </Behaviors:KeyBehavior>
-                        </Interactivity:Interaction.Behaviors>
-                    </TextBox>
-                </RelativePanel>
+                    <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="5*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="StateBox" Margin="8" Header="State" MaxLength="2"
+                                    Grid.Column="0">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBox x:Name="ZipCodeBox" Margin="8" Header="Zip Code" MaxLength="5"
+                                    Grid.Column="1">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                        <TextBox x:Name="AreaBox" Margin="8" Header="Area" MaxLength="100"
+                                    Grid.Column="2" MaxWidth="{Binding ElementName=AreaBox, Path=ActualWidth}">
+                            <Interactivity:Interaction.Behaviors>
+                                <Behaviors:KeyBehavior Key="Enter">
+                                    <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />
+                                </Behaviors:KeyBehavior>
+                            </Interactivity:Interaction.Behaviors>
+                        </TextBox>
+                    </Grid>
+
+                    <!-- Flags and Misc -->
+                    <RelativePanel Margin="0, 10, 0, 0" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2">
+                        <CheckBox x:Name="ActiveBox" Content="Active" IsChecked="True"
+                                    MinWidth="30" Margin="8, 0, 8, 8"
+                                    RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
+                        <CheckBox x:Name="FlagBox" Content="Flag"
+                                    MinWidth="30" Margin="8, 0, 8, 8"
+                                    RelativePanel.RightOf="ActiveBox" />
+                        <CheckBox x:Name="AppliedBox" Content="Applied" Checked="AppliedBox_Checked" Unchecked="AppliedBox_Unchecked"
+                                    MinWidth="30" Margin="8, 0, 8, 8"
+                                    RelativePanel.RightOf="FlagBox" />
+                        <CheckBox x:Name="NotesCheckBox" Content="Notes" Checked="NotesBox_Checked" Unchecked="NotesBox_Unchecked"
+                                    MinWidth="30" Margin="8, 0, 8, 8"
+                                    RelativePanel.RightOf="AppliedBox" />
+
+                        <RelativePanel x:Name="AppliedArea" Visibility="Collapsed"
+                                    RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
+                            <CalendarDatePicker x:Name="DateAppliedBox"
+                                        MinWidth="150" Margin="8"
+                                        RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
+                                        Header="Date Applied" />
+                            <TextBlock x:Name="AppliedViaBlock" Margin="8"
+                                        RelativePanel.Below="DateAppliedBox"
+                                        Text="Applied Via" />
+                            <CheckBox x:Name="AppliedViaServiceBox" Content="Service"
+                                        MinWidth="30" Margin="8, 0, 8, 8"
+                                        RelativePanel.Below="AppliedViaBlock" RelativePanel.AlignLeftWith="AppliedViaBlock" />
+                            <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
+                                        MinWidth="30" Margin="8, 0, 8, 8"
+                                        RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaServiceBox" />
+                            <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
+                                        MinWidth="30" Margin="8, 0, 8, 8"
+                                        RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaWebsiteBox" />
+                        </RelativePanel>
+
+                        <TextBox x:Name="NotesBox" Visibility="Collapsed" Header="Notes"
+                                    MinWidth="100" MinHeight="100" MaxHeight="150" Margin="8, 2, 8, 8" MaxLength="1000"
+                                    RelativePanel.Below="AppliedArea" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                                    TextWrapping="Wrap" AcceptsReturn="True">
+                        </TextBox>
+
+                        <Button Content="Okay" Margin="8"
+                                    RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="CancelJob"
+                                    Click="AddJob_Clicked" />
+                        <Button x:Name="CancelJob" Content="Cancel" Margin="8"
+                                    RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="ActiveBox"
+                                    Click="CancelJob_Clicked" />
+                    </RelativePanel>
+                </Grid>
 
             </StackPanel>
-
-            <RelativePanel Margin="10">
-                <CheckBox x:Name="ActiveBox" Content="Active" IsChecked="True"
-                            MinWidth="30" Margin="8, 0, 8, 8"
-                            RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True" />
-                <CheckBox x:Name="FlagBox" Content="Flag"
-                            MinWidth="30" Margin="8, 0, 8, 8"
-                            RelativePanel.RightOf="ActiveBox" />
-                <CheckBox x:Name="AppliedBox" Content="Applied" Checked="AppliedBox_Checked" Unchecked="AppliedBox_Unchecked"
-                            MinWidth="30" Margin="8, 0, 8, 8"
-                            RelativePanel.RightOf="FlagBox" />
-                <CheckBox x:Name="NotesCheckBox" Content="Notes" Checked="NotesBox_Checked" Unchecked="NotesBox_Unchecked"
-                            MinWidth="30" Margin="8, 0, 8, 8"
-                            RelativePanel.RightOf="AppliedBox" />
-
-                <!--<Border x:Name="AppliedArea" Visibility="Collapsed"
-                            BorderBrush="#FFCCCCCC" BorderThickness="0" Background="#FFF2F2F2" Margin="8"
-                            RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">-->
-                <RelativePanel x:Name="AppliedArea" Visibility="Collapsed"
-                            RelativePanel.Below="ActiveBox" RelativePanel.AlignLeftWithPanel="True">
-                    <CalendarDatePicker x:Name="DateAppliedBox"
-                                MinWidth="150" Margin="8"
-                                RelativePanel.AlignTopWithPanel="True" RelativePanel.AlignLeftWithPanel="True"
-                                Header="Date Applied" />
-                    <TextBlock x:Name="AppliedViaBlock" Margin="8"
-                                RelativePanel.RightOf="DateAppliedBox"
-                                Text="Applied Via" />
-                    <CheckBox x:Name="AppliedViaServiceBox" Content="Service"
-                                MinWidth="30" Margin="8, 0, 8, 8"
-                                RelativePanel.Below="AppliedViaBlock" RelativePanel.AlignLeftWith="AppliedViaBlock" />
-                    <CheckBox x:Name="AppliedViaWebsiteBox" Content="Website"
-                                MinWidth="30" Margin="8, 0, 8, 8"
-                                RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaServiceBox" />
-                    <CheckBox x:Name="AppliedViaEmailBox" Content="Email"
-                                MinWidth="30" Margin="8, 0, 8, 8"
-                                RelativePanel.Below="AppliedViaBlock" RelativePanel.RightOf="AppliedViaWebsiteBox" />
-                </RelativePanel>
-                <!--</Border>-->
-
-                <TextBox x:Name="NotesBox" Visibility="Collapsed" Header="Notes"
-                            MinWidth="100" MinHeight="100" MaxHeight="150" Margin="8, 4, 8, 8" MaxLength="1000"
-                            RelativePanel.Below="AppliedArea" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWith="NotesCheckBox"
-                            TextWrapping="Wrap" AcceptsReturn="True">
-                </TextBox>
-
-                <Button Content="Okay" Margin="8"
-                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.LeftOf="CancelJob"
-                            Click="AddJob_Clicked" />
-                <Button x:Name="CancelJob" Content="Cancel" Margin="8"
-                            RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"
-                            Click="CancelJob_Clicked" />
-            </RelativePanel>
-        </StackPanel>
-    </Border>
+        </Border>
+    </ScrollViewer>
 
 </UserControl>
 

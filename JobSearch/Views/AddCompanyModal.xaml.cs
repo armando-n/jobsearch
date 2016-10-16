@@ -11,14 +11,16 @@ namespace JobSearch.Views
     public sealed partial class AddCompanyModal : UserControl
     {
         private CompaniesPageViewModel ViewModel;
+        private AddJobModal CallingModal;
 
-        public AddCompanyModal()
+        public AddCompanyModal(AddJobModal callingModal = null)
         {
             InitializeComponent();
             this.DataContext = ViewModel = CompaniesPageViewModel.Instance;
+            this.CallingModal = callingModal;
         }
 
-        public void AddCompany_Clicked(object sender, RoutedEventArgs e)
+        public void AddCompany(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -35,14 +37,22 @@ namespace JobSearch.Views
                     state: StateBox.Text,
                     zipCode: (ZipCodeBox.Text.Trim().Length > 0) ? int.Parse(ZipCodeBox.Text) as int? : null
                 );
-                
-                BootStrapper.Current.ModalDialog.IsModal = false;
-                CompaniesPage.Instance.SelectLast();
+
+                CloseModal(null, null);
             }
             catch (ArgumentNullException ex) { }
         }
 
-        private void CancelCompany_Clicked(object sender, RoutedEventArgs e) => BootStrapper.Current.ModalDialog.IsModal = false;
+        private void CloseModal(object sender, RoutedEventArgs e)
+        {
+            if (CallingModal != null)
+                BootStrapper.Current.ModalContent = CallingModal;
+            else
+            {
+                BootStrapper.Current.ModalDialog.IsModal = false;
+                CompaniesPage.Instance.SelectLast();
+            }
+        }
 
     }
 }

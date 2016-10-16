@@ -503,6 +503,9 @@ namespace JobSearch.ViewModels
             return result;
         }
 
+        public bool CompanyExists(string companyName)
+            => db.Companies.Where(cmpny => cmpny.Name.ToLower().Equals(companyName.ToLower())).Count() > 0;
+
         public void SortByPosition()
         {
             Jobs.Clear();

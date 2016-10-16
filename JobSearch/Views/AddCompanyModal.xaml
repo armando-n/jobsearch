@@ -41,7 +41,7 @@
                                 Grid.Row="0" Grid.Column="0" MaxWidth="{Binding ElementName=NameBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                             <Core:EventTriggerBehavior>
                                 <Behaviors:FocusAction />
@@ -52,7 +52,7 @@
                                 Grid.Row="0" Grid.Column="1" MaxWidth="{Binding ElementName=DomainBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -60,7 +60,7 @@
                                 Grid.Row="1" Grid.Column="0" MaxWidth="{Binding ElementName=SizeBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -68,7 +68,7 @@
                                 Grid.Row="1" Grid.Column="1" MaxWidth="{Binding ElementName=WebsiteBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -76,7 +76,7 @@
                                 Grid.Row="2" Grid.Column="0" MaxLength="1000" MaxWidth="{Binding ElementName=LinkedInBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -84,7 +84,7 @@
                                 Grid.Row="2" Grid.Column="1" MaxLength="1000" MaxWidth="{Binding ElementName=GlassdoorBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -93,7 +93,7 @@
                                 Grid.Row="3" Grid.Column="0" MaxLength="100" MaxWidth="{Binding ElementName=StreetAddressBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -101,7 +101,7 @@
                                 Grid.Row="3" Grid.Column="1"  MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -109,7 +109,7 @@
                                 Grid.Row="4" Grid.Column="0">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -117,7 +117,7 @@
                                 Grid.Row="4" Grid.Column="1">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
-                                <Core:CallMethodAction MethodName="AddCompany_Clicked" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
+                                <Core:CallMethodAction MethodName="AddCompany" TargetObject="{Binding ElementName=ThisAddCompanyModal}" />
                             </Behaviors:KeyBehavior>
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
@@ -128,10 +128,8 @@
                     </TextBox>
 
                     <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
-                        <Button Content="Okay" Margin="8"
-                                    Click="AddCompany_Clicked" />
-                        <Button x:Name="CancelJob" Content="Cancel" Margin="8"
-                                    Click="CancelCompany_Clicked" />
+                        <Button Content="Okay" Margin="8" Click="AddCompany" />
+                        <Button Content="Cancel" Margin="8" Click="CloseModal" />
                     </StackPanel>
 
                 </Grid>

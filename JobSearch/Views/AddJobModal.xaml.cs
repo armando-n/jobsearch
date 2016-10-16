@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Template10.Common;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -20,6 +21,12 @@ namespace JobSearch.Views
 
         public void AddJob_Clicked(object sender, RoutedEventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(CompanySuggestBox.Text) && !ViewModel.CompanyExists(CompanySuggestBox.Text))
+            {
+                ShowAddCompanyConfirmationDialog();
+                return;
+            }
+
             try
             {
                 ViewModel.AddJob(
@@ -53,7 +60,8 @@ namespace JobSearch.Views
             catch (ArgumentNullException ex) { }
         }
 
-        private void CancelJob_Clicked(object sender, RoutedEventArgs e) => BootStrapper.Current.ModalDialog.IsModal = false;
+        private void CancelJob_Clicked(object sender, RoutedEventArgs e)
+            => BootStrapper.Current.ModalDialog.IsModal = false;
 
         private void Company_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
@@ -64,6 +72,22 @@ namespace JobSearch.Views
                 else
                     CompanySuggestBox.ItemsSource = ViewModel.SearchCompanies(CompanySuggestBox.Text);
             }
+        }
+
+        private async void ShowAddCompanyConfirmationDialog()
+        {
+            var dialog = new MessageDialog($"The company \"{CompanySuggestBox.Text}\" was not found. You must add it to continue.");
+            dialog.Commands.Add(new UICommand("Continue", new UICommandInvokedHandler(this.ConfirmationHandler)));
+            dialog.Commands.Add(new UICommand("Cancel", new UICommandInvokedHandler(this.ConfirmationHandler)));
+            dialog.DefaultCommandIndex = 0;
+            dialog.CancelCommandIndex = 1;
+            await dialog.ShowAsync();
+        }
+
+        private void ConfirmationHandler(IUICommand command)
+        {
+            if (command.Label == "Continue")
+                BootStrapper.Current.ModalContent = new AddCompanyModal(this);
         }
 
         private void AppliedBox_Checked(object sender, RoutedEventArgs e)

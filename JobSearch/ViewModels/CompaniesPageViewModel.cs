@@ -17,6 +17,8 @@ namespace JobSearch.ViewModels
         {
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
+            Companies = new ObservableCollection<Company>(db.Companies);
+            Selected = (Companies.Count > 0) ? Companies.First() : null;
         }
 
         private static CompaniesPageViewModel _instance;
@@ -33,9 +35,6 @@ namespace JobSearch.ViewModels
 
         public override Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            Companies = new ObservableCollection<Company>(db.Companies);
-            Selected = (Companies.Count > 0) ? Companies.First() : null;
-
             return Task.CompletedTask;
         }
 

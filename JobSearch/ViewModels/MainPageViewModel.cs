@@ -23,7 +23,7 @@ namespace JobSearch.ViewModels
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
 
-            Jobs = new ObservableCollection<Job>(db.Jobs.OrderByDescending(job => job.DateApplied));
+            Jobs = new ObservableCollection<Job>(db.Jobs.OrderByDescending(job => job.DateApplied).ThenByDescending(job => job.JobId));
             Selected = (Jobs.Count > 0) ? Jobs.First() : null;
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);

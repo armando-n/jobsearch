@@ -55,7 +55,7 @@ namespace JobSearch.Views
                 );
 
                 BootStrapper.Current.ModalDialog.IsModal = false;
-                MainPage.Instance.SelectLast();
+                MainPage.Instance.SelectFirst();
             }
             catch (ArgumentNullException ex) { }
         }

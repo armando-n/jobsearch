@@ -13,8 +13,8 @@ namespace JobSearch.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private const string LIST_ITEM_LEADING_SEPARATOR = @"^\s*[-�]\s*\b";
-        private const string LIST_ITEM_SEPARATOR = @"[\n\r]+\s*[-�]?\s*\b";
+        private const string LIST_ITEM_LEADING_SEPARATOR = @"^\s*[-퇄*]\s*\b";
+        private const string LIST_ITEM_SEPARATOR = @"[\n\r]+\s*[-퇄*]?\s*\b";
         public enum ModelTypes { Company, Recruiter, Position, Area };
         Services.DatabaseService.DatabaseService db;
 
@@ -23,7 +23,7 @@ namespace JobSearch.ViewModels
             _instance = this;
             db = Services.DatabaseService.DatabaseService.GetDB();
 
-            Jobs = new ObservableCollection<Job>(db.Jobs.OrderByDescending(job => job.DateApplied));
+            Jobs = new ObservableCollection<Job>(db.Jobs.OrderByDescending(job => job.DateApplied).ThenByDescending(job => job.JobId));
             Selected = (Jobs.Count > 0) ? Jobs.First() : null;
             Requirements = new ObservableCollection<Job_Requirement>(db.Requirements);
             Responsibilities = new ObservableCollection<Job_Responsibility>(db.Responsibilities);
@@ -35,6 +35,10 @@ namespace JobSearch.ViewModels
             _searchByRecruiter = false;
             _searchByPosition = false;
             _searchByArea = false;
+
+            _sortByDateApplied = true;
+            _sortByPosition = false;
+            _sortByDatePosted = false;
         }
 
         private static MainPageViewModel _instance;
@@ -97,6 +101,42 @@ namespace JobSearch.ViewModels
         {
             get { return _searchByArea; }
             set { Set(ref _searchByArea, value); }
+        }
+
+        private bool _sortByDateApplied;
+        public bool SortByDateApplied
+        {
+            get { return _sortByDateApplied; }
+            set
+            {
+                if (value)
+                    SortByPosition = SortByDatePosted = false;
+                Set(ref _sortByDateApplied, value);
+            }
+        }
+
+        private bool _sortByDatePosted;
+        public bool SortByDatePosted
+        {
+            get { return _sortByDatePosted; }
+            set
+            {
+                if (value)
+                    SortByPosition = SortByDateApplied = false;
+                Set(ref _sortByDatePosted, value);
+            }
+        }
+
+        private bool _sortByPosition;
+        public bool SortByPosition
+        {
+            get { return _sortByPosition; }
+            set
+            {
+                if (value)
+                    SortByDateApplied = SortByDatePosted = false;
+                Set(ref _sortByPosition, value);
+            }
         }
 
         private ObservableCollection<Job> _jobs;
@@ -198,8 +238,7 @@ namespace JobSearch.ViewModels
                 };
 
                 db.AddJob(newJob, company, recruiter);
-                Jobs.Add(newJob);
-                RaisePropertyChanged(nameof(Jobs));
+                Jobs.Insert(0, newJob);
             }
             catch (SQLite.Net.NotNullConstraintViolationException ex)
             {
@@ -473,6 +512,7 @@ namespace JobSearch.ViewModels
         public void FilterJobs(string filterText)
         {
             ISet<Job> matchingJobs = new HashSet<Job>();
+            IOrderedEnumerable<Job> matchingJobsOrdered;
             string lowerFilterText = filterText.ToLower();
 
             if (string.IsNullOrEmpty(filterText))
@@ -489,8 +529,15 @@ namespace JobSearch.ViewModels
                     matchingJobs.UnionWith(db.Jobs.Where(job => job.Area.ToLower().Contains(lowerFilterText)));
             }
 
+            if (SortByDateApplied)
+                matchingJobsOrdered = matchingJobs.OrderByDescending(job => job.DateApplied).ThenByDescending(job => job.JobId);
+            else if (SortByDatePosted)
+                matchingJobsOrdered = matchingJobs.OrderByDescending(job => job.DatePosted).ThenByDescending(job => job.JobId);
+            else // (SortByPosition)
+                matchingJobsOrdered = matchingJobs.OrderBy(job => job.Position).ThenByDescending(job => job.JobId);
+
             Jobs.Clear();
-            foreach (Job job in matchingJobs)
+            foreach (Job job in matchingJobsOrdered)
                 Jobs.Add(job);
         }
 
@@ -506,25 +553,20 @@ namespace JobSearch.ViewModels
         public bool CompanyExists(string companyName)
             => db.Companies.Where(cmpny => cmpny.Name.ToLower().Equals(companyName.ToLower())).Count() > 0;
 
-        public void SortByPosition()
+        public void SortBy(string sortBy)
         {
+            List<Job> shownJobs = new List<Job>(Jobs);
             Jobs.Clear();
-            foreach (Job job in db.Jobs.OrderBy(job => job.Position))
-                Jobs.Add(job);
-        }
 
-        public void SortByDateApplied()
-        {
-            Jobs.Clear();
-            foreach (Job job in db.Jobs.OrderByDescending(job => job.DateApplied))
-                Jobs.Add(job);
-        }
-
-        public void SortByDatePosted()
-        {
-            Jobs.Clear();
-            foreach (Job job in db.Jobs.OrderByDescending(job => job.DatePosted))
-                Jobs.Add(job);
+            if (sortBy == "Date Applied")
+                foreach (Job job in shownJobs.OrderByDescending(job => job.DateApplied).ThenByDescending(job => job.JobId))
+                    Jobs.Add(job);
+            else if (sortBy == "Date Posted")
+                foreach (Job job in shownJobs.OrderByDescending(job => job.DatePosted).ThenByDescending(job => job.JobId))
+                    Jobs.Add(job);
+            else if (sortBy == "Position")
+                foreach (Job job in shownJobs.OrderBy(job => job.Position).ThenByDescending(job => job.JobId))
+                    Jobs.Add(job);
         }
 
         public void Select(object job)

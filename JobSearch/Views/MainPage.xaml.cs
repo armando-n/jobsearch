@@ -92,7 +92,7 @@ namespace JobSearch.Views
             }
         }
 
-        public void SelectLast() => JobsList.SelectedIndex = ViewModel.JobCount() - 1;
+        public void SelectFirst() => JobsList.SelectedIndex = 0;
 
         private void ShowRequirementsModal(object sender, RoutedEventArgs e)
         {
@@ -275,14 +275,8 @@ namespace JobSearch.Views
                 ViewModel.FilterJobs(JobSearch.Text);
         }
 
-        private void SortByPosition_Clicked(object sender, RoutedEventArgs e)
-            => ViewModel.SortByPosition();
-
-        private void SortByDateApplied_Clicked(object sender, RoutedEventArgs e)
-            => ViewModel.SortByDateApplied();
-
-        private void SortByDatePosted_Clicked(object sender, RoutedEventArgs e)
-            => ViewModel.SortByDatePosted();
+        private void SortBy_Clicked(object sender, RoutedEventArgs e)
+            => ViewModel.SortBy((sender as MenuFlyoutItem).Text);
 
     }
 }

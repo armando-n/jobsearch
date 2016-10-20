@@ -145,9 +145,9 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Text="Sort by:" />
                         <MenuFlyoutSeparator />
-                        <MenuFlyoutItem Text="Position" Click="SortByPosition_Clicked" />
-                        <MenuFlyoutItem Text="Date Applied" Click="SortByDateApplied_Clicked" />
-                        <MenuFlyoutItem Text="Date Posted" Click="SortByDatePosted_Clicked" />
+                        <ToggleMenuFlyoutItem Text="Date Applied" Click="SortBy_Clicked" IsChecked="{Binding SortByDateApplied, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Date Posted" Click="SortBy_Clicked" IsChecked="{Binding SortByDatePosted, Mode=TwoWay}" />
+                        <ToggleMenuFlyoutItem Text="Position" Click="SortBy_Clicked" IsChecked="{Binding SortByPosition, Mode=TwoWay}" />
                     </MenuFlyout>
                 </Button.Flyout>
                 <SymbolIcon Symbol="Sort" />

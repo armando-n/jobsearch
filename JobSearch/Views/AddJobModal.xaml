@@ -150,7 +150,8 @@
                         </Interactivity:Interaction.Behaviors>
                     </TextBox>
                     <TextBox x:Name="CityBox" Margin="8" Header="City"
-                                Grid.Row="8" Grid.Column="1" MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}">
+                                Grid.Row="8" Grid.Column="1" MaxLength="100" MaxWidth="{Binding ElementName=CityBox, Path=ActualWidth}"
+                                TextChanged="CityText_Changed">
                         <Interactivity:Interaction.Behaviors>
                             <Behaviors:KeyBehavior Key="Enter">
                                 <Core:CallMethodAction MethodName="AddJob_Clicked" TargetObject="{Binding ElementName=ThisAddJobModal}" />

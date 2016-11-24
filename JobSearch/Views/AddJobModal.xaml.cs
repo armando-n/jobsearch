@@ -90,11 +90,18 @@ namespace JobSearch.Views
                 BootStrapper.Current.ModalContent = new AddCompanyModal(this, CompanySuggestBox.Text);
         }
 
+        private void CityText_Changed(object sender, TextChangedEventArgs e)
+        {
+            if (AreaBox.Text == CityBox.Text.Substring(0, CityBox.Text.Length - 1))
+                AreaBox.Text = CityBox.Text;
+        }
+
         private void AppliedBox_Checked(object sender, RoutedEventArgs e)
         {
             AppliedArea.Visibility = Visibility.Visible;
             if (NotesBox.Visibility == Visibility.Collapsed)
                 CancelJob.SetValue(RelativePanel.BelowProperty, AppliedArea);
+            DateAppliedBox.Date = DateTime.Today;
         }
 
         private void AppliedBox_Unchecked(object sender, RoutedEventArgs e)
@@ -105,6 +112,7 @@ namespace JobSearch.Views
             AppliedViaEmailBox.IsChecked = false;
             if (CancelJob.GetValue(RelativePanel.BelowProperty) == AppliedArea)
                 CancelJob.SetValue(RelativePanel.BelowProperty, ActiveBox);
+            DateAppliedBox.Date = null;
         }
 
         private void NotesBox_Checked(object sender, RoutedEventArgs e)

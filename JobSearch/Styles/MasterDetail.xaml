@@ -82,11 +82,12 @@
     <DataTemplate x:Name="JobsListItemTemplate">
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <!--<Rectangle Fill="SteelBlue" Visibility="{Binding IsRead, Converter={StaticResource VisibleWhenFalseConverter}}" />-->
-            <StackPanel Grid.Column="0">
+            <Rectangle Grid.Column="0" Fill="{Binding StateColor}" />
+            <StackPanel Grid.Column="1">
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Width="16" Height="16" Margin="8, 4, 0, 0"
                             Visibility="{Binding Flagged, Converter={StaticResource CollapsedWhenFalseConverter}}">
@@ -107,7 +108,7 @@
                                Style="{StaticResource TitleTextBlockStyle}"
                                Text="{Binding Notes, FallbackValue=Notes}" />
             </StackPanel>
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />

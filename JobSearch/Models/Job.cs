@@ -7,6 +7,8 @@ namespace JobSearch.Models
 {
     public class Job : Template10.Mvvm.BindableBase
     {
+        public enum JobState { Applied, Interested, WaitingOnMeToCommunicate, WaitingOnJobToCommunicate, UpcomingTest, UpcomingInterview, DeclinedToOffer, Offered, OfferDeclined }
+
         [PrimaryKey, AutoIncrement]
         public int JobId { get; set; }
         [MaxLength(100)][NotNull]
@@ -60,6 +62,28 @@ namespace JobSearch.Models
             set { Set(ref _flagged, value); }
         }
 
+        public JobState StateOfJob { get; set; }
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public string StateColor
+        {
+            get
+            {
+                switch (this.StateOfJob)
+                {
+                    case JobState.Applied: return "DodgerBlue";
+                    case JobState.Interested: return "White";
+                    case JobState.WaitingOnMeToCommunicate: return "DarkRed";
+                    case JobState.WaitingOnJobToCommunicate: return "DarkOrange";
+                    case JobState.UpcomingTest: return "Gold";
+                    case JobState.UpcomingInterview: return "Gold";
+                    case JobState.DeclinedToOffer: return "SaddleBrown";
+                    case JobState.Offered: return "Green";
+                    case JobState.OfferDeclined: return "SlateBlue";
+                    default: return "White";
+                }
+            }
+        }
+
         [ForeignKey(typeof(Company))][NotNull]
         public int CompanyId { get; set; }
         [ManyToOne]
@@ -69,6 +93,11 @@ namespace JobSearch.Models
         public int? RecruiterId { get; set; }
         [ManyToOne]
         public Recruiter Recruiter { get; set; }
+
+        [Default(false, 0)]
+        public bool Stale { get; set; }
+        [Default(false, 0)]
+        public bool Archived { get; set; }
 
         [OneToMany(CascadeOperations = CascadeOperation.CascadeDelete | CascadeOperation.CascadeRead)]
         public ObservableCollection<Job_Communication> Communications { get; set; }

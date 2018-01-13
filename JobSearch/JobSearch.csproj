@@ -130,6 +130,9 @@
     <Compile Include="ViewModels\CompaniesPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Views\FilterJobsModal.xaml.cs">
+      <DependentUpon>FilterJobsModal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CommunicationModal.xaml.cs">
       <DependentUpon>CommunicationModal.xaml</DependentUpon>
     </Compile>
@@ -226,6 +229,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Styles\MasterDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FilterJobsModal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

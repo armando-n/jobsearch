@@ -278,5 +278,10 @@ namespace JobSearch.Views
         private void SortBy_Clicked(object sender, RoutedEventArgs e)
             => ViewModel.SortBy((sender as MenuFlyoutItem).Text);
 
+        private void FilterJobs(object sender, RoutedEventArgs e)
+        {
+            BootStrapper.Current.ModalContent = new FilterJobsModal();
+            BootStrapper.Current.ModalDialog.IsModal = true;
+        }
     }
 }

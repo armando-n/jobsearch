@@ -102,6 +102,9 @@
                     <TextBlock Style="{StaticResource TitleTextBlockStyle}" Margin="16, 8, 0, 0">
                         <Run Text="(" /><Run Text="{Binding Jobs.Count}" /><Run Text=")" />
                     </TextBlock>
+                    <AppBarButton x:Name="FilterJobStatesButton" Margin="32, 0, 0, 0" IsCompact="True"
+                                  Icon="Filter" Label="Filter Jobs" ToolTipService.ToolTip="Filter Jobs"
+                                  Click="FilterJobs" />
                 </StackPanel>
             </CommandBar.Content>
             <CommandBar.PrimaryCommands>

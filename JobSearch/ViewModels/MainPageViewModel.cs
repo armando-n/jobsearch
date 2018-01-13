@@ -39,6 +39,16 @@ namespace JobSearch.ViewModels
             _sortByDateApplied = true;
             _sortByPosition = false;
             _sortByDatePosted = false;
+
+            _showAppliedJobs = true;
+            _showInterestedJobs = true;
+            _showWaitingOnMeToCommunicateJobs = true;
+            _showWaitingOnMeJobCommunicateJobs = true;
+            _showUpcomingTestJobs = true;
+            _showUpcomingInterviewJobs = true;
+            _showDeclinedToOfferJobs = true;
+            _showOfferedJobs = true;
+            _showOfferDeclinedJobs = true;
         }
 
         private static MainPageViewModel _instance;
@@ -137,6 +147,69 @@ namespace JobSearch.ViewModels
                     SortByDateApplied = SortByDatePosted = false;
                 Set(ref _sortByPosition, value);
             }
+        }
+
+        private bool _showAppliedJobs;
+        public bool ShowAppliedJobs
+        {
+            get { return _showAppliedJobs; }
+            set { Set(ref _showAppliedJobs, value); }
+        }
+
+        private bool _showInterestedJobs;
+        public bool ShowInterestedJobs
+        {
+            get { return _showInterestedJobs; }
+            set { Set(ref _showInterestedJobs, value); }
+        }
+
+        private bool _showWaitingOnMeToCommunicateJobs;
+        public bool ShowWaitingOnMeToCommunicateJobs
+        {
+            get { return _showWaitingOnMeToCommunicateJobs; }
+            set { Set(ref _showWaitingOnMeToCommunicateJobs, value); }
+        }
+
+        private bool _showWaitingOnMeJobCommunicateJobs;
+        public bool ShowWaitingOnMeJobCommunicateJobs
+        {
+            get { return _showWaitingOnMeJobCommunicateJobs; }
+            set { Set(ref _showWaitingOnMeJobCommunicateJobs, value); }
+        }
+
+        private bool _showUpcomingTestJobs;
+        public bool ShowUpcomingTestJobs
+        {
+            get { return _showUpcomingTestJobs; }
+            set { Set(ref _showUpcomingTestJobs, value); }
+        }
+
+        private bool _showUpcomingInterviewJobs;
+        public bool ShowUpcomingInterviewJobs
+        {
+            get { return _showUpcomingInterviewJobs; }
+            set { Set(ref _showUpcomingInterviewJobs, value); }
+        }
+
+        private bool _showDeclinedToOfferJobs;
+        public bool ShowDeclinedToOfferJobs
+        {
+            get { return _showDeclinedToOfferJobs; }
+            set { Set(ref _showDeclinedToOfferJobs, value); }
+        }
+
+        private bool _showOfferedJobs;
+        public bool ShowOfferedJobs
+        {
+            get { return _showOfferedJobs; }
+            set { Set(ref _showOfferedJobs, value); }
+        }
+
+        private bool _showOfferDeclinedJobs;
+        public bool ShowOfferDeclinedJobs
+        {
+            get { return _showOfferDeclinedJobs; }
+            set { Set(ref _showOfferDeclinedJobs, value); }
         }
 
         private ObservableCollection<Job> _jobs;

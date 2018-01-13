@@ -1,0 +1,85 @@
+<UserControl x:Class="JobSearch.Views.FilterJobsModal"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="using:JobSearch.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="using:JobSearch.ViewModels"
+             xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+             xmlns:Behaviors="using:Template10.Behaviors"
+             xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+             d:DesignHeight="500" d:DesignWidth="600"
+             mc:Ignorable="d"
+             x:Name="ThisFilterJobsodal">
+
+    <ScrollViewer>
+        <Border BorderBrush="#FFCCCCCC" BorderThickness="2" Background="#FFF2F2F2"
+                HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel>
+
+                <Border BorderBrush="#FFCCCCCC" BorderThickness="0, 0, 0, 1" Margin="8, 8, 8, 0">
+                    <TextBlock Margin="8" FontSize="24" Foreground="DimGray"
+                                Text="Filter Jobs" />
+                </Border>
+
+                <Grid Margin="10" MinWidth="400" MaxWidth="450">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox x:Name="InterestedBox" Grid.Row="0" Grid.Column="0"
+                                Content="Interested" IsChecked="{Binding ShowInterestedJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="AppliedBox" Grid.Row="0" Grid.Column="1"
+                                Content="Applied" IsChecked="{Binding ShowAppliedJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="WaitingOnMeToCommunicateBox" Grid.Row="1" Grid.Column="0"
+                                Content="Waiting On Me To Communicate" IsChecked="{Binding ShowWaitingOnMeToCommunicateJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="WaitingOnJobToCommunicateBox" Grid.Row="1" Grid.Column="1"
+                                Content="Waiting On Job To Communicate" IsChecked="{Binding ShowWaitingOnJobToCommunicateJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="UpcomingTestBox" Grid.Row="2" Grid.Column="0"
+                                Content="Upcoming Test" IsChecked="{Binding ShowUpcomingTestJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="UpcomingInterviewBox" Grid.Row="2" Grid.Column="1"
+                                Content="Upcoming Interview" IsChecked="{Binding ShowUpcomingInterviewJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="DeclinedToOfferBox" Grid.Row="3" Grid.Column="0"
+                                Content="Declined To Offer" IsChecked="{Binding ShowDeclinedToOfferJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="OfferedBox" Grid.Row="3" Grid.Column="1"
+                                Content="Offered" IsChecked="{Binding ShowOfferedJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <CheckBox x:Name="OfferDeclinedBox" Grid.Row="4" Grid.Column="0"
+                                Content="Offer Declined" IsChecked="{Binding ShowOfferDeclinedJobs}"
+                                MinWidth="30" Margin="8, 0, 8, 8" />
+
+                    <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button Content="Close" Margin="8" Click="CloseModal" />
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+    </ScrollViewer>
+
+</UserControl>
+
